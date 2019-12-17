@@ -1,17 +1,17 @@
-import { createStackNavigator } from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
 import HomeScreen from '../views/Home';
-import { NavigationRoutes } from './Routes';
+import {NavigationRoutes} from './Routes';
 import FavouriteUserScreen from '../views/Home/FavouriteUser';
 
 const HomeStack = createStackNavigator(
   {
     [NavigationRoutes.Home]: {
-      screen: HomeScreen
+      screen: HomeScreen,
     },
     [NavigationRoutes.FavouriteUser]: {
-      screen: FavouriteUserScreen
-    }
+      screen: FavouriteUserScreen,
+    },
   },
   {
     initialRouteName: NavigationRoutes.Home,
@@ -19,14 +19,14 @@ const HomeStack = createStackNavigator(
     navigationOptions: {
       gesturesEnabled: false,
     },
-  }
+  },
 );
 
 const HomeRootScreen = createStackNavigator(
   {
     [NavigationRoutes.Home]: {
-      screen: HomeStack
-    }
+      screen: HomeStack,
+    },
   },
   {
     initialRouteName: NavigationRoutes.Home,
@@ -34,7 +34,7 @@ const HomeRootScreen = createStackNavigator(
     navigationOptions: {
       gesturesEnabled: false,
     },
-  }
+  },
 );
 
 export default HomeRootScreen;

@@ -1,21 +1,22 @@
-import { createStackNavigator } from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
-import { NavigationRoutes } from './Routes';
+import {NavigationRoutes} from './Routes';
 import LoginScreen from '../views/Login';
+import WelcomeScreen from '../views/MyIdealFigure/Welcome';
 
 const AuthStack = createStackNavigator(
   {
     [NavigationRoutes.Login]: {
-      screen: LoginScreen
-    }
+      screen: WelcomeScreen,
+    },
   },
   {
     initialRouteName: NavigationRoutes.Login,
     headerMode: 'none',
     navigationOptions: {
-      gesturesEnabled: false
-    }
-  }
+      gesturesEnabled: false,
+    },
+  },
 );
 
 export default AuthStack;
