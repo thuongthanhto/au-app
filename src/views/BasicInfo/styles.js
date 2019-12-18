@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     color: '#ED1F24',
-    fontSize: 50,
+    fontSize: 48,
     fontWeight: 'bold',
   },
   textPragraph: {
     lineHeight: 24,
-    fontSize: 18,
+    fontSize: 16,
     paddingTop: 15,
   },
   imageContentWrap: {
@@ -58,6 +58,17 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     margin: 10,
+  },
+  iconSelect: {
+    backgroundColor: 'transparent',
+    borderTopWidth: 10,
+    borderTopColor: 'gray',
+    borderRightWidth: 10,
+    borderRightColor: 'transparent',
+    borderLeftWidth: 10,
+    borderLeftColor: 'transparent',
+    width: 0,
+    height: 0,
   },
 });
 

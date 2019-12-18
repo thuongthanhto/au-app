@@ -25,7 +25,7 @@ const LegalStuff = () => {
             linkText="8700.com.au/termsofuse">
             <Text style={styles.textPragraph}>
               Please review our full Terms of Use at
-              http://www.8700.com.au/termsofuse and made clickable.
+              https://www.8700.com.au/disclaimer and made clickable.
             </Text>
           </Hyperlink>
         </View>

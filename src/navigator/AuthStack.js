@@ -4,11 +4,12 @@ import {NavigationRoutes} from './Routes';
 import LoginScreen from '../views/Login';
 import WelcomeScreen from '../views/BasicInfo/Welcome';
 import LegalStuffScreen from '../views/BasicInfo/LegalStuff';
+import UserInfoScreen from '../views/BasicInfo/UserInfo';
 
 const AuthStack = createStackNavigator(
   {
     [NavigationRoutes.Login]: {
-      screen: LegalStuffScreen,
+      screen: UserInfoScreen,
     },
   },
   {
