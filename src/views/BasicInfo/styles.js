@@ -70,6 +70,16 @@ const styles = StyleSheet.create({
     width: 0,
     height: 0,
   },
+  formWrap: {
+    marginBottom: 20,
+  },
+  formItem: {
+    marginTop: 10,
+  },
+  errorText: {
+    color: '#D01C21',
+    fontSize: 16,
+  },
 });
 
 export default styles;
