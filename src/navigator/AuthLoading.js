@@ -31,11 +31,11 @@ class AuthLoading extends React.PureComponent {
   checkAuthencation = async () => {
     const { navigation } = this.props;
     const authToken = await Storage.get(StorageKey.AuthToken);
-    if (authToken === null) {
+    if (authToken !== null) {
       // navigation.navigate(NavigationRoutes.AuthStack);
       navigation.navigate(NavigationRoutes.Schedule);
     } else {
-      navigation.navigate(NavigationRoutes.Home);
+      navigation.navigate(NavigationRoutes.Welcome);
     }
   }
 
