@@ -8,19 +8,19 @@ import ConverterStack from './ConverterStack';
 import IdealFigureStack from './IdealFigureStack';
 
 export default createBottomTabNavigator({
+  [NavigationRoutes.Search]: {
+    screen: SearchStack
+  },
   [NavigationRoutes.IdealFigure]: {
     screen: IdealFigureStack
   },
-  [NavigationRoutes.More]: {
-    screen: MoreStack
+  [NavigationRoutes.Converter]: {
+    screen: ConverterStack
   },
   [NavigationRoutes.BurnkJ]: {
     screen: BurnkJStack
   },
-  [NavigationRoutes.Search]: {
-    screen: SearchStack
-  },
-  [NavigationRoutes.Converter]: {
-    screen: ConverterStack
+  [NavigationRoutes.More]: {
+    screen: MoreStack
   }
 });
