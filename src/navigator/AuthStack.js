@@ -2,12 +2,13 @@ import {createStackNavigator} from 'react-navigation';
 
 import {NavigationRoutes} from './Routes';
 import LoginScreen from '../views/Login';
-import WelcomeScreen from '../views/MyIdealFigure/Welcome';
+import WelcomeScreen from '../views/BasicInfo/Welcome';
+import LegalStuffScreen from '../views/BasicInfo/LegalStuff';
 
 const AuthStack = createStackNavigator(
   {
     [NavigationRoutes.Login]: {
-      screen: WelcomeScreen,
+      screen: LegalStuffScreen,
     },
   },
   {

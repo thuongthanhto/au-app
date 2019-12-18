@@ -1,9 +1,6 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
-import Responsive from '../../../modules/utils/responsive';
-import {colors} from '../../../modules/colors';
-
-const {width, height} = Dimensions.get('window');
+import {colors} from '../../modules/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,11 +29,11 @@ const styles = StyleSheet.create({
     color: '#ED1F24',
     fontSize: 50,
     fontWeight: 'bold',
-    marginBottom: 10,
   },
   textPragraph: {
     lineHeight: 24,
     fontSize: 18,
+    paddingTop: 15,
   },
   imageContentWrap: {
     flex: 3,

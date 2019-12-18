@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, ImageBackground, Image} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
-import styles from './styles';
-import bgImg from './bg_main.jpg';
-import foodImg from './home_food_1_tablet.png';
+import styles from '../styles';
+import bgImg from '../assets/bg_main.jpg';
+import foodImg from '../assets/home_food_1_tablet.png';
+import Button from '../../../components/Button';
 
 const Welcome = () => {
   return (
@@ -26,9 +26,14 @@ const Welcome = () => {
       <View style={styles.footerWrap}>
         <ImageBackground source={bgImg} style={{width: '100%', height: '100%'}}>
           <View style={styles.containerButton}>
-            <LinearGradient colors={['#DFDCD9', 'white', '#DFDCD9']}>
-              <Text style={styles.buttonText}>Sign in with Facebook</Text>
-            </LinearGradient>
+            <Button
+              width={150}
+              height={40}
+              text="Continues"
+              // loading={loading}
+              // disabled={loading}
+              // onPress={this.handleSaveSchedule}
+            />
           </View>
         </ImageBackground>
       </View>
