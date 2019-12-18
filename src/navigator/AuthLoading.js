@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
-import { colors } from '../modules/colors';
-import { NavigationRoutes } from './Routes';
+import {colors} from '../modules/colors';
+import {NavigationRoutes} from './Routes';
 import Responsive from '../modules/utils/responsive';
-import { StorageKey, Storage } from '../modules/utils/storage';
+import {StorageKey, Storage} from '../modules/utils/storage';
 import CircleLoading from '../components/Presentations/CircleLoading';
 
 const styles = StyleSheet.create({
@@ -29,15 +29,14 @@ class AuthLoading extends React.PureComponent {
   }
 
   checkAuthencation = async () => {
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     const authToken = await Storage.get(StorageKey.AuthToken);
     if (authToken !== null) {
-      // navigation.navigate(NavigationRoutes.AuthStack);
-      navigation.navigate(NavigationRoutes.Schedule);
+      navigation.navigate(NavigationRoutes.Home);
     } else {
       navigation.navigate(NavigationRoutes.Welcome);
     }
-  }
+  };
 
   render() {
     return (

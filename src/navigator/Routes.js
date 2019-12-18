@@ -2,10 +2,11 @@ export const NavigationRoutes = {
   AuthLoading: 'AuthLoading',
   Home: 'Home',
   Welcome: 'Welcome',
-  EasyFirst: 'EasyFirst',
+  UserInfo: 'UserInfo',
   IdealFigure: 'IdealFigure',
   BurnkJ: 'BurnkJ',
   Search: 'Search',
   More: 'More',
-  Converter: 'Converter'
+  Converter: 'Converter',
+  LegalStuff: 'LegalStuff'
 };
