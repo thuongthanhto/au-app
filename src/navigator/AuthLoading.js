@@ -34,7 +34,7 @@ class AuthLoading extends React.PureComponent {
     if (authToken !== null) {
       navigation.navigate(NavigationRoutes.Home);
     } else {
-      navigation.navigate(NavigationRoutes.YourIdealFigure);
+      navigation.navigate(NavigationRoutes.Welcome);
     }
   };
 
