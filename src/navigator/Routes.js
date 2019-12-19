@@ -8,5 +8,6 @@ export const NavigationRoutes = {
   Search: 'Search',
   More: 'More',
   Converter: 'Converter',
-  LegalStuff: 'LegalStuff'
+  LegalStuff: 'LegalStuff',
+  YourIdealFigure: 'YourIdealFigure',
 };

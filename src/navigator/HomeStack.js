@@ -1,33 +1,37 @@
 import {createStackNavigator} from 'react-navigation';
 
-import { NavigationRoutes } from './Routes';
+import {NavigationRoutes} from './Routes';
 import WelcomeScreen from '../views/BasicInfo/Welcome';
 import HomeScreen from '../views/Home';
 import UserInfoScreen from '../views/BasicInfo/UserInfo';
 import LegalStuffScreen from '../views/BasicInfo/LegalStuff';
+import YourIdealFigureScreen from '../views/BasicInfo/YourIdealFigure';
 
 const WelcomeStack = createStackNavigator(
   {
     [NavigationRoutes.Welcome]: {
-      screen: WelcomeScreen
+      screen: WelcomeScreen,
     },
     [NavigationRoutes.UserInfo]: {
-      screen: UserInfoScreen
+      screen: UserInfoScreen,
     },
     [NavigationRoutes.Home]: {
-      screen: HomeScreen
+      screen: HomeScreen,
     },
     [NavigationRoutes.LegalStuff]: {
-      screen: LegalStuffScreen
-    }
+      screen: LegalStuffScreen,
+    },
+    [NavigationRoutes.YourIdealFigure]: {
+      screen: YourIdealFigureScreen,
+    },
   },
   {
     initialRouteName: NavigationRoutes.Welcome,
     headerMode: 'none',
     navigationOptions: {
-      gesturesEnabled: false
-    }
-  }
+      gesturesEnabled: false,
+    },
+  },
 );
 
 export default WelcomeStack;
