@@ -1,13 +1,21 @@
 import React from 'react';
-import { View, Text, ImageBackground, SafeAreaView } from 'react-native';
+import {View, Text, ImageBackground, SafeAreaView} from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
+import {useDispatch} from 'react-redux';
 
 import styles from '../styles';
 import bgImg from '../assets/bg_main.jpg';
 import Button from '../../../components/Button';
-import { NavigationRoutes } from '../../../navigator/Routes';
+import {NavigationRoutes} from '../../../navigator/Routes';
 
-const LegalStuffScreen = (props) => {
+const LegalStuffScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+
+  const handleAgree = () => {
+    dispatch({type: 'SAVE_TOUCH_AGREED'});
+    navigation.navigate(NavigationRoutes.Welcome);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topWrap} />
@@ -37,8 +45,8 @@ const LegalStuffScreen = (props) => {
             <Button
               width={150}
               height={40}
-              text="Continues"
-              onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
+              text="I have read and agree"
+              onPress={() => handleAgree()}
             />
           </View>
         </ImageBackground>

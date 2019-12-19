@@ -1,11 +1,17 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 
 import {colors} from '../modules/colors';
 import {NavigationRoutes} from './Routes';
 import Responsive from '../modules/utils/responsive';
 import {StorageKey, Storage} from '../modules/utils/storage';
 import CircleLoading from '../components/Presentations/CircleLoading';
+import homeActions from '../actions/homeActions';
+import {
+  getAppOpensSelector,
+  getTouchAgreedSelector,
+} from '../selectors/homeSelector';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,15 +32,31 @@ class AuthLoading extends React.PureComponent {
   constructor(props) {
     super(props);
     this.checkAuthencation();
+    this.handleAppOpens();
   }
 
   checkAuthencation = async () => {
-    const {navigation} = this.props;
-    const authToken = await Storage.get(StorageKey.AuthToken);
-    if (authToken !== null) {
-      navigation.navigate(NavigationRoutes.Home);
+    const {navigation, touchAgreed} = this.props;
+
+    if (!touchAgreed) {
+      navigation.navigate(NavigationRoutes.LegalStuff);
     } else {
       navigation.navigate(NavigationRoutes.Welcome);
+    }
+
+    // const authToken = await Storage.get(StorageKey.AuthToken);
+    // if (authToken !== null) {
+    //   navigation.navigate(NavigationRoutes.Home);
+    // }
+  };
+
+  handleAppOpens = () => {
+    const {appOpens, saveAppOpens} = this.props;
+
+    if (appOpens === null) {
+      saveAppOpens(1);
+    } else {
+      saveAppOpens(appOpens + 1);
     }
   };
 
@@ -47,4 +69,15 @@ class AuthLoading extends React.PureComponent {
   }
 }
 
-export default AuthLoading;
+const mapStateToProps = state => {
+  return {
+    appOpens: getAppOpensSelector(state),
+    touchAgreed: getTouchAgreedSelector(state),
+  };
+};
+
+const mapDispatchToProps = {
+  saveAppOpens: params => homeActions.saveAppOpens(params),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthLoading);
