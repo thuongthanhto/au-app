@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
     color: '#D01C21',
     fontSize: 16,
   },
+  inputInfo: {
+    flex: 1,
+  },
 });
 
 export default styles;

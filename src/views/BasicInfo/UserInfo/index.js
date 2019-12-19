@@ -5,7 +5,8 @@ import {
   ImageBackground,
   StyleSheet,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  Image,
 } from 'react-native';
 import useForm from 'react-hook-form';
 import RNPickerSelect from 'react-native-picker-select';
@@ -21,10 +22,12 @@ import {
   EalLevels,
   OalLevels,
 } from './configs';
-import { NavigationRoutes } from '../../../navigator/Routes';
+import {NavigationRoutes} from '../../../navigator/Routes';
+import infoImg from './info.png';
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
+    width: '100%',
     fontSize: 16,
     paddingVertical: 8,
     paddingHorizontal: 8,
@@ -35,6 +38,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
+    width: '100%',
     fontSize: 16,
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -50,7 +54,7 @@ const pickerSelectStyles = StyleSheet.create({
   },
 });
 
-const UserInfoScreen = (props) => {
+const UserInfoScreen = props => {
   const {register, setValue, handleSubmit, errors} = useForm();
   const onSubmit = data => {
     console.log(data);
@@ -62,7 +66,7 @@ const UserInfoScreen = (props) => {
       <ScrollView>
         <View style={styles.contentWrap}>
           <View style={styles.textContentWrap}>
-            <Text style={styles.welcomeText}>{'It\'s this easy'}</Text>
+            <Text style={styles.welcomeText}>It's this easy</Text>
             <Text style={styles.textPragraph}>
               {`Please enter some details about yourself. \nDoing this means when we're talking about kilojoules, we're talking about you.`}
             </Text>
@@ -145,39 +149,52 @@ const UserInfoScreen = (props) => {
                 )}
               </View>
               <View style={styles.formItem}>
-                <RNPickerSelect
-                  items={OalLevels}
-                  placeholder={{
-                    label: 'Occupational activity',
-                    value: null,
-                  }}
-                  onValueChange={text => setValue('weight', text, true)}
-                  ref={register({name: 'weight'}, {required: true})}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
+                <View style={styles.inputInfo}>
+                  <RNPickerSelect
+                    items={OalLevels}
+                    placeholder={{
+                      label: 'Occupational activity',
+                      value: null,
+                    }}
+                    onValueChange={text => setValue('weight', text, true)}
+                    ref={register({name: 'weight'}, {required: true})}
+                    useNativeAndroidPickerStyle={false}
+                    style={pickerSelectStyles}
+                    Icon={() => {
+                      return <View style={styles.iconSelect} />;
+                    }}
+                  />
+                  <View style={{position: 'absolute', left: '102%'}}>
+                    <Image source={infoImg} />
+                  </View>
+                </View>
+
                 {errors.weight && (
                   <Text style={styles.errorText}>Select your weight</Text>
                 )}
               </View>
               <View style={styles.formItem}>
-                <RNPickerSelect
-                  items={EalLevels}
-                  placeholder={{
-                    label: 'Non-occupational activity level',
-                    value: null,
-                  }}
-                  onValueChange={text => setValue('weight', text, true)}
-                  ref={register({name: 'weight'}, {required: true})}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
+                <View style={styles.inputInfo}>
+                  <RNPickerSelect
+                    items={EalLevels}
+                    placeholder={{
+                      label: 'Non-occupational activity level',
+                      value: null,
+                    }}
+                    onValueChange={text => setValue('weight', text, true)}
+                    ref={register({name: 'weight'}, {required: true})}
+                    useNativeAndroidPickerStyle={false}
+                    style={pickerSelectStyles}
+                    Icon={() => {
+                      return <View style={styles.iconSelect} />;
+                    }}
+                  />
+
+                  <View style={{position: 'absolute', left: '102%'}}>
+                    <Image source={infoImg} />
+                  </View>
+                </View>
+
                 {errors.weight && (
                   <Text style={styles.errorText}>Select your weight</Text>
                 )}
