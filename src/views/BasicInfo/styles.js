@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 import {colors} from '../../modules/colors';
+import Responsive from '../../modules/utils/responsive';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   topWrap: {
-    height: 7,
+    height: Responsive.v(7),
     backgroundColor: '#00AAEA',
   },
   contentWrap: {
@@ -17,23 +18,23 @@ const styles = StyleSheet.create({
     backgroundColor: colors.WHITE,
   },
   footerWrap: {
-    height: 112,
+    height: Responsive.v(112),
   },
   textContentWrap: {
     flex: 1,
     marginVertical: 0,
-    marginHorizontal: 55,
-    paddingVertical: 24,
+    marginHorizontal: Responsive.h(55),
+    paddingVertical: Responsive.v(24),
   },
   welcomeText: {
     color: '#ED1F24',
-    fontSize: 48,
+    fontSize: Responsive.v(48),
     fontWeight: 'bold',
   },
   textPragraph: {
-    lineHeight: 24,
-    fontSize: 16,
-    paddingTop: 15,
+    lineHeight: Responsive.h(24),
+    fontSize: Responsive.v(16),
+    paddingTop: Responsive.v(15),
   },
   imageContentWrap: {
     flex: 3,
@@ -47,17 +48,17 @@ const styles = StyleSheet.create({
 
   linearGradient: {
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5,
+    paddingLeft: Responsive.v(15),
+    paddingRight: Responsive.v(15),
+    borderRadius: Responsive.v(5),
   },
   containerButton: {
-    paddingHorizontal: 32,
-    paddingVertical: 16,
+    paddingHorizontal: Responsive.h(32),
+    paddingVertical: Responsive.v(16),
   },
   buttonText: {
-    fontSize: 18,
-    margin: 10,
+    fontSize: Responsive.v(18),
+    margin: Responsive.h(10),
   },
   iconSelect: {
     backgroundColor: 'transparent',
@@ -71,14 +72,14 @@ const styles = StyleSheet.create({
     height: 0,
   },
   formWrap: {
-    marginBottom: 20,
+    marginBottom: Responsive.v(20),
   },
   formItem: {
-    marginTop: 10,
+    marginTop: Responsive.v(10),
   },
   errorText: {
     color: '#D01C21',
-    fontSize: 16,
+    fontSize: Responsive.v(16),
   },
   inputInfo: {
     flex: 1,

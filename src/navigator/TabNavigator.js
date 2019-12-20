@@ -1,17 +1,18 @@
-import { createBottomTabNavigator } from 'react-navigation';
-import { Image } from 'react-native';
+import {createBottomTabNavigator} from 'react-navigation';
+import {Image} from 'react-native';
 import React from 'react';
 
 import MoreStack from './MoreStack';
 import BurnkJStack from './BurnkJStack';
 import SearchStack from './SearchStack';
-import { NavigationRoutes } from './Routes';
+import {NavigationRoutes} from './Routes';
 import ConverterStack from './ConverterStack';
 import IdealFigureStack from './IdealFigureStack';
-import { Images } from '../assets/images';
+import {Images} from '../assets/images';
+import Responsive from '../modules/utils/responsive';
 
 const getTabBarIcon = (navigation, focused) => {
-  const { routeName } = navigation.state;
+  const {routeName} = navigation.state;
   let iconName = '';
 
   if (routeName === NavigationRoutes.BurnkJ) {
@@ -19,16 +20,18 @@ const getTabBarIcon = (navigation, focused) => {
   } else if (routeName === NavigationRoutes.IdealFigure) {
     iconName = !focused ? 'ideal_figure' : `ideal_figure_on`;
   } else {
-    iconName = !focused ? routeName.toLowerCase() : `${routeName.toLowerCase()}_on`;
+    iconName = !focused
+      ? routeName.toLowerCase()
+      : `${routeName.toLowerCase()}_on`;
   }
-  
+
   return (
     <Image
       source={Images[iconName]}
       style={{
         width: 25,
         height: 25,
-        paddingVertical: 10
+        paddingVertical: Responsive.v(10),
       }}
     />
   );
@@ -37,24 +40,24 @@ const getTabBarIcon = (navigation, focused) => {
 export default createBottomTabNavigator(
   {
     [NavigationRoutes.Search]: {
-      screen: SearchStack
+      screen: SearchStack,
     },
     [NavigationRoutes.IdealFigure]: {
-      screen: IdealFigureStack
+      screen: IdealFigureStack,
     },
     [NavigationRoutes.Converter]: {
-      screen: ConverterStack
+      screen: ConverterStack,
     },
     [NavigationRoutes.BurnkJ]: {
-      screen: BurnkJStack
+      screen: BurnkJStack,
     },
     [NavigationRoutes.More]: {
-      screen: MoreStack
-    }
+      screen: MoreStack,
+    },
   },
   {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused }) => getTabBarIcon(navigation, focused)
+    defaultNavigationOptions: ({navigation}) => ({
+      tabBarIcon: ({focused}) => getTabBarIcon(navigation, focused),
     }),
     tabBarOptions: {
       inactiveTintColor: 'white',
@@ -62,6 +65,6 @@ export default createBottomTabNavigator(
       allowFontScaling: true,
       activeBackgroundColor: 'black',
       inactiveBackgroundColor: 'black',
-    }
-  }
+    },
+  },
 );

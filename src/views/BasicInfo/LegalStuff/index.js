@@ -4,9 +4,9 @@ import Hyperlink from 'react-native-hyperlink';
 import {useDispatch} from 'react-redux';
 
 import styles from '../styles';
-import bgImg from '../assets/bg_main.jpg';
 import Button from '../../../components/Button';
 import {NavigationRoutes} from '../../../navigator/Routes';
+import {Images} from '../../../assets/images';
 
 const LegalStuffScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -40,7 +40,9 @@ const LegalStuffScreen = ({navigation}) => {
         </View>
       </View>
       <View style={styles.footerWrap}>
-        <ImageBackground source={bgImg} style={{width: '100%', height: '100%'}}>
+        <ImageBackground
+          source={Images.bg_main}
+          style={{width: '100%', height: '100%'}}>
           <View style={styles.containerButton}>
             <Button
               width={150}

@@ -12,7 +12,6 @@ import useForm from 'react-hook-form';
 import RNPickerSelect from 'react-native-picker-select';
 
 import styles from '../styles';
-import bgImg from '../assets/bg_main.jpg';
 import Button from '../../../components/Button';
 import {
   SexConfigs,
@@ -24,29 +23,31 @@ import {
 } from './configs';
 import {NavigationRoutes} from '../../../navigator/Routes';
 import infoImg from './info.png';
+import {Images} from '../../../assets/images';
+import Responsive from '../../../modules/utils/responsive';
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     width: '100%',
-    fontSize: 16,
-    paddingVertical: 8,
-    paddingHorizontal: 8,
+    fontSize: Responsive.v(16),
+    paddingVertical: Responsive.v(8),
+    paddingHorizontal: Responsive.h(8),
     borderWidth: 1,
     borderColor: 'gray',
-    borderRadius: 4,
+    borderRadius: Responsive.v(4),
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: Responsive.v(30), // to ensure the text is never behind the icon
   },
   inputAndroid: {
     width: '100%',
-    fontSize: 16,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    fontSize: Responsive.v(16),
+    paddingHorizontal: Responsive.h(8),
+    paddingVertical: Responsive.v(4),
     borderWidth: 0.5,
     borderColor: 'purple',
-    borderRadius: 8,
+    borderRadius: Responsive.v(8),
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: Responsive.v(30), // to ensure the text is never behind the icon
   },
   iconContainer: {
     top: 15,
@@ -204,7 +205,9 @@ const UserInfoScreen = props => {
         </View>
       </ScrollView>
       <View style={styles.footerWrap}>
-        <ImageBackground source={bgImg} style={{width: '100%', height: '100%'}}>
+        <ImageBackground
+          source={Images.bg_main}
+          style={{width: '100%', height: '100%'}}>
           <View style={styles.containerButton}>
             <Button
               width={150}

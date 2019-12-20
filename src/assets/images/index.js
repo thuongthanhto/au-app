@@ -9,4 +9,6 @@ export const Images = {
   search_on: require('../icons/tabbar/search_on.png'),
   ideal_figure: require('../icons/tabbar/ideal-figure.png'),
   ideal_figure_on: require('../icons/tabbar/ideal-figure_on.png'),
+  bg_main: require('../icons/home/bg_main.jpg'),
+  home_food_1_tablet: require('../icons/home/home_food_1_tablet.png'),
 };

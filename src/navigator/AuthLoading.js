@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     width: Responsive.h(70),
-    height: Responsive.h(70),
-    borderRadius: Responsive.h(5),
+    height: Responsive.v(70),
+    borderRadius: Responsive.v(5),
     backgroundColor: colors.BLUE,
   },
 });
