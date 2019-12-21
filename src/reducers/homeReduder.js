@@ -1,5 +1,3 @@
-import EnergyConversion from '../modules/utils/energy_conversion_v1.2';
-
 const initialState = {
   appOpens: null,
   touchAgreed: false,

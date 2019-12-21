@@ -11,3 +11,8 @@ export const getTouchAgreedSelector = createSelector(
   homeSelector,
   items => items.touchAgreed,
 );
+
+export const getProfileSelector = createSelector(
+  homeSelector,
+  items => items.profile,
+);

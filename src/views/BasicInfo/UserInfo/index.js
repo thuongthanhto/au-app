@@ -29,7 +29,6 @@ import {
   checkActivityVisibility,
   updateProfileCalculations,
 } from '../../../modules/utils/helpers';
-import {getEC} from '../../../selectors/homeSelector';
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {

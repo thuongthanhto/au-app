@@ -106,6 +106,15 @@ export const checkWeightGoalVisibility = age => {
   return false;
 };
 
+export function isEmpty(obj) {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export function getBMRUnderTen(age, sex, weight) {
   let sex_age_values;
 

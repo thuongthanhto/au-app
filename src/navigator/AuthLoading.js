@@ -11,7 +11,9 @@ import homeActions from '../actions/homeActions';
 import {
   getAppOpensSelector,
   getTouchAgreedSelector,
+  getProfileSelector,
 } from '../selectors/homeSelector';
+import {isEmpty} from '../modules/utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,18 +38,17 @@ class AuthLoading extends React.PureComponent {
   }
 
   checkAuthencation = async () => {
-    const {navigation, touchAgreed} = this.props;
+    const {navigation, touchAgreed, profile} = this.props;
 
-    if (!touchAgreed) {
-      navigation.navigate(NavigationRoutes.LegalStuff);
+    if (isEmpty(profile)) {
+      if (!touchAgreed) {
+        navigation.navigate(NavigationRoutes.LegalStuff);
+      } else {
+        navigation.navigate(NavigationRoutes.Welcome);
+      }
     } else {
-      navigation.navigate(NavigationRoutes.Welcome);
-    }
-
-    // const authToken = await Storage.get(StorageKey.AuthToken);
-    // if (authToken !== null) {
-    //   navigation.navigate(NavigationRoutes.Home);
-    // }
+      navigation.navigate(NavigationRoutes.Home);
+    
   };
 
   handleAppOpens = () => {
@@ -73,6 +74,7 @@ const mapStateToProps = state => {
   return {
     appOpens: getAppOpensSelector(state),
     touchAgreed: getTouchAgreedSelector(state),
+    profile: getProfileSelector(state),
   };
 };
 
