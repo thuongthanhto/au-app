@@ -6,6 +6,7 @@ import {
   ScrollView,
   SafeAreaView,
   Image,
+  TouchableOpacity as Touch
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import {useDispatch, useSelector} from 'react-redux';
@@ -32,6 +33,7 @@ import {
 import {getProfileSelector} from '../../../selectors/homeSelector';
 import {DEFAULT_PROFILE} from '../../../modules/utils/constants';
 import pickerSelectStyles from '../pickerSelectStyles';
+import { Tooltip } from '../../../components/Tooltip';
 
 const UserInfoScreen = props => {
   const oldProfile = useSelector(state => getProfileSelector(state));
@@ -44,6 +46,7 @@ const UserInfoScreen = props => {
     eal_level: oldProfile.eal_level || '',
   };
   const [dirty, setDirty] = useState(false);
+  const [tooltipVisible, setTooltipVisible] = useState('');
   const [state, setState] = useReducer(customReducer, initState);
 
   const dispatch = useDispatch();
@@ -97,6 +100,18 @@ const UserInfoScreen = props => {
       }
     }
   };
+
+  const renderTooltipNonOccupationalContent = () => (
+    <View>
+      <Text>Tooltip NonOccupational Content</Text>
+    </View>
+  );
+
+  const renderTooltipOccupationalContent = () => (
+    <View>
+      <Text>Tooltip Occupational Content</Text>
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -204,9 +219,9 @@ const UserInfoScreen = props => {
                           return <View style={styles.iconSelect} />;
                         }}
                       />
-                      <View style={{position: 'absolute', left: '102%'}}>
+                      <Touch style={{position: 'absolute', left: '102%'}} onPress={() => setTooltipVisible('occupational')}>
                         <Image source={Images.info} />
-                      </View>
+                      </Touch>
                     </View>
 
                     {dirty && !state.oal_level && (
@@ -230,9 +245,9 @@ const UserInfoScreen = props => {
                         }}
                       />
 
-                      <View style={{position: 'absolute', left: '102%'}}>
+                      <Touch style={{position: 'absolute', left: '102%'}} onPress={() => setTooltipVisible('non-occupational')}>
                         <Image source={Images.info} />
-                      </View>
+                      </Touch>
                     </View>
 
                     {dirty && !state.eal_level && (
@@ -245,7 +260,18 @@ const UserInfoScreen = props => {
           </View>
         </View>
       </ScrollView>
-
+      <Tooltip
+        isVisible={tooltipVisible === 'occupational'}
+        title={<Text style={styles.titleTooltipUserinfo}>Occupational physical activity</Text>}
+        content={renderTooltipOccupationalContent()}
+        onCloseModal={() => setTooltipVisible(false)}
+      />
+      <Tooltip
+        isVisible={tooltipVisible === 'non-occupational'}
+        content={renderTooltipNonOccupationalContent()}
+        title={<Text style={styles.titleTooltipUserinfo}>None-occupational physical activity</Text>}
+        onCloseModal={() => setTooltipVisible(false)}
+      />
       <ImageBackground source={Images.bg_main} style={{width: '100%'}}>
         <View style={styles.containerButtonFlexRow}>
           <Button

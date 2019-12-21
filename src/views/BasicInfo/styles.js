@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
     width,
-    backgroundColor: colors.BLACK
   },
   homeBody: {
     flex: 1,
@@ -130,6 +129,11 @@ const styles = StyleSheet.create({
   linkWrap: {
     marginTop: Responsive.v(10),
   },
+  titleTooltipUserinfo: {
+    color: colors.RED,
+    fontWeight: 'bold',
+    fontSize: Responsive.h(13)
+  }
 });
 
 export default styles;

@@ -12,7 +12,7 @@ import { colors } from '../modules/colors';
 export const MainNavigationHeader = (props, textLeft, textRight, title) => {
   return {
     header: (
-      <SafeAreaView>
+      <SafeAreaView style={{ backgroundColor: 'black'}}>
         <LinearGradient
           colors={[colors.BLACK, colors.HEADER]}
           style={[styles.headerContainer, styles.shadowButton]}
