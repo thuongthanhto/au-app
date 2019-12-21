@@ -48,7 +48,7 @@ class AuthLoading extends React.PureComponent {
       }
     } else {
       navigation.navigate(NavigationRoutes.Home);
-    
+    }
   };
 
   handleAppOpens = () => {
