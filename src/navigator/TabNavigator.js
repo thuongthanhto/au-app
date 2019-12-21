@@ -5,10 +5,11 @@ import React from 'react';
 import MoreStack from './MoreStack';
 import BurnkJStack from './BurnkJStack';
 import SearchStack from './SearchStack';
+import { Images } from '../assets/images';
 import { NavigationRoutes } from './Routes';
 import ConverterStack from './ConverterStack';
 import IdealFigureStack from './IdealFigureStack';
-import { Images } from '../assets/images';
+import Responsive from '../modules/utils/responsive';
 
 const getTabBarIcon = (navigation, focused) => {
   const { routeName } = navigation.state;
@@ -26,9 +27,9 @@ const getTabBarIcon = (navigation, focused) => {
     <Image
       source={Images[iconName]}
       style={{
-        width: 25,
-        height: 25,
-        paddingVertical: 10
+        width: Responsive.h(25),
+        height: Responsive.h(25),
+        paddingVertical: Responsive.v(10)
       }}
     />
   );

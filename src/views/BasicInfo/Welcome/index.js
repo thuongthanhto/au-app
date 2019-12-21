@@ -3,8 +3,10 @@ import { View, Text, ImageBackground, Image, SafeAreaView } from 'react-native';
 
 import styles from '../styles';
 import bgImg from '../assets/bg_main.jpg';
-import foodImg from '../assets/home_food_1_tablet.png';
 import Button from '../../../components/Button';
+import { Images } from '../../../assets/images';
+import foodImg from '../assets/home_food_1_tablet.png';
+import Responsive from '../../../modules/utils/responsive';
 import { NavigationRoutes } from '../../../navigator/Routes';
 
 const WelcomeScreen = (props) => {
@@ -24,18 +26,17 @@ const WelcomeScreen = (props) => {
           <Image source={foodImg} style={styles.image} />
         </View>
       </View>
-      <View style={styles.footerWrap}>
-        <ImageBackground source={bgImg} style={{width: '100%', height: '100%'}}>
-          <View style={styles.containerButton}>
-            <Button
-              width={150}
-              height={40}
-              text="Continues"
-              onPress={() => props.navigation.navigate(NavigationRoutes.UserInfo)}
-            />
-          </View>
-        </ImageBackground>
-      </View>
+      <ImageBackground source={bgImg} style={{width: '100%'}}>
+        <View style={styles.containerButton}>
+          <Button
+            width="100%"
+            height={Responsive.v(37)}
+            text="Let's get stated"
+            rightIcon={<Image source={Images.arrow_right} style={styles.largerArrowIcon} />}
+            onPress={() => props.navigation.navigate(NavigationRoutes.UserInfo)}
+          />
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 };

@@ -1,35 +1,61 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity as Touch, ActivityIndicator as Loading } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { Text, StyleSheet, TouchableOpacity as Touch } from 'react-native';
 
 import { colors } from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
 
-export const Button = ({ text, style, width, height, textStyle, children, loading, icon, ...others }) => (
-  <Touch
-    {...others}
-    style={StyleSheet.flatten([styles.btn, width && { width }, height && { height }, style])}
+export const Button = ({
+  text, 
+  style, 
+  width, 
+  height, 
+  textStyle, 
+  leftIcon, 
+  isHeader,
+  rightIcon, 
+  borderRadius,
+  styleGradient,
+  color=[colors.BORDER, colors.BUTTON, colors.BORDER],
+  ...others 
+}) => (
+  <LinearGradient
+    colors={color}
+    style={StyleSheet.flatten([styles.container, width && { width }, height && { height }, borderRadius && { borderRadius }, styleGradient])}
+    locations={isHeader && [1,0.25,1]}
   >
-    {children || [!!icon && React.cloneElement(icon, { key: "icon" }), !!loading && <Loading key="loading" color={colors.WHITE} style={styles.icon} />, <Text key="text" style={StyleSheet.flatten([styles.text, textStyle])}>{text}</Text>]}
-  </Touch>
+    <Touch
+      {...others}
+      style={StyleSheet.flatten([styles.btn, style])}
+    >
+      {leftIcon && leftIcon}
+      <Text style={StyleSheet.flatten([styles.text, textStyle])}>{text}</Text>
+      {rightIcon && rightIcon}
+    </Touch>
+  </LinearGradient>
 );
 
 const styles = StyleSheet.create({
-  btn: {
-    margin: Responsive.h(5),
-    padding: Responsive.h(7),
-    paddingHorizontal: Responsive.h(12),
-    borderRadius: Responsive.h(20),
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: colors.SCHEDULE_ITEM
-  },
   text: {
-    color: colors.WHITE,
+    fontSize: Responsive.h(16),
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: colors.TEXT_BUTTON,
   },
-  icon: {
-    marginRight: Responsive.h(5),
+  container: {
+    justifyContent: 'center',
+    borderRadius: Responsive.h(20),
+    borderWidth: 1,
+    borderColor: colors.BORDER
   },
+  btn: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    paddingHorizontal: Responsive.h(15)
+  }
 });
 
 export default Button;

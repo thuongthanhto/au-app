@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, ImageBackground, SafeAreaView } from 'react-native';
+import { View, Text, ImageBackground, SafeAreaView, Image } from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 
 import styles from '../styles';
 import bgImg from '../assets/bg_main.jpg';
 import Button from '../../../components/Button';
+import { Images } from '../../../assets/images';
+import { colors } from '../../../modules/colors';
+import Responsive from '../../../modules/utils/responsive';
 import { NavigationRoutes } from '../../../navigator/Routes';
 
 const LegalStuffScreen = (props) => {
@@ -31,18 +34,28 @@ const LegalStuffScreen = (props) => {
           </Hyperlink>
         </View>
       </View>
-      <View style={styles.footerWrap}>
-        <ImageBackground source={bgImg} style={{width: '100%', height: '100%'}}>
-          <View style={styles.containerButton}>
-            <Button
-              width={150}
-              height={40}
-              text="Continues"
-              onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
-            />
-          </View>
-        </ImageBackground>
-      </View>
+      <ImageBackground source={bgImg} style={{width: '100%'}}>
+        <View style={styles.containerButtonFlexRow}>
+          <Button
+            text="Back"
+            width={Responsive.h(70)}
+            height={Responsive.v(25)}
+            borderRadius={Responsive.h(12)}
+            textStyle={{ color: colors.WHITE, fontSize: Responsive.h(12) }}
+            style={{ paddingHorizontal: Responsive.h(10) }}
+            color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
+            onPress={() => props.navigation.goBack()}
+            leftIcon={<Image source={Images.arrow_left_inverted} style={styles.smallArrowIcon} />}
+          />
+          <Button
+            width="25%"
+            height={Responsive.v(37)}
+            text="Next"
+            rightIcon={<Image source={Images.arrow_right} style={styles.largerArrowIcon} />}
+            onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
+          />
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 };

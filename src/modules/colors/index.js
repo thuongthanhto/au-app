@@ -1,9 +1,6 @@
 export const colors = {
-  MAIN_BACKGROUND: '#308d91',
-  MAIN_ITEM: '#6fc3c7',
-  TEXT: '#fff',
+  MAIN_BACKGROUND: '#F0ECE9',
   PLACE_HOLDER: '#9AA1AA',
-  OVERLAY_COLOR: 'rgba(0,0,0,0.3)',
   BLUE: '#304791',
   WHITE: '#fff',
   RED: '#FF0000',
@@ -14,9 +11,10 @@ export const colors = {
   GRAY: '#ccc',
   LIGHT_GRAY: '#e5dfdf',
   BLACK: '#000',
-  ACTIVE: '#33cc33',
   GRAY_SHADE: '#F6F6F6',
-  BACKGROUND: '#F4FCFE',
-  SCHEDULE_BACKGROUND: '#252236',
-  SCHEDULE_ITEM: '#2F2C45',
+  BORDER: '#CCC8C7',
+  BUTTON: '#EBE8E7',
+  SKIP_BUTTON: '#2692B4',
+  TEXT_BUTTON: '#474646',
+  HEADER: '#9c9b9e'
 };

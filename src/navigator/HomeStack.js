@@ -2,10 +2,11 @@ import {createStackNavigator} from 'react-navigation';
 
 import {NavigationRoutes} from './Routes';
 import WelcomeScreen from '../views/BasicInfo/Welcome';
-import HomeScreen from '../views/Home';
+import HomeScreen from '../views/BasicInfo/Home';
 import UserInfoScreen from '../views/BasicInfo/UserInfo';
 import LegalStuffScreen from '../views/BasicInfo/LegalStuff';
 import YourIdealFigureScreen from '../views/BasicInfo/YourIdealFigure';
+import TabNavigator from './TabNavigator';
 
 const WelcomeStack = createStackNavigator(
   {
@@ -24,6 +25,7 @@ const WelcomeStack = createStackNavigator(
     [NavigationRoutes.YourIdealFigure]: {
       screen: YourIdealFigureScreen,
     },
+    TabNavigator
   },
   {
     initialRouteName: NavigationRoutes.Welcome,

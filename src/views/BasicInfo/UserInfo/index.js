@@ -5,7 +5,8 @@ import {
   ImageBackground,
   StyleSheet,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  Image
 } from 'react-native';
 import useForm from 'react-hook-form';
 import RNPickerSelect from 'react-native-picker-select';
@@ -21,6 +22,9 @@ import {
   EalLevels,
   OalLevels,
 } from './configs';
+import { Images } from '../../../assets/images';
+import { colors } from '../../../modules/colors';
+import Responsive from '../../../modules/utils/responsive';
 import { NavigationRoutes } from '../../../navigator/Routes';
 
 const pickerSelectStyles = StyleSheet.create({
@@ -186,18 +190,27 @@ const UserInfoScreen = (props) => {
           </View>
         </View>
       </ScrollView>
-      <View style={styles.footerWrap}>
-        <ImageBackground source={bgImg} style={{width: '100%', height: '100%'}}>
-          <View style={styles.containerButton}>
-            <Button
-              width={150}
-              height={40}
-              text="Continues"
-              onPress={handleSubmit(onSubmit)}
-            />
-          </View>
-        </ImageBackground>
-      </View>
+      <ImageBackground source={bgImg} style={{width: '100%'}}>
+        <View style={styles.containerButtonFlexRow}>
+          <Button
+            text="Skip"
+            width={Responsive.h(65)}
+            height={Responsive.v(25)}
+            borderRadius={Responsive.h(12)}
+            textStyle={{ color: colors.WHITE, fontSize: Responsive.h(12) }}
+            color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
+            style={{ justifyContent: 'center' }}
+            onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
+          />
+          <Button
+            width="25%"
+            height={Responsive.v(37)}
+            text="Next"
+            rightIcon={<Image source={Images.arrow_right} style={styles.largerArrowIcon} />}
+            onPress={() => props.navigation.navigate(NavigationRoutes.LegalStuff)}
+          />
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 };

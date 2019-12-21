@@ -1,12 +1,16 @@
 import { createStackNavigator } from 'react-navigation';
 
-import IdealFigureScreen from '../views/IdealFigure';
 import { NavigationRoutes } from './Routes';
+import IdealFigureScreen from '../views/IdealFigure';
+import { MainNavigationHeader } from './DefaultNavigationOptions';
 
 const IdealFigureStack = createStackNavigator(
   {
     [NavigationRoutes.IdealFigure]: {
-      screen: IdealFigureScreen
+      screen: IdealFigureScreen,
+      navigationOptions: (props) => ({
+        ...MainNavigationHeader(props, 'Home', 'Inputs', 'Ideal Figure')
+      })
     }
   },
   {

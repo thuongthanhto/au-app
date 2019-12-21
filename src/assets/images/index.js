@@ -9,4 +9,12 @@ export const Images = {
   search_on: require('../icons/tabbar/search_on.png'),
   ideal_figure: require('../icons/tabbar/ideal-figure.png'),
   ideal_figure_on: require('../icons/tabbar/ideal-figure_on.png'),
+  arrow_left: require('../icons/arrow_left.png'),
+  arrow_left_inverted: require('../icons/arrow_left_inverted.png'),
+  arrow_right: require('../icons/arrow_right.png'),
+  arrow_right_inverted: require('../icons/arrow_right_inverted.png'),
+  bg_main: require('../icons/bg_main.jpg'),
+  home_food_1_tablet: require('../icons/home_food_1_tablet.png'),
+  profile: require('../icons/profile.png'),
+  app_title_retina: require('../icons/app_title_retina.png')
 };
