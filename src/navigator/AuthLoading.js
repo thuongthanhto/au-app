@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {colors} from '../modules/colors';
 import {NavigationRoutes} from './Routes';
 import Responsive from '../modules/utils/responsive';
-import {StorageKey, Storage} from '../modules/utils/storage';
 import CircleLoading from '../components/Presentations/CircleLoading';
 import homeActions from '../actions/homeActions';
 import {

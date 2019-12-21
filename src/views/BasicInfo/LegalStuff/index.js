@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, ImageBackground, SafeAreaView, Image } from 'react-native';
+import {View, Text, ImageBackground, SafeAreaView, Image} from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import {useDispatch} from 'react-redux';
 
 import styles from '../styles';
 import Button from '../../../components/Button';
-import { Images } from '../../../assets/images';
-import { colors } from '../../../modules/colors';
+import {Images} from '../../../assets/images';
+import {colors} from '../../../modules/colors';
 import Responsive from '../../../modules/utils/responsive';
-import { NavigationRoutes } from '../../../navigator/Routes';
+import {NavigationRoutes} from '../../../navigator/Routes';
 
 const LegalStuffScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -44,21 +44,15 @@ const LegalStuffScreen = ({navigation}) => {
       <ImageBackground source={Images.bg_main} style={{width: '100%'}}>
         <View style={styles.containerButtonFlexRow}>
           <Button
-            text="Back"
-            width={Responsive.h(70)}
-            height={Responsive.v(25)}
-            borderRadius={Responsive.h(12)}
-            textStyle={{ color: colors.WHITE, fontSize: Responsive.h(12) }}
-            style={{ paddingHorizontal: Responsive.h(10) }}
-            color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
-            onPress={() => navigation.goBack()}
-            leftIcon={<Image source={Images.arrow_left_inverted} style={styles.smallArrowIcon} />}
-          />
-          <Button
-            width="25%"
-            height={Responsive.v(37)}
-            text="Next"
-            rightIcon={<Image source={Images.arrow_right} style={styles.largerArrowIcon} />}
+            width="100%"
+            height={Responsive.h(50)}
+            text="I have read and agree"
+            rightIcon={
+              <Image
+                source={Images.arrow_right}
+                style={styles.largerArrowIcon}
+              />
+            }
             onPress={() => handleAgree()}
           />
         </View>

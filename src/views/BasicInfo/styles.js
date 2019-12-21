@@ -1,9 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
     width,
-    paddingHorizontal: Responsive.h(16)
+    paddingHorizontal: Responsive.h(16),
   },
   topWrap: {
     height: Responsive.v(7),
@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
     fontSize: Responsive.v(16),
     paddingTop: Responsive.v(15),
   },
+  textPragraphLink: {
+    lineHeight: Responsive.h(24),
+    fontSize: Responsive.v(16),
+  },
   imageContentWrap: {
     flex: 3,
     alignItems: 'center',
@@ -51,23 +55,23 @@ const styles = StyleSheet.create({
   },
   smallArrowIcon: {
     width: Responsive.h(7),
-    height: Responsive.h(10)
+    height: Responsive.h(10),
   },
   largerArrowIcon: {
     width: Responsive.h(9),
-    height: Responsive.h(14)
+    height: Responsive.h(14),
   },
   bigArrowIcon: {
     width: Responsive.h(11),
-    height: Responsive.h(16)
+    height: Responsive.h(16),
   },
   homeBigLeftIcon: {
     width: Responsive.h(25),
-    height: Responsive.h(25)
+    height: Responsive.h(25),
   },
   homeTitle: {
     width: '100%',
-    height: Responsive.h(50)
+    height: Responsive.h(50),
   },
   homeImageFood: {
     width: '100%',
@@ -81,13 +85,13 @@ const styles = StyleSheet.create({
   },
   containerButton: {
     paddingHorizontal: Responsive.h(16),
-    paddingVertical: Responsive.v(7)
+    paddingVertical: Responsive.v(7),
   },
   containerButtonFlexRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: Responsive.h(16),
-    paddingVertical: Responsive.v(7)
+    paddingHorizontal: Responsive.h(18),
+    paddingVertical: Responsive.h(20),
   },
   buttonText: {
     fontSize: Responsive.v(18),
@@ -116,6 +120,9 @@ const styles = StyleSheet.create({
   },
   inputInfo: {
     flex: 1,
+  },
+  linkWrap: {
+    marginTop: Responsive.v(10),
   },
 });
 

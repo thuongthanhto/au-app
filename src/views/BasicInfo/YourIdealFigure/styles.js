@@ -17,9 +17,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: colors.WHITE,
   },
-  footerWrap: {
-    height: Responsive.v(112),
-  },
   textContentWrap: {
     flex: 1,
     marginVertical: 0,
@@ -63,7 +60,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: Responsive.h(16),
-    paddingVertical: Responsive.v(7)
+    paddingVertical: Responsive.v(7),
+  },
+  figureRange: {
+    backgroundColor: '#FFF',
+    color: '#70706E',
+    fontSize: Responsive.h(18),
+    textAlign: 'center',
+    paddingVertical: Responsive.v(2),
+    marginBottom: Responsive.v(1),
   },
 });
 

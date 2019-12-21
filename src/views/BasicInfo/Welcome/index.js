@@ -3,9 +3,9 @@ import {View, Text, ImageBackground, Image, SafeAreaView} from 'react-native';
 
 import styles from '../styles';
 import Button from '../../../components/Button';
-import { Images } from '../../../assets/images';
+import {Images} from '../../../assets/images';
 import Responsive from '../../../modules/utils/responsive';
-import { NavigationRoutes } from '../../../navigator/Routes';
+import {NavigationRoutes} from '../../../navigator/Routes';
 
 const WelcomeScreen = props => {
   return (
@@ -25,12 +25,17 @@ const WelcomeScreen = props => {
         </View>
       </View>
       <ImageBackground source={Images.bg_main} style={{width: '100%'}}>
-        <View style={styles.containerButton}>
+        <View style={styles.containerButtonFlexRow}>
           <Button
             width="100%"
-            height={Responsive.v(37)}
+            height={Responsive.v(50)}
             text="Let's get stated"
-            rightIcon={<Image source={Images.arrow_right} style={styles.largerArrowIcon} />}
+            rightIcon={
+              <Image
+                source={Images.arrow_right}
+                style={styles.largerArrowIcon}
+              />
+            }
             onPress={() => props.navigation.navigate(NavigationRoutes.UserInfo)}
           />
         </View>
