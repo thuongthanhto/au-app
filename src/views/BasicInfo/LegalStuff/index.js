@@ -45,7 +45,7 @@ const LegalStuffScreen = ({navigation}) => {
         <View style={styles.containerButtonFlexRow}>
           <Button
             width="100%"
-            height={Responsive.h(50)}
+            height={Responsive.h(45)}
             text="I have read and agree"
             rightIcon={
               <Image

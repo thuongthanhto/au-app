@@ -37,7 +37,7 @@ export const HeaderRight = ({ props, text }) => (
     styleGradient={styles.button}
     borderRadius={Responsive.h(7)}
     isHeader
-    color={[colors.BLACK, colors.HEADER]}
+    color={text ? [colors.BLACK, colors.HEADER] : ['transparent', 'transparent', 'transparent']}
     style={{ justifyContent: 'center' }}
   />
 );

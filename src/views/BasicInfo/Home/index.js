@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ImageBackground, SafeAreaView, Image } from 'react-native';
+import { View, SafeAreaView, Image } from 'react-native';
 
 import styles from '../styles';
 import Button from '../../../components/Button';
@@ -10,12 +10,12 @@ import { NavigationRoutes } from '../../../navigator/Routes';
 const LegalStuffScreen = (props) => {
   return (
     <SafeAreaView style={styles.homeContainer}>
-      <ImageBackground source={Images.bg_main} style={styles.homeContainer}>
+      <View style={styles.homeBody}>
         <Image source={Images.app_title_retina} resizeMode="contain" style={styles.homeTitle} />
         <Image source={Images.home_food_1_tablet} resizeMode="contain" style={styles.homeImageFood} />
         <Button
           width="100%"
-          height={Responsive.v(40)}
+          height={Responsive.h(50)}
           text="Fast Food Search"
           styleGradient={{ marginBottom: Responsive.v(10) }}
           rightIcon={<Image source={Images.arrow_right} style={styles.bigArrowIcon} />}
@@ -25,7 +25,7 @@ const LegalStuffScreen = (props) => {
         />
         <Button
           width="100%"
-          height={Responsive.v(40)}
+          height={Responsive.h(50)}
           text="My Ideal Figure"
           styleGradient={{ marginBottom: Responsive.v(10) }}
           rightIcon={<Image source={Images.arrow_right} style={styles.bigArrowIcon} />}
@@ -35,7 +35,7 @@ const LegalStuffScreen = (props) => {
         />
         <Button
           width="100%"
-          height={Responsive.v(40)}
+          height={Responsive.h(50)}
           text="Burn kJ Calculator"
           styleGradient={{ marginBottom: Responsive.v(10) }}
           rightIcon={<Image source={Images.arrow_right} style={styles.bigArrowIcon} />}
@@ -45,7 +45,7 @@ const LegalStuffScreen = (props) => {
         />
         <Button
           width="100%"
-          height={Responsive.v(40)}
+          height={Responsive.h(50)}
           text="Cal to kJ Converter"
           styleGradient={{ marginBottom: Responsive.v(10) }}
           rightIcon={<Image source={Images.arrow_right} style={styles.bigArrowIcon} />}
@@ -56,7 +56,7 @@ const LegalStuffScreen = (props) => {
         <View style={[styles.containerButtonFlexRow, { paddingVertical: 0, paddingHorizontal: 0 }]}>
           <Button
             width="49%"
-            height={Responsive.v(40)}
+            height={Responsive.h(50)}
             text="Profile"
             rightIcon={<Image source={Images.arrow_right} style={styles.bigArrowIcon} />}
             leftIcon={<Image source={Images.profile} style={styles.homeBigLeftIcon} />}
@@ -65,7 +65,7 @@ const LegalStuffScreen = (props) => {
           />
           <Button
             width="49%"
-            height={Responsive.v(40)}
+            height={Responsive.h(50)}
             text="More"
             rightIcon={<Image source={Images.arrow_right} style={styles.bigArrowIcon} />}
             leftIcon={<Image source={Images.more} style={styles.homeBigLeftIcon} />}
@@ -73,7 +73,7 @@ const LegalStuffScreen = (props) => {
             textStyle={{ fontSize: Responsive.h(20) }}
           />
         </View>
-      </ImageBackground>
+      </View>
     </SafeAreaView>
   );
 };

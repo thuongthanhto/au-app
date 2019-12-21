@@ -28,7 +28,7 @@ const WelcomeScreen = props => {
         <View style={styles.containerButtonFlexRow}>
           <Button
             width="100%"
-            height={Responsive.v(50)}
+            height={Responsive.h(45)}
             text="Let's get stated"
             rightIcon={
               <Image

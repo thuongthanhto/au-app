@@ -13,7 +13,13 @@ const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
     width,
+    backgroundColor: colors.BLACK
+  },
+  homeBody: {
+    flex: 1,
+    width,
     paddingHorizontal: Responsive.h(16),
+    backgroundColor: colors.MAIN_BACKGROUND
   },
   topWrap: {
     height: Responsive.v(7),
@@ -27,17 +33,17 @@ const styles = StyleSheet.create({
   textContentWrap: {
     flex: 1,
     marginVertical: 0,
-    marginHorizontal: Responsive.h(55),
-    paddingVertical: Responsive.v(24),
+    marginHorizontal: Responsive.h(40),
+    paddingVertical: Responsive.v(20),
   },
   welcomeText: {
     color: '#ED1F24',
-    fontSize: Responsive.v(48),
+    fontSize: Responsive.h(40),
     fontWeight: 'bold',
   },
   textPragraph: {
     lineHeight: Responsive.h(24),
-    fontSize: Responsive.v(16),
+    fontSize: Responsive.h(16),
     paddingTop: Responsive.v(15),
   },
   textPragraphLink: {
@@ -91,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: Responsive.h(18),
-    paddingVertical: Responsive.h(20),
+    paddingVertical: Responsive.h(10),
   },
   buttonText: {
     fontSize: Responsive.v(18),

@@ -65,6 +65,9 @@ export default createBottomTabNavigator(
       allowFontScaling: true,
       activeBackgroundColor: 'black',
       inactiveBackgroundColor: 'black',
+      style: {
+        backgroundColor: 'black',
+      }
     },
   },
 );

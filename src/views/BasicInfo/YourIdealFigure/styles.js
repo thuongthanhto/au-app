@@ -20,17 +20,17 @@ const styles = StyleSheet.create({
   textContentWrap: {
     flex: 1,
     marginVertical: 0,
-    marginHorizontal: Responsive.h(55),
+    marginHorizontal: Responsive.h(40),
     paddingVertical: Responsive.v(24),
   },
   title: {
     color: '#ED1F24',
-    fontSize: Responsive.v(32),
+    fontSize: Responsive.h(40),
     fontWeight: 'bold',
   },
   textPragraph: {
     lineHeight: Responsive.h(24),
-    fontSize: Responsive.v(16),
+    fontSize: Responsive.h(16),
     paddingTop: Responsive.v(15),
   },
   linearGradient: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: Responsive.v(46),
+    fontSize: Responsive.h(46),
     marginTop: Responsive.v(15),
   },
   containerButtonFlexRow: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   figureRange: {
     backgroundColor: '#FFF',
     color: '#70706E',
-    fontSize: Responsive.h(18),
+    fontSize: Responsive.h(16),
     textAlign: 'center',
     paddingVertical: Responsive.v(2),
     marginBottom: Responsive.v(1),

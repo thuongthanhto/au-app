@@ -21,7 +21,6 @@ import {toClosest} from '../../../modules/utils/helpers';
 
 const YourIdealFigureScreen = props => {
   const profile = useSelector(state => getProfileSelector(state));
-  console.log(profile);
   const figure =
     profile.BMR && profile.BMR.goal
       ? `${toClosest(profile.BMR.goal.value, 100)} kj`
@@ -94,14 +93,11 @@ const YourIdealFigureScreen = props => {
         <View style={stylesHome.containerButtonFlexRow}>
           <Button
             text="Back"
-            width={Responsive.h(80)}
-            height={Responsive.h(40)}
-            borderRadius={Responsive.h(25)}
+            width="20%"
+            height={Responsive.h(30)}
+            borderRadius={Responsive.h(10)}
             textStyle={{color: colors.WHITE, fontSize: Responsive.h(12)}}
-            style={{
-              paddingHorizontal: Responsive.h(10),
-              justifyContent: 'space-around',
-            }}
+            style={{ paddingHorizontal: Responsive.h(10) }}
             color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
             onPress={() => props.navigation.goBack()}
             leftIcon={
@@ -114,7 +110,7 @@ const YourIdealFigureScreen = props => {
           <Button
             width="25%"
             height={Responsive.h(45)}
-            borderRadius={Responsive.h(25)}
+            borderRadius={Responsive.h(20)}
             text="Next"
             rightIcon={
               <Image

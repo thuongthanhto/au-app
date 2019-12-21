@@ -52,6 +52,7 @@ const UserInfoScreen = props => {
     if (!state.age) {
       return false;
     }
+    // eslint-disable-next-line radix
     if (parseInt(state.age) < 10) {
       if (!state.sex || !state.age || !state.height || !state.weight) {
         return false;
@@ -249,9 +250,9 @@ const UserInfoScreen = props => {
         <View style={styles.containerButtonFlexRow}>
           <Button
             text="Skip"
-            width="25%"
-            height={Responsive.h(40)}
-            borderRadius={Responsive.h(25)}
+            width="20%"
+            height={Responsive.h(30)}
+            borderRadius={Responsive.h(10)}
             textStyle={{color: colors.WHITE, fontSize: Responsive.h(12)}}
             color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
             style={{justifyContent: 'center'}}
@@ -260,7 +261,7 @@ const UserInfoScreen = props => {
           <Button
             width="25%"
             height={Responsive.h(45)}
-            borderRadius={Responsive.h(25)}
+            borderRadius={Responsive.h(20)}
             text="Next"
             rightIcon={
               <Image
