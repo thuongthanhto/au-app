@@ -1,8 +1,12 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import { Text, StyleSheet, TouchableOpacity as Touch } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity as Touch
+} from 'react-native';
 
-import { colors } from '../../modules/colors';
+import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
 
 export const Button = ({

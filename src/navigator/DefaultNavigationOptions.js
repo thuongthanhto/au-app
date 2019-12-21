@@ -20,7 +20,7 @@ export const MainNavigationHeader = (props, textLeft, textRight, title) => {
         >
           <HeaderBack props={props} text={textLeft}/>
           <Text style={styles.title}>{title}</Text>
-          {textRight && <HeaderRight props={props} text={textRight}/>}
+          <HeaderRight props={props} text={textRight}/>
         </LinearGradient>
       </SafeAreaView>
     )

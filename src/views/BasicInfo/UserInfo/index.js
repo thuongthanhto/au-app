@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,8 +11,8 @@ import {
 import useForm from 'react-hook-form';
 import RNPickerSelect from 'react-native-picker-select';
 
+import {useDispatch} from 'react-redux';
 import styles from '../styles';
-import bgImg from '../assets/bg_main.jpg';
 import Button from '../../../components/Button';
 import {
   SexConfigs,
@@ -22,31 +22,37 @@ import {
   EalLevels,
   OalLevels,
 } from './configs';
-import { Images } from '../../../assets/images';
 import { colors } from '../../../modules/colors';
 import Responsive from '../../../modules/utils/responsive';
 import { NavigationRoutes } from '../../../navigator/Routes';
+import {Images} from '../../../assets/images';
+import {
+  checkActivityVisibility,
+  updateProfileCalculations,
+} from '../../../modules/utils/helpers';
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-    fontSize: 16,
-    paddingVertical: 8,
-    paddingHorizontal: 8,
+    width: '100%',
+    fontSize: Responsive.v(16),
+    paddingVertical: Responsive.v(8),
+    paddingHorizontal: Responsive.h(8),
     borderWidth: 1,
     borderColor: 'gray',
-    borderRadius: 4,
+    borderRadius: Responsive.v(4),
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: Responsive.v(30), // to ensure the text is never behind the icon
   },
   inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    width: '100%',
+    fontSize: Responsive.v(16),
+    paddingHorizontal: Responsive.h(8),
+    paddingVertical: Responsive.v(4),
     borderWidth: 0.5,
-    borderColor: 'purple',
-    borderRadius: 8,
+    borderColor: 'gray',
+    borderRadius: Responsive.v(8),
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: Responsive.v(30), // to ensure the text is never behind the icon
   },
   iconContainer: {
     top: 15,
@@ -54,12 +60,38 @@ const pickerSelectStyles = StyleSheet.create({
   },
 });
 
-const UserInfoScreen = (props) => {
+const UserInfoScreen = props => {
+  const profile = {
+    sex: '',
+    age: 0,
+    height: 0,
+    weight: 0,
+    oal_level: '',
+    eal_level: '',
+    BMR: {
+      current: {},
+      goal: {},
+    },
+    weight_goal: 1,
+  };
+  const [age, setAge] = useState('');
+  const dispatch = useDispatch();
   const {register, setValue, handleSubmit, errors} = useForm();
   const onSubmit = data => {
-    console.log(data);
-    props.navigation.navigate(NavigationRoutes.LegalStuff);
+    let activeProfile = {
+      ...profile,
+      ...data,
+      weight_goal: data.age < 18 ? 1 : null,
+    };
+    activeProfile = updateProfileCalculations(activeProfile);
+    dispatch({type: 'SAVE_PROFILE', payload: activeProfile});
+    props.navigation.navigate(NavigationRoutes.YourIdealFigure);
   };
+  const handleAgeChange = text => {
+    setValue('age', text, true);
+    setAge(text);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topWrap} />
@@ -98,7 +130,7 @@ const UserInfoScreen = (props) => {
                     label: 'Age',
                     value: null,
                   }}
-                  onValueChange={text => setValue('age', text, true)}
+                  onValueChange={text => handleAgeChange(text)}
                   ref={register({name: 'age'}, {required: true})}
                   useNativeAndroidPickerStyle={false}
                   style={pickerSelectStyles}
@@ -148,49 +180,76 @@ const UserInfoScreen = (props) => {
                   <Text style={styles.errorText}>Select your weight</Text>
                 )}
               </View>
-              <View style={styles.formItem}>
-                <RNPickerSelect
-                  items={OalLevels}
-                  placeholder={{
-                    label: 'Occupational activity',
-                    value: null,
-                  }}
-                  onValueChange={text => setValue('weight', text, true)}
-                  ref={register({name: 'weight'}, {required: true})}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
-                {errors.weight && (
-                  <Text style={styles.errorText}>Select your weight</Text>
-                )}
-              </View>
-              <View style={styles.formItem}>
-                <RNPickerSelect
-                  items={EalLevels}
-                  placeholder={{
-                    label: 'Non-occupational activity level',
-                    value: null,
-                  }}
-                  onValueChange={text => setValue('weight', text, true)}
-                  ref={register({name: 'weight'}, {required: true})}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
-                {errors.weight && (
-                  <Text style={styles.errorText}>Select your weight</Text>
-                )}
-              </View>
+              {checkActivityVisibility(age) && (
+                <>
+                  <View style={styles.formItem}>
+                    <View style={styles.inputInfo}>
+                      <RNPickerSelect
+                        items={OalLevels}
+                        placeholder={{
+                          label: 'Occupational activity',
+                          value: null,
+                        }}
+                        onValueChange={text =>
+                          setValue('oal_level', text, true)
+                        }
+                        ref={register(
+                          {name: 'oal_level'},
+                          {required: checkActivityVisibility(age)},
+                        )}
+                        useNativeAndroidPickerStyle={false}
+                        style={pickerSelectStyles}
+                        Icon={() => {
+                          return <View style={styles.iconSelect} />;
+                        }}
+                      />
+                      <View style={{position: 'absolute', left: '102%'}}>
+                        <Image source={Images.info} />
+                      </View>
+                    </View>
+
+                    {errors.oal_level && (
+                      <Text style={styles.errorText}>Please choose one</Text>
+                    )}
+                  </View>
+                  <View style={styles.formItem}>
+                    <View style={styles.inputInfo}>
+                      <RNPickerSelect
+                        items={EalLevels}
+                        placeholder={{
+                          label: 'Non-occupational activity level',
+                          value: null,
+                        }}
+                        onValueChange={text =>
+                          setValue('eal_level', text, true)
+                        }
+                        ref={register(
+                          {name: 'eal_level'},
+                          {required: checkActivityVisibility(age)},
+                        )}
+                        useNativeAndroidPickerStyle={false}
+                        style={pickerSelectStyles}
+                        Icon={() => {
+                          return <View style={styles.iconSelect} />;
+                        }}
+                      />
+
+                      <View style={{position: 'absolute', left: '102%'}}>
+                        <Image source={Images.info} />
+                      </View>
+                    </View>
+
+                    {errors.eal_level && (
+                      <Text style={styles.errorText}>Please choose one</Text>
+                    )}
+                  </View>
+                </>
+              )}
             </View>
           </View>
         </View>
       </ScrollView>
-      <ImageBackground source={bgImg} style={{width: '100%'}}>
+      <ImageBackground source={Images.bg_main} style={{width: '100%'}}>
         <View style={styles.containerButtonFlexRow}>
           <Button
             text="Skip"
@@ -207,7 +266,7 @@ const UserInfoScreen = (props) => {
             height={Responsive.v(37)}
             text="Next"
             rightIcon={<Image source={Images.arrow_right} style={styles.largerArrowIcon} />}
-            onPress={() => props.navigation.navigate(NavigationRoutes.LegalStuff)}
+              onPress={handleSubmit(onSubmit)}
           />
         </View>
       </ImageBackground>

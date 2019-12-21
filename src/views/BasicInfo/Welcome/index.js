@@ -1,15 +1,13 @@
 import React from 'react';
-import { View, Text, ImageBackground, Image, SafeAreaView } from 'react-native';
+import {View, Text, ImageBackground, Image, SafeAreaView} from 'react-native';
 
 import styles from '../styles';
-import bgImg from '../assets/bg_main.jpg';
 import Button from '../../../components/Button';
 import { Images } from '../../../assets/images';
-import foodImg from '../assets/home_food_1_tablet.png';
 import Responsive from '../../../modules/utils/responsive';
 import { NavigationRoutes } from '../../../navigator/Routes';
 
-const WelcomeScreen = (props) => {
+const WelcomeScreen = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topWrap} />
@@ -23,10 +21,10 @@ const WelcomeScreen = (props) => {
           </Text>
         </View>
         <View style={styles.imageContentWrap}>
-          <Image source={foodImg} style={styles.image} />
+          <Image source={Images.home_food_1_tablet} style={styles.image} />
         </View>
       </View>
-      <ImageBackground source={bgImg} style={{width: '100%'}}>
+      <ImageBackground source={Images.bg_main} style={{width: '100%'}}>
         <View style={styles.containerButton}>
           <Button
             width="100%"

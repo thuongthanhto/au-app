@@ -2,7 +2,6 @@ import React from 'react';
 import { View, ImageBackground, SafeAreaView, Image } from 'react-native';
 
 import styles from '../styles';
-import bgImg from '../assets/bg_main.jpg';
 import Button from '../../../components/Button';
 import { Images } from '../../../assets/images';
 import Responsive from '../../../modules/utils/responsive';
@@ -11,7 +10,7 @@ import { NavigationRoutes } from '../../../navigator/Routes';
 const LegalStuffScreen = (props) => {
   return (
     <SafeAreaView style={styles.homeContainer}>
-      <ImageBackground source={bgImg} style={styles.homeContainer}>
+      <ImageBackground source={Images.bg_main} style={styles.homeContainer}>
         <Image source={Images.app_title_retina} resizeMode="contain" style={styles.homeTitle} />
         <Image source={Images.home_food_1_tablet} resizeMode="contain" style={styles.homeImageFood} />
         <Button

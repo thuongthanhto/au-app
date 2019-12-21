@@ -13,8 +13,9 @@ export const Images = {
   arrow_left_inverted: require('../icons/arrow_left_inverted.png'),
   arrow_right: require('../icons/arrow_right.png'),
   arrow_right_inverted: require('../icons/arrow_right_inverted.png'),
-  bg_main: require('../icons/bg_main.jpg'),
-  home_food_1_tablet: require('../icons/home_food_1_tablet.png'),
   profile: require('../icons/profile.png'),
-  app_title_retina: require('../icons/app_title_retina.png')
+  app_title_retina: require('../icons/app_title_retina.png'),
+  bg_main: require('../icons/home/bg_main.jpg'),
+  home_food_1_tablet: require('../icons/home/home_food_1_tablet.png'),
+  info: require('../icons/home/info.png'),
 };
