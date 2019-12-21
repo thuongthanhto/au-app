@@ -1,6 +1,11 @@
+import EnergyConversion from '../modules/utils/energy_conversion_v1.2';
+
 const initialState = {
   appOpens: null,
   touchAgreed: false,
+  baseBMR: 8700,
+  BMR: 8700,
+  profile: {},
 };
 
 export default (state = initialState, actions) => {
@@ -15,6 +20,12 @@ export default (state = initialState, actions) => {
       return {
         ...state,
         touchAgreed: true,
+      };
+    }
+    case 'SAVE_PROFILE': {
+      return {
+        ...state,
+        profile: actions.payload,
       };
     }
 
