@@ -10,4 +10,5 @@ export const NavigationRoutes = {
   Converter: 'Converter',
   LegalStuff: 'LegalStuff',
   YourIdealFigure: 'YourIdealFigure',
+  WeightGoal: 'WeightGoal',
 };

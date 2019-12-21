@@ -106,6 +106,14 @@ export const checkWeightGoalVisibility = age => {
   return false;
 };
 
+export function toClosest(value, grain) {
+  const remainder = value % grain;
+  const rounding = remainder > grain / 2 ? grain : 0;
+  const result = value - remainder + rounding;
+
+  return result;
+}
+
 export function isEmpty(obj) {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -138,7 +146,7 @@ function getBMRTenAndOlder(age, sex, weight) {
   let sex_age_values;
 
   for (let i = 0, count = _lookup[sex].sex_age_values.length; i < count; ++i) {
-    if (that._lookup[sex].sex_age_values[i][0] <= age) {
+    if (_lookup[sex].sex_age_values[i][0] <= age) {
       sex_age_values = _lookup[sex].sex_age_values[i][1];
     }
   }
@@ -245,3 +253,8 @@ export const updateProfileCalculations = activeProfile => {
 
   return null;
 };
+
+export const customReducer = (state, newState) => ({
+  ...state,
+  ...newState,
+});

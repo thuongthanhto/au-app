@@ -59,6 +59,14 @@ const styles = StyleSheet.create({
     fontSize: Responsive.v(46),
     marginTop: Responsive.v(15),
   },
+  figureRange: {
+    backgroundColor: '#FFF',
+    color: '#70706E',
+    fontSize: Responsive.h(18),
+    textAlign: 'center',
+    paddingVertical: Responsive.v(2),
+    marginBottom: Responsive.v(1),
+  },
 });
 
 export default styles;

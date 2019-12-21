@@ -36,6 +36,10 @@ const styles = StyleSheet.create({
     fontSize: Responsive.v(16),
     paddingTop: Responsive.v(15),
   },
+  textPragraphLink: {
+    lineHeight: Responsive.h(24),
+    fontSize: Responsive.v(16),
+  },
   imageContentWrap: {
     flex: 3,
     alignItems: 'center',
@@ -83,6 +87,9 @@ const styles = StyleSheet.create({
   },
   inputInfo: {
     flex: 1,
+  },
+  linkWrap: {
+    marginTop: Responsive.v(10),
   },
 });
 

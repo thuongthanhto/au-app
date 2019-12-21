@@ -6,6 +6,7 @@ import HomeScreen from '../views/Home';
 import UserInfoScreen from '../views/BasicInfo/UserInfo';
 import LegalStuffScreen from '../views/BasicInfo/LegalStuff';
 import YourIdealFigureScreen from '../views/BasicInfo/YourIdealFigure';
+import WeightGoalScreen from '../views/BasicInfo/WeightGoal';
 
 const WelcomeStack = createStackNavigator(
   {
@@ -23,6 +24,9 @@ const WelcomeStack = createStackNavigator(
     },
     [NavigationRoutes.YourIdealFigure]: {
       screen: YourIdealFigureScreen,
+    },
+    [NavigationRoutes.WeightGoal]: {
+      screen: WeightGoalScreen,
     },
   },
   {
