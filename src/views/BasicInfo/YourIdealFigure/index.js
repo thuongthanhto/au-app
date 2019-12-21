@@ -21,6 +21,7 @@ import {toClosest} from '../../../modules/utils/helpers';
 
 const YourIdealFigureScreen = props => {
   const profile = useSelector(state => getProfileSelector(state));
+  console.log(profile);
   const figure =
     profile.BMR && profile.BMR.goal
       ? `${toClosest(profile.BMR.goal.value, 100)} kj`
@@ -47,13 +48,41 @@ const YourIdealFigureScreen = props => {
               <Text style={styles.figureRange}>{figureRange}</Text>
             )}
 
-            <Text style={styles.textPragraph}>
-              To gain weight, you need to consume approximately the number of
-              kJs above on a daily basis. In other words, to reach your weight
-              gain goal at a rate of 0.5kg per week, you'd need to increase your
-              current energy intake by 2000kJ per day. Not suitable for
-              children.
-            </Text>
+            {profile.weight_goal === 0 && (
+              <Text style={styles.textPragraph}>
+                To maintain your current weight, you need to consume the number
+                of kJs above on a daily basis.
+              </Text>
+            )}
+
+            {profile.weight_goal === -1 && (
+              <>
+                <Text style={styles.textPragraph}>
+                  You should consume approximately the number of kJs shown
+                  above. It includes a 2000 kJ/day reduction to achieve weight
+                  loss of about 0.5 kg/week, which is a healthy rate most people
+                  find they can achieve and stick to. (Not suitable for
+                  children, though).
+                </Text>
+                <Text style={styles.textPragraph}>
+                  Or, instead of reducing your kJ intake, you could do 2000 kJ
+                  more activity every day than you are currently doing. Or some
+                  of both. Physical activity is important to maintain good
+                  health.
+                </Text>
+              </>
+            )}
+
+            {profile.weight_goal === 1 && (
+              <Text style={styles.textPragraph}>
+                To gain weight, you need to consume approximately the number of
+                kJs above on a daily basis. In other words, to reach your weight
+                gain goal at a rate of 0.5kg per week, you'd need to increase
+                your current energy intake by 2000kJ per day. Not suitable for
+                children.
+              </Text>
+            )}
+
             <Text style={styles.textPragraph}>
               This is just a guide, and it may take some trial and error. For
               more details, see My Ideal Figure on the Home screen.

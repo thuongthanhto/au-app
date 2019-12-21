@@ -8,27 +8,49 @@ import {
   Image,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-
+import {useSelector, useDispatch} from 'react-redux';
 import HyperLink from 'react-native-hyperlink';
+
 import styles from '../styles';
 import pickerSelectStyles from '../pickerSelectStyles';
 import Button from '../../../components/Button';
 import {Images} from '../../../assets/images';
-import {customReducer} from '../../../modules/utils/helpers';
+import {customReducer, calculateGoalBMR} from '../../../modules/utils/helpers';
 import {weightGoals} from './config';
 import Responsive from '../../../modules/utils/responsive';
 import {colors} from '../../../modules/colors';
 import {NavigationRoutes} from '../../../navigator/Routes';
+import {getProfileSelector} from '../../../selectors/homeSelector';
 
 const WeightGoal = props => {
+  const oldProfile = useSelector(state => getProfileSelector(state));
   const initState = {
     weight_goal: '',
   };
   const [dirty, setDirty] = useState(false);
   const [state, setState] = useReducer(customReducer, initState);
+  const dispatch = useDispatch();
+
+  const checkValidate = () => {
+    if (state.weight_goal === '') {
+      return false;
+    }
+
+    return true;
+  };
 
   const handleChange = (name, value) => {
     setState({[name]: value});
+  };
+
+  const handleSubmit = () => {
+    setDirty(true);
+
+    if (checkValidate() === true) {
+      const result = calculateGoalBMR(state.weight_goal, oldProfile);
+      dispatch({type: 'SAVE_PROFILE', payload: result});
+      props.navigation.navigate(NavigationRoutes.Home);
+    }
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -63,8 +85,8 @@ const WeightGoal = props => {
                 </View>
               </View>
 
-              {dirty && !state.eal_level && (
-                <Text style={styles.errorText}>Please choose one</Text>
+              {dirty && state.weight_goal === '' && (
+                <Text style={styles.errorText}>Select your weight goal</Text>
               )}
             </View>
             <View style={styles.linkWrap}>
@@ -121,7 +143,7 @@ const WeightGoal = props => {
                 style={styles.largerArrowIcon}
               />
             }
-            // onPress={() => handleSubmit()}
+            onPress={() => handleSubmit()}
           />
         </View>
       </ImageBackground>

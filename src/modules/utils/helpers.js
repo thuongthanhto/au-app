@@ -258,3 +258,24 @@ export const customReducer = (state, newState) => ({
   ...state,
   ...newState,
 });
+
+export function calculateGoalBMR(goal, oldProfile) {
+  const adjustment = 2000;
+  const goalDirection = parseFloat(goal);
+  const profile = {...oldProfile, weight_goal: goalDirection};
+
+  if (!profile.BMR.goal) {
+    profile.BMR.goal = {};
+  }
+
+  profile.BMR.goal.value =
+    profile.BMR.current.value + goalDirection * adjustment;
+
+  if (profile.BMR.current.tolerance) {
+    profile.BMR.goal.bottom =
+      profile.BMR.current.bottom + goalDirection * adjustment;
+    profile.BMR.goal.top = profile.BMR.current.top + goalDirection * adjustment;
+  }
+
+  return profile;
+}
