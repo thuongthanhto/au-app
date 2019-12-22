@@ -28,7 +28,7 @@ export const Button = ({
       borderRadius && {borderRadius},
       styleGradient,
     ])}
-    locations={isHeader && [1, 0.25, 1]}>
+    locations={isHeader && [0.5, 0.5]}>
     <Touch {...others} style={StyleSheet.flatten([styles.btn, style])}>
       {leftIcon && leftIcon}
       <Text style={StyleSheet.flatten([styles.text, textStyle])}>{text}</Text>

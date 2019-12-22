@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, SafeAreaView, Platform } from 'react-native';
+import { Image, StyleSheet, Text, SafeAreaView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { NavigationRoutes } from './Routes';
@@ -12,11 +12,11 @@ import { colors } from '../modules/colors';
 export const MainNavigationHeader = (props, textLeft, textRight, title) => {
   return {
     header: (
-      <SafeAreaView style={{ backgroundColor: 'black'}}>
+      <SafeAreaView style={{ backgroundColor: '#00AAEA'}}>
         <LinearGradient
-          colors={[colors.BLACK, colors.HEADER]}
-          style={[styles.headerContainer, styles.shadowButton]}
-          locations={[1,0.25,1]}
+          colors={[colors.HEADER, colors.BLACK]}
+          style={[styles.headerContainer]}
+          locations={[0.5,0.5]}
         >
           <HeaderBack props={props} text={textLeft}/>
           <Text style={styles.title}>{title}</Text>
@@ -34,10 +34,10 @@ export const HeaderRight = ({ props, text }) => (
     text={text}
     onPress={() => text && props.navigation.navigate(NavigationRoutes.More)}
     textStyle={styles.textButton}
-    styleGradient={styles.button}
+    styleGradient={[styles.button, text && styles.shadowButton, !text && { borderWidth: 0 }]}
     borderRadius={Responsive.h(7)}
     isHeader
-    color={text ? [colors.BLACK, colors.HEADER] : ['transparent', 'transparent', 'transparent']}
+    color={text ? [colors.HEADER, colors.BLACK] : ['transparent', 'transparent', 'transparent']}
     style={{ justifyContent: 'center' }}
   />
 );
@@ -50,10 +50,10 @@ export const HeaderBack = ({ props, text }) => (
     leftIcon={<Image source={Images.arrow_left_inverted} style={styles.largerArrowIcon} />}
     onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
     textStyle={styles.textButton}
-    styleGradient={styles.button}
+    styleGradient={[styles.button, styles.shadowButton]}
     borderRadius={Responsive.h(7)}
     isHeader
-    color={[colors.BLACK, colors.HEADER]}
+    color={[colors.HEADER, colors.BLACK]}
   />
 );
 
@@ -70,8 +70,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: Responsive.v(10),
-    marginHorizontal: Responsive.h(7),
-    borderWidth: 0
+    marginHorizontal: Responsive.h(7)
   },
   textButton: {
     color: colors.WHITE,
@@ -82,19 +81,13 @@ const styles = StyleSheet.create({
     width: Responsive.h(9),
     height: Responsive.h(14)
   },
-  shadowButton: Platform.select({
-    ios: {
-      shadowRadius: Responsive.h(4), 
-      shadowOpacity: 0.5, 
-      shadowOffset: {
-        width: 0,
-        height: Responsive.h(4)
-      },
-      borderRadius: Responsive.h(7),
-    },
-    android: {
-      elevation: 4,
-      borderRadius: Responsive.h(7),
-    }
-  })
+  shadowButton: {
+    shadowColor: "#616161",
+    shadowOpacity: 0.5,
+    shadowRadius: Responsive.h(5),
+
+    elevation: Responsive.h(5),
+    borderWidth: 1,
+    borderColor: '#616161'
+  }
 });

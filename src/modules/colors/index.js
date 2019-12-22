@@ -16,5 +16,5 @@ export const colors = {
   BUTTON: '#EBE8E7',
   SKIP_BUTTON: '#2692B4',
   TEXT_BUTTON: '#474646',
-  HEADER: '#9c9b9e'
+  HEADER: '#747474'
 };
