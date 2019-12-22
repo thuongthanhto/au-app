@@ -144,6 +144,11 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSans-Regular',
     marginTop: Responsive.h(15),
   },
+  h2: {
+    fontSize: Responsive.h(30),
+    marginTop: Responsive.h(15),
+    fontWeight: '900',
+  },
 });
 
 export default styles;
