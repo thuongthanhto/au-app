@@ -49,7 +49,7 @@ const WeightGoal = props => {
     if (checkValidate() === true) {
       const result = calculateGoalBMR(state.weight_goal, oldProfile);
       dispatch({type: 'SAVE_PROFILE', payload: result});
-      props.navigation.navigate(NavigationRoutes.Home);
+      props.navigation.navigate(NavigationRoutes.YourIdealFigure);
     }
   };
   return (
@@ -119,7 +119,7 @@ const WeightGoal = props => {
             height={Responsive.h(30)}
             borderRadius={Responsive.h(10)}
             textStyle={{color: colors.WHITE, fontSize: Responsive.h(12)}}
-            style={{ paddingHorizontal: Responsive.h(10) }}
+            style={{paddingHorizontal: Responsive.h(10)}}
             color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
             onPress={() => props.navigation.goBack()}
             leftIcon={
