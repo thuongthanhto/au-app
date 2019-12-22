@@ -34,7 +34,7 @@ export const HeaderRight = ({ props, text }) => (
     text={text}
     onPress={() => text && props.navigation.navigate(NavigationRoutes.More)}
     textStyle={styles.textButton}
-    styleGradient={[styles.button, text && styles.shadowButton, !text && { borderWidth: 0 }]}
+    styleGradient={[styles.button, text && styles.shadowButton, !text && { borderWidth: 0, height: 0 }]}
     borderRadius={Responsive.h(7)}
     isHeader
     color={text ? [colors.HEADER, colors.BLACK] : ['transparent', 'transparent', 'transparent']}
