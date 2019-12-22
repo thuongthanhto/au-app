@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   titleTooltipUserinfo: {
     color: colors.RED,
-    fontWeight: 'bold',
+    fontFamily: 'PTSans-Bold',
     fontSize: Responsive.h(16),
   },
 });

@@ -32,7 +32,7 @@ export const HeaderRight = ({ props, text }) => (
     width={Responsive.h(100)}
     height={Responsive.v(30)}
     text={text}
-    onPress={() => props.navigation.navigate(NavigationRoutes.More)}
+    onPress={() => text && props.navigation.navigate(NavigationRoutes.More)}
     textStyle={styles.textButton}
     styleGradient={styles.button}
     borderRadius={Responsive.h(7)}
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   title: {
     color: colors.WHITE,
     fontSize: Responsive.h(20),
+    fontFamily: 'PTSans-Regular',
   },
   button: {
     marginVertical: Responsive.v(10),
@@ -74,7 +75,8 @@ const styles = StyleSheet.create({
   },
   textButton: {
     color: colors.WHITE,
-    fontSize: Responsive.h(14)
+    fontSize: Responsive.h(14),
+    fontFamily: 'PTSans-Bold',
   },
   largerArrowIcon: {
     width: Responsive.h(9),

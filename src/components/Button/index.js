@@ -40,7 +40,7 @@ export const Button = ({
 const styles = StyleSheet.create({
   text: {
     fontSize: Responsive.h(16),
-    fontWeight: 'bold',
+    fontFamily: 'PTSans-Bold',
     textAlign: 'center',
     color: colors.TEXT_BUTTON,
   },

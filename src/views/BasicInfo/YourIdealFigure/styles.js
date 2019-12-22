@@ -26,11 +26,12 @@ const styles = StyleSheet.create({
   title: {
     color: '#ED1F24',
     fontSize: Responsive.h(40),
-    fontWeight: 'bold',
+    fontFamily: 'PTSans-Bold',
   },
   textPragraph: {
     lineHeight: Responsive.h(24),
     fontSize: Responsive.h(16),
+    fontFamily: 'PTSans-Regular',
     paddingTop: Responsive.v(15),
   },
   linearGradient: {
@@ -45,13 +46,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: Responsive.v(18),
+    fontFamily: 'PTSans-Regular',
     margin: Responsive.h(10),
   },
   figure: {
     backgroundColor: '#FFF',
     borderColor: '#000',
     borderWidth: 1,
-    fontWeight: 'bold',
+    fontFamily: 'PTSans-Bold',
     textAlign: 'center',
     fontSize: Responsive.h(46),
     marginTop: Responsive.v(15),
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     color: '#70706E',
     fontSize: Responsive.h(16),
+    fontFamily: 'PTSans-Regular',
     textAlign: 'center',
     paddingVertical: Responsive.v(2),
     marginBottom: Responsive.v(1),

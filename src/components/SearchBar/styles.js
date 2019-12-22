@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: Responsive.v(16),
     color: colors.GRAY,
+    fontFamily: 'PTSans-Regular',
   },
   input: {
     width: '99%',

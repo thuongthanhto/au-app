@@ -6,6 +6,7 @@ const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     width: '100%',
     fontSize: Responsive.v(16),
+    fontFamily: 'PTSans-Regular',
     paddingVertical: Responsive.v(8),
     paddingHorizontal: Responsive.h(8),
     borderWidth: 1,
@@ -17,6 +18,7 @@ const pickerSelectStyles = StyleSheet.create({
   inputAndroid: {
     width: '100%',
     fontSize: Responsive.v(16),
+    fontFamily: 'PTSans-Regular',
     paddingHorizontal: Responsive.h(8),
     paddingVertical: Responsive.v(4),
     borderWidth: 0.5,

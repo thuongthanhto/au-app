@@ -9,7 +9,7 @@ const ConverterStack = createStackNavigator(
     [NavigationRoutes.Converter]: {
       screen: ConverterScreen,
       navigationOptions: (props) => ({
-        ...MainNavigationHeader(props, 'Home', 'Inputs', 'Converter')
+        ...MainNavigationHeader(props, 'Home', null, 'Converter')
       })
     }
   },

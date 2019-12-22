@@ -38,16 +38,18 @@ const styles = StyleSheet.create({
   welcomeText: {
     color: '#ED1F24',
     fontSize: Responsive.h(40),
-    fontWeight: 'bold',
+    fontFamily: 'PTSans-Bold',
   },
   textPragraph: {
     lineHeight: Responsive.h(24),
     fontSize: Responsive.h(16),
+    fontFamily: 'PTSans-Regular',
     paddingTop: Responsive.v(15),
   },
   textPragraphLink: {
     lineHeight: Responsive.h(24),
     fontSize: Responsive.v(16),
+    fontFamily: 'PTSans-Regular',
   },
   imageContentWrap: {
     flex: 3,
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: Responsive.v(18),
+    fontFamily: 'PTSans-Regular',
     margin: Responsive.h(10),
   },
   iconSelect: {
@@ -122,6 +125,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: '#D01C21',
     fontSize: Responsive.v(16),
+    fontFamily: 'PTSans-Regular',
   },
   inputInfo: {
     flex: 1,
@@ -132,10 +136,12 @@ const styles = StyleSheet.create({
   tooltipPragraph: {
     marginTop: Responsive.h(12),
     fontSize: Responsive.h(14),
+    fontFamily: 'PTSans-Regular',
     lineHeight: Responsive.h(14),
   },
   h3: {
     fontSize: Responsive.h(20),
+    fontFamily: 'PTSans-Regular',
     marginTop: Responsive.h(15),
   },
 });
