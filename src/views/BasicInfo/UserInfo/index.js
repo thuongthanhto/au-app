@@ -6,7 +6,7 @@ import {
   ScrollView,
   SafeAreaView,
   Image,
-  TouchableOpacity as Touch
+  TouchableOpacity as Touch,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import {useDispatch, useSelector} from 'react-redux';
@@ -33,7 +33,7 @@ import {
 import {getProfileSelector} from '../../../selectors/homeSelector';
 import {DEFAULT_PROFILE} from '../../../modules/utils/constants';
 import pickerSelectStyles from '../pickerSelectStyles';
-import { Tooltip } from '../../../components/Tooltip';
+import {Tooltip} from '../../../components/Tooltip';
 
 const UserInfoScreen = props => {
   const oldProfile = useSelector(state => getProfileSelector(state));
@@ -103,13 +103,44 @@ const UserInfoScreen = props => {
 
   const renderTooltipNonOccupationalContent = () => (
     <View>
-      <Text>Tooltip NonOccupational Content</Text>
+      <Text style={styles.tooltipPragraph}>
+        How physically active are you outside of work or the rest of the waking
+        day:
+      </Text>
+      <Text style={styles.h3}>Light</Text>
+      <Text style={styles.tooltipPragraph}>
+        eg light home duties, light gardening, walking for pleasure, small
+        screen activities, homework.
+      </Text>
+      <Text style={styles.h3}>Moderate</Text>
+      <Text style={styles.tooltipPragraph}>
+        eg strenuous gardening several days per week, or moderate activity such
+        as brisk walking on most days.
+      </Text>
+      <Text style={styles.h3}>Very active</Text>
+      <Text style={styles.tooltipPragraph}>
+        eg jogging, strenuous cycling or gym classes on most days.
+      </Text>
     </View>
   );
 
   const renderTooltipOccupationalContent = () => (
     <View>
-      <Text>Tooltip Occupational Content</Text>
+      <Text style={styles.tooltipPragraph}>
+        How physically active is your occupation or main part of the waking day:
+      </Text>
+      <Text style={styles.h3}>Light work</Text>
+      <Text style={styles.tooltipPragraph}>
+        eg. office worker, precision mechanic, mostly seated, retired
+      </Text>
+      <Text style={styles.h3}>Moderate work</Text>
+      <Text style={styles.tooltipPragraph}>
+        eg assembly line, housework, sales visits, student, regular walking
+      </Text>
+      <Text style={styles.h3}>Heavy work</Text>
+      <Text style={styles.tooltipPragraph}>
+        eg mechanic, construction, farming, frequent lifting
+      </Text>
     </View>
   );
 
@@ -219,7 +250,9 @@ const UserInfoScreen = props => {
                           return <View style={styles.iconSelect} />;
                         }}
                       />
-                      <Touch style={{position: 'absolute', left: '102%'}} onPress={() => setTooltipVisible('occupational')}>
+                      <Touch
+                        style={{position: 'absolute', left: '102%'}}
+                        onPress={() => setTooltipVisible('occupational')}>
                         <Image source={Images.info} />
                       </Touch>
                     </View>
@@ -245,7 +278,9 @@ const UserInfoScreen = props => {
                         }}
                       />
 
-                      <Touch style={{position: 'absolute', left: '102%'}} onPress={() => setTooltipVisible('non-occupational')}>
+                      <Touch
+                        style={{position: 'absolute', left: '102%'}}
+                        onPress={() => setTooltipVisible('non-occupational')}>
                         <Image source={Images.info} />
                       </Touch>
                     </View>
@@ -262,14 +297,14 @@ const UserInfoScreen = props => {
       </ScrollView>
       <Tooltip
         isVisible={tooltipVisible === 'occupational'}
-        title={<Text style={styles.titleTooltipUserinfo}>Occupational physical activity</Text>}
+        title="Occupational physical activity"
         content={renderTooltipOccupationalContent()}
         onCloseModal={() => setTooltipVisible(false)}
       />
       <Tooltip
         isVisible={tooltipVisible === 'non-occupational'}
         content={renderTooltipNonOccupationalContent()}
-        title={<Text style={styles.titleTooltipUserinfo}>None-occupational physical activity</Text>}
+        title="None-occupational physical activity"
         onCloseModal={() => setTooltipVisible(false)}
       />
       <ImageBackground source={Images.bg_main} style={{width: '100%'}}>

@@ -1,23 +1,20 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {
-  Modal,
   View,
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Text,
 } from 'react-native';
+import Modal from 'react-native-modal';
 
 import styles from './styles';
 import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
 
 export const Tooltip = ({isVisible, onCloseModal, title, content}) => (
-  <Modal
-    visible={isVisible}
-    animationType="fade"
-    transparent
-    onRequestClose={onCloseModal}>
+  <Modal isVisible={isVisible}>
     <SafeAreaView style={styles.modalContainer}>
       <TouchableOpacity style={styles.iconContainer} onPress={onCloseModal}>
         <Icon
@@ -28,7 +25,8 @@ export const Tooltip = ({isVisible, onCloseModal, title, content}) => (
       </TouchableOpacity>
       <ScrollView>
         <View style={styles.body}>
-          {title}
+          <Text style={styles.titleTooltipUserinfo}>{title}</Text>
+
           {content}
         </View>
       </ScrollView>

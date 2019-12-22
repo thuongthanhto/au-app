@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width,
     paddingHorizontal: Responsive.h(16),
-    backgroundColor: colors.MAIN_BACKGROUND
+    backgroundColor: colors.MAIN_BACKGROUND,
   },
   topWrap: {
     height: Responsive.v(7),
@@ -129,11 +129,15 @@ const styles = StyleSheet.create({
   linkWrap: {
     marginTop: Responsive.v(10),
   },
-  titleTooltipUserinfo: {
-    color: colors.RED,
-    fontWeight: 'bold',
-    fontSize: Responsive.h(13)
-  }
+  tooltipPragraph: {
+    marginTop: Responsive.h(12),
+    fontSize: Responsive.h(14),
+    lineHeight: Responsive.h(14),
+  },
+  h3: {
+    fontSize: Responsive.h(20),
+    marginTop: Responsive.h(15),
+  },
 });
 
 export default styles;

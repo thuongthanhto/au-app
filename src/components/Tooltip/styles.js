@@ -6,21 +6,26 @@ import Responsive from '../../modules/utils/responsive';
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    backgroundColor: colors.MAIN_BACKGROUND,
+    backgroundColor: colors.WHITE,
     marginHorizontal: Responsive.h(20),
-    marginVertical: Responsive.h(40),
-    borderRadius: Responsive.h(10)
+    marginVertical: Responsive.h(30),
+    borderRadius: Responsive.h(10),
   },
   iconContainer: {
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   closeIcon: {
     width: Responsive.h(23),
-    height: Responsive.h(23)
+    height: Responsive.h(23),
   },
   body: {
-    padding: Responsive.h(16)
-  }
+    padding: Responsive.h(16),
+  },
+  titleTooltipUserinfo: {
+    color: colors.RED,
+    fontWeight: 'bold',
+    fontSize: Responsive.h(16),
+  },
 });
 
 export default styles;
