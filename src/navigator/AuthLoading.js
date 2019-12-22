@@ -39,7 +39,7 @@ class AuthLoading extends React.PureComponent {
   checkAuthencation = async () => {
     const {navigation, touchAgreed, profile} = this.props;
 
-    if (!isEmpty(profile)) {
+    if (isEmpty(profile)) {
       if (!touchAgreed) {
         navigation.navigate(NavigationRoutes.LegalStuff);
       } else {
