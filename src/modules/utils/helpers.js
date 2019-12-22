@@ -120,6 +120,12 @@ export const _activity_METs = {
   Yoga: 2.5,
 };
 
+export const _summary_METs = {
+  Light: 3.0,
+  Medium: 6.0,
+  Vigorous: 8.0,
+};
+
 export const sortTaskByBookMark = list =>
   list.sort((a, b) => b.bookmark - a.bookmark);
 
@@ -333,4 +339,33 @@ export function calculateGoalBMR(goal, oldProfile) {
   }
 
   return profile;
+}
+
+function getRMR(sex = 'male', height = 175, weight = 70, age = 40) {
+  const rmrValues = _lookup[sex].rmr;
+  return (
+    rmrValues[0] +
+    rmrValues[1] * height +
+    rmrValues[2] * weight -
+    rmrValues[3] * age
+  );
+}
+
+function getEnergyUse(activity, rmr, weight, hours) {
+  const met = _activity_METs[activity] || _summary_METs[activity];
+  return (1 / (rmr / weight / 24)) * met * weight * hours * 4.184;
+}
+
+export function calculateBurn(activity, duration, profile) {
+  if (activity === '' || isNaN(duration)) {
+    return '';
+  }
+
+  const rmr = getRMR(profile.sex, profile.height, profile.weight, profile.age);
+
+  const energyUse = Math.round(
+    getEnergyUse(activity, rmr, profile.weight, duration / 60),
+  );
+
+  return energyUse;
 }

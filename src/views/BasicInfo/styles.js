@@ -9,6 +9,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+    backgroundColor: colors.MAIN_BACKGROUND,
+  },
+  containerWithColor: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
   homeContainer: {
     flex: 1,
@@ -20,6 +25,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: Responsive.h(16),
     backgroundColor: colors.MAIN_BACKGROUND,
   },
+  mainBody: {
+    flex: 1,
+    width,
+    paddingHorizontal: Responsive.h(40),
+    backgroundColor: colors.MAIN_BACKGROUND,
+  },
   topWrap: {
     height: Responsive.v(7),
     backgroundColor: '#00AAEA',
@@ -28,6 +39,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: colors.WHITE,
+  },
+  contentWrapHome: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    backgroundColor: colors.MAIN_BACKGROUND,
   },
   textContentWrap: {
     flex: 1,
@@ -45,6 +61,7 @@ const styles = StyleSheet.create({
     fontSize: Responsive.h(16),
     fontFamily: 'PTSans-Regular',
     paddingTop: Responsive.v(15),
+    color: '#3B3B3B',
   },
   textPragraphLink: {
     lineHeight: Responsive.h(24),
@@ -145,9 +162,18 @@ const styles = StyleSheet.create({
     marginTop: Responsive.h(15),
   },
   h2: {
-    fontSize: Responsive.h(30),
+    fontSize: Responsive.h(18),
     marginTop: Responsive.h(15),
-    fontWeight: '900',
+    fontWeight: 'bold',
+  },
+  figure: {
+    backgroundColor: '#FFF',
+    borderColor: '#000',
+    borderWidth: 1,
+    fontFamily: 'PTSans-Bold',
+    textAlign: 'center',
+    fontSize: Responsive.h(46),
+    marginTop: Responsive.v(15),
   },
 });
 
