@@ -37,13 +37,3 @@ target 'FrontEnd' do
 
   use_native_modules!
 end
-
-target 'FrontEnd-tvOS' do
-  # Pods for FrontEnd-tvOS
-
-  target 'FrontEnd-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end
