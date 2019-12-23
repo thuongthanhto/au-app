@@ -11,4 +11,5 @@ export const NavigationRoutes = {
   LegalStuff: 'LegalStuff',
   YourIdealFigure: 'YourIdealFigure',
   WeightGoal: 'WeightGoal',
+  WhichOutlets: 'WhichOutlets'
 };

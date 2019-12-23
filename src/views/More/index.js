@@ -57,7 +57,7 @@ const MoreScreen = props => {
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.BurnkJ)}
+          onPress={() => props.navigation.navigate(NavigationRoutes.WhichOutlets)}
           textStyle={{fontSize: Responsive.h(20)}}
         />
         <Button

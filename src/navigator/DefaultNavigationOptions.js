@@ -9,7 +9,7 @@ import Responsive from '../modules/utils/responsive';
 import { colors } from '../modules/colors';
 
 
-export const MainNavigationHeader = (props, textLeft, textRight, title) => {
+export const MainNavigationHeader = (props, textLeft, textRight, title, isBack = false) => {
   return {
     header: (
       <SafeAreaView style={{ backgroundColor: '#00AAEA'}}>
@@ -18,7 +18,7 @@ export const MainNavigationHeader = (props, textLeft, textRight, title) => {
           style={[styles.headerContainer]}
           locations={[0.5,0.5]}
         >
-          <HeaderBack props={props} text={textLeft}/>
+          <HeaderBack props={props} text={textLeft} isBack={isBack} />
           <Text style={styles.title}>{title}</Text>
           <HeaderRight props={props} text={textRight}/>
         </LinearGradient>
@@ -34,7 +34,7 @@ export const HeaderRight = ({ props, text }) => (
     text={text}
     onPress={() => text && props.navigation.navigate(NavigationRoutes.More)}
     textStyle={styles.textButton}
-    styleGradient={[styles.button, text && styles.shadowButton, !text && { borderWidth: 0 }]}
+    styleGradient={[styles.button, text && styles.shadowButton, !text && { borderWidth: 0, height: 0 }]}
     borderRadius={Responsive.h(7)}
     isHeader
     color={text ? [colors.HEADER, colors.BLACK] : ['transparent', 'transparent', 'transparent']}
@@ -42,13 +42,13 @@ export const HeaderRight = ({ props, text }) => (
   />
 );
 
-export const HeaderBack = ({ props, text }) => (
+export const HeaderBack = ({ props, text, isBack }) => (
   <Button
     width={Responsive.h(100)}
     height={Responsive.v(30)}
     text={text}
     leftIcon={<Image source={Images.arrow_left_inverted} style={styles.largerArrowIcon} />}
-    onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
+    onPress={() => !isBack ? props.navigation.navigate(NavigationRoutes.Home) : props.navigation.goBack()}
     textStyle={styles.textButton}
     styleGradient={[styles.button, styles.shadowButton]}
     borderRadius={Responsive.h(7)}
