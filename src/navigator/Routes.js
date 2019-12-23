@@ -11,5 +11,8 @@ export const NavigationRoutes = {
   LegalStuff: 'LegalStuff',
   YourIdealFigure: 'YourIdealFigure',
   WeightGoal: 'WeightGoal',
-  WhichOutlets: 'WhichOutlets'
+  WhichOutlets: 'WhichOutlets',
+  AboutkJs: 'AboutkJs',
+  KilojoulesAndKids: 'KilojoulesAndKids',
+  AboutTheCampaign: 'AboutTheCampaign',
 };

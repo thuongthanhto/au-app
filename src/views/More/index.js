@@ -33,7 +33,7 @@ const MoreScreen = props => {
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.Search)}
+          onPress={() => props.navigation.navigate(NavigationRoutes.AboutkJs)}
           textStyle={{fontSize: Responsive.h(20)}}
         />
         <Button
@@ -45,7 +45,7 @@ const MoreScreen = props => {
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
           }
           onPress={() =>
-            props.navigation.navigate(NavigationRoutes.IdealFigure)
+            props.navigation.navigate(NavigationRoutes.KilojoulesAndKids)
           }
           textStyle={{fontSize: Responsive.h(20)}}
         />
@@ -79,7 +79,9 @@ const MoreScreen = props => {
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.More)}
+          onPress={() =>
+            props.navigation.navigate(NavigationRoutes.AboutTheCampaign)
+          }
           textStyle={{fontSize: Responsive.h(20)}}
         />
         <Button

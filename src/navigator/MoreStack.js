@@ -1,24 +1,45 @@
-import { createStackNavigator } from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
 import MoreScreen from '../views/More';
-import { NavigationRoutes } from './Routes';
-import { MainNavigationHeader } from './DefaultNavigationOptions';
+import {NavigationRoutes} from './Routes';
+import {MainNavigationHeader} from './DefaultNavigationOptions';
+import AboutkJsScreen from '../views/More/AboutkJs';
+import KilojoulesAndKidsScreen from '../views/More/KilojoulesAndKids';
+import AboutTheCampaignScreen from '../views/More/AboutTheCampaign';
 import WhichOutletsScreen from '../views/More/WhichOutlets';
 
 const MoreStack = createStackNavigator(
   {
     [NavigationRoutes.More]: {
       screen: MoreScreen,
-      navigationOptions: (props) => ({
-        ...MainNavigationHeader(props, 'Home', null, 'More')
-      })
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Home', null, 'More'),
+      }),
+    },
+    [NavigationRoutes.AboutkJs]: {
+      screen: AboutkJsScreen,
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Done', null, null),
+      }),
+    },
+    [NavigationRoutes.KilojoulesAndKids]: {
+      screen: KilojoulesAndKidsScreen,
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Done', null, null),
+      }),
+    },
+    [NavigationRoutes.AboutTheCampaign]: {
+      screen: AboutTheCampaignScreen,
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Done', null, null),
+      }),
     },
     [NavigationRoutes.WhichOutlets]: {
       screen: WhichOutletsScreen,
-      navigationOptions: (props) => ({
-        ...MainNavigationHeader(props, 'Done', null, 'More', true)
-      })
-    }
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Done', null, 'More', true),
+      }),
+    },
   },
   {
     initialRouteName: NavigationRoutes.More,
@@ -26,7 +47,7 @@ const MoreStack = createStackNavigator(
     navigationOptions: {
       gesturesEnabled: false,
     },
-  }
+  },
 );
 
 export default MoreStack;

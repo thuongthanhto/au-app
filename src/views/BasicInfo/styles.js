@@ -3,7 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
 
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     width,
     paddingHorizontal: Responsive.h(40),
     backgroundColor: colors.MAIN_BACKGROUND,
+    height,
   },
   topWrap: {
     height: Responsive.v(7),

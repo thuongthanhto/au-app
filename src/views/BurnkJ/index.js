@@ -49,7 +49,7 @@ const BurnkJScreen = () => {
       <View style={stylesBasicInfo.topWrap} />
       <ScrollView>
         <View style={stylesBasicInfo.mainBody}>
-          <View style={stylesBasicInfo.formWrap}>
+          <View>
             <View style={stylesBasicInfo.formItem}>
               <RNPickerSelect
                 value={activity}
