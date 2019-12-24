@@ -8,6 +8,15 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSans-Bold',
     marginTop: Responsive.v(20),
   },
+  imageWrap: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 100,
+    height: 120,
+    resizeMode: 'contain',
+  },
 });
 
 export default styles;

@@ -1,9 +1,11 @@
 import React from 'react';
-import {SafeAreaView, View, ScrollView, Text} from 'react-native';
+import {SafeAreaView, View, ScrollView, Text, Image} from 'react-native';
 import HyperLink from 'react-native-hyperlink';
 
 import stylesBasicInfo from '../../BasicInfo/styles';
 import styles from '../AboutkJs/styles';
+import {Images} from '../../../assets/images';
+import Responsive from '../../../modules/utils/responsive';
 
 const AboutTheCampaign = () => {
   return (
@@ -22,15 +24,19 @@ const AboutTheCampaign = () => {
             Authority.
           </Text>
 
+          <View style={styles.imageWrap}>
+            <Image source={Images.nswfa_logo} style={styles.image} />
+          </View>
+
           <HyperLink
             linkStyle={{color: '#2980b9'}}
             linkDefault
-            linkText="8700.com.au/kids">
+            linkText="www.8700.com.au">
             <Text style={stylesBasicInfo.textPragraphLink}>
-              Go to
-              https://www.8700.com.au/kjs-and-kids/how-many-kjs-do-kids-need
+              Go to https://www.8700.com.au/
             </Text>
           </HyperLink>
+          <View style={{marginBottom: Responsive.v(200)}} />
         </View>
       </ScrollView>
     </SafeAreaView>

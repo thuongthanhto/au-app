@@ -18,4 +18,5 @@ export const Images = {
   bg_main: require('../icons/home/bg_main.jpg'),
   home_food_1_tablet: require('../icons/home/home_food_1_tablet.png'),
   info: require('../icons/home/info.png'),
+  nswfa_logo: require('../icons/home/nswfa_logo.png'),
 };

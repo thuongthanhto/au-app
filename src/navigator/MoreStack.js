@@ -19,19 +19,19 @@ const MoreStack = createStackNavigator(
     [NavigationRoutes.AboutkJs]: {
       screen: AboutkJsScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, null),
+        ...MainNavigationHeader(props, 'Done', null, 'More', true),
       }),
     },
     [NavigationRoutes.KilojoulesAndKids]: {
       screen: KilojoulesAndKidsScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, null),
+        ...MainNavigationHeader(props, 'Done', null, 'More', true),
       }),
     },
     [NavigationRoutes.AboutTheCampaign]: {
       screen: AboutTheCampaignScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, null),
+        ...MainNavigationHeader(props, 'Done', null, 'More', true),
       }),
     },
     [NavigationRoutes.WhichOutlets]: {

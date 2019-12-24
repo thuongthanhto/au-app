@@ -126,6 +126,14 @@ export const _summary_METs = {
   Vigorous: 8.0,
 };
 
+const ratios = {
+  kJ: {
+    Cal: 0.239,
+  },
+  Cal: {
+    kJ: 4.184,
+  },
+};
 export const sortTaskByBookMark = list =>
   list.sort((a, b) => b.bookmark - a.bookmark);
 
@@ -368,4 +376,13 @@ export function calculateBurn(activity, duration, profile) {
   );
 
   return energyUse;
+}
+
+export function toDP(value, places) {
+  const p = Math.pow(10, places);
+  return Math.round(value * p) / p;
+}
+
+export function convert(value, source, destination) {
+  return value * ratios[source][destination];
 }
