@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSans-Bold',
     fontSize: Responsive.h(16),
   },
+  titleTooltipBold: {
+    color: colors.BLACK,
+    fontFamily: 'PTSans-Bold',
+    fontSize: Responsive.h(20),
+  },
 });
 
 export default styles;

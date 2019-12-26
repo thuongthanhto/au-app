@@ -13,7 +13,13 @@ import styles from './styles';
 import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
 
-export const Tooltip = ({isVisible, onCloseModal, title, content}) => (
+export const Tooltip = ({
+  isVisible,
+  onCloseModal,
+  title,
+  content,
+  isBoldTitle,
+}) => (
   <Modal isVisible={isVisible}>
     <SafeAreaView style={styles.modalContainer}>
       <TouchableOpacity style={styles.iconContainer} onPress={onCloseModal}>
@@ -25,7 +31,10 @@ export const Tooltip = ({isVisible, onCloseModal, title, content}) => (
       </TouchableOpacity>
       <ScrollView>
         <View style={styles.body}>
-          <Text style={styles.titleTooltipUserinfo}>{title}</Text>
+          {!isBoldTitle && (
+            <Text style={styles.titleTooltipUserinfo}>{title}</Text>
+          )}
+          {isBoldTitle && <Text style={styles.titleTooltipBold}>{title}</Text>}
 
           {content}
         </View>
