@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
@@ -9,13 +9,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width,
-    backgroundColor: colors.BLACK
+    backgroundColor: colors.BLACK,
   },
   body: {
     flex: 1,
     width,
     paddingHorizontal: Responsive.h(16),
-    backgroundColor: colors.MAIN_BACKGROUND
+    backgroundColor: colors.MAIN_BACKGROUND,
   },
   bigArrowIcon: {
     width: Responsive.h(11),
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width,
     paddingHorizontal: Responsive.h(10),
     paddingVertical: Responsive.h(20),
-    backgroundColor: colors.MAIN_BACKGROUND
+    backgroundColor: colors.MAIN_BACKGROUND,
   },
   topWrap: {
     height: Responsive.v(7),
@@ -40,40 +40,40 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSans-Bold',
     fontSize: Responsive.h(40),
     paddingBottom: Responsive.v(5),
-    color: colors.RED
+    color: colors.RED,
   },
   content: {
     fontFamily: 'PTSans-Regular',
-    fontSize: Responsive.h(16)
+    fontSize: Responsive.h(16),
   },
   flexRow: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   paddingLine: {
-    paddingTop: Responsive.v(15)
+    paddingTop: Responsive.v(15),
   },
   itemMenuRow: {
     flexDirection: 'row',
-    width
+    width,
   },
   itemColumn: {
-    width: '50%'
+    width: '50%',
   },
   titleItemMenu: {
     fontSize: Responsive.h(16),
     fontFamily: 'PTSans-Bold',
-    width: '80%'
+    width: '80%',
   },
   contentItemMenu: {
     fontSize: Responsive.h(16),
     fontFamily: 'PTSans-Regular',
-    width: '100%'
+    width: '100%',
   },
   subTitle: {
     fontSize: Responsive.h(18),
-    fontFamily: 'PTSans-Bold'
-  }
+    fontFamily: 'PTSans-Bold',
+  },
 });
 
 export default styles;

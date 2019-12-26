@@ -7,6 +7,7 @@ import AboutkJsScreen from '../views/More/AboutkJs';
 import KilojoulesAndKidsScreen from '../views/More/KilojoulesAndKids';
 import AboutTheCampaignScreen from '../views/More/AboutTheCampaign';
 import WhichOutletsScreen from '../views/More/WhichOutlets';
+import ProfileScreen from '../views/More/Profile';
 
 const MoreStack = createStackNavigator(
   {
@@ -14,6 +15,12 @@ const MoreStack = createStackNavigator(
       screen: MoreScreen,
       navigationOptions: props => ({
         ...MainNavigationHeader(props, 'Home', null, 'More'),
+      }),
+    },
+    [NavigationRoutes.Profile]: {
+      screen: ProfileScreen,
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Home', null, 'Profile', true),
       }),
     },
     [NavigationRoutes.AboutkJs]: {
