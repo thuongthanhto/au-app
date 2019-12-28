@@ -7,7 +7,7 @@ import {Images} from '../../../assets/images';
 import Responsive from '../../../modules/utils/responsive';
 import {NavigationRoutes} from '../../../navigator/Routes';
 
-const LegalStuffScreen = props => {
+const HomeScreen = props => {
   return (
     <SafeAreaView style={styles.homeContainer}>
       <View style={styles.homeBody}>
@@ -119,4 +119,4 @@ const LegalStuffScreen = props => {
   );
 };
 
-export default LegalStuffScreen;
+export default HomeScreen;

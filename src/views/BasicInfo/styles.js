@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   containerWithColor: {
     flex: 1,
     justifyContent: 'space-between',
+    backgroundColor: colors.MAIN_BACKGROUND,
   },
   homeContainer: {
     flex: 1,
@@ -181,7 +182,6 @@ const styles = StyleSheet.create({
     marginTop: Responsive.v(15),
   },
   figureRange: {
-    backgroundColor: '#FFF',
     color: '#70706E',
     fontSize: Responsive.h(16),
     fontFamily: 'PTSans-Regular',

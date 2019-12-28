@@ -63,7 +63,7 @@ const IdealFigureScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.containerWithColor}>
       <View style={styles.topWrap} />
       <ScrollView>
         <View style={styles.contentWrap}>
