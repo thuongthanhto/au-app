@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, SafeAreaView, Image} from 'react-native';
+import {ScrollView, SafeAreaView, Image, Linking} from 'react-native';
 
 import styles from './styles';
 import Button from '../../components/Button';
@@ -8,6 +8,11 @@ import Responsive from '../../modules/utils/responsive';
 import {NavigationRoutes} from '../../navigator/Routes';
 
 const MoreScreen = props => {
+  const goto8700 = () => {
+    Linking.openURL('https://www.8700.com.au/').catch(err =>
+      console.error("Couldn't load page", err),
+    );
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.body}>
@@ -70,7 +75,7 @@ const MoreScreen = props => {
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.Converter)}
+          onPress={() => goto8700()}
           textStyle={{fontSize: Responsive.h(20)}}
         />
         <Button

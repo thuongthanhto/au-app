@@ -43,7 +43,7 @@ const KilojoulesAndKids = () => {
             linkStyle={{color: '#2980b9'}}
             linkDefault
             linkText="8700.com.au/kids">
-            <Text style={stylesBasicInfo.textPragraphLink}>
+            <Text style={stylesBasicInfo.textPragraph}>
               Go to
               https://www.8700.com.au/kjs-and-kids/how-many-kjs-do-kids-need
             </Text>

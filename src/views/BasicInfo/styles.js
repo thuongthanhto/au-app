@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width,
     paddingHorizontal: Responsive.h(40),
     backgroundColor: colors.MAIN_BACKGROUND,
-    height,
+    minHeight: height,
   },
   topWrap: {
     height: Responsive.v(7),

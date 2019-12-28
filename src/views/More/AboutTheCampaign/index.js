@@ -32,7 +32,7 @@ const AboutTheCampaign = () => {
             linkStyle={{color: '#2980b9'}}
             linkDefault
             linkText="www.8700.com.au">
-            <Text style={stylesBasicInfo.textPragraphLink}>
+            <Text style={stylesBasicInfo.textPragraph}>
               Go to https://www.8700.com.au/
             </Text>
           </HyperLink>
