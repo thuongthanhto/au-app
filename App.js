@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
 class App extends React.PureComponent {
   componentDidMount() {
-    SplashScreen.hide();
+    setTimeout(() => SplashScreen.hide() , 2000);
   }
   
   render() {

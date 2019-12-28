@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {colors} from '../modules/colors';
 import {NavigationRoutes} from './Routes';
 import Responsive from '../modules/utils/responsive';
-import CircleLoading from '../components/Presentations/CircleLoading';
 import homeActions from '../actions/homeActions';
 import {
   getAppOpensSelector,
@@ -62,9 +61,7 @@ class AuthLoading extends React.PureComponent {
 
   render() {
     return (
-      <View style={styles.container}>
-        <CircleLoading isVisible />
-      </View>
+      <View style={styles.container} />
     );
   }
 }
