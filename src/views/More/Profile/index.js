@@ -82,13 +82,15 @@ const ProfileScreen = props => {
       activeProfile = updateProfileCalculations(activeProfile);
       dispatch({type: 'SAVE_PROFILE', payload: activeProfile});
 
-      if (state.age < 18) {
-        props.navigation.navigate(NavigationRoutes.YourIdealFigure);
-      } else {
-        props.navigation.navigate(NavigationRoutes.WeightGoal);
-      }
+      props.navigation.navigate(NavigationRoutes.Home);
     }
   };
+
+  const handleClear = () => {
+    dispatch({type: 'CLEAR_PROFILE'});
+    props.navigation.navigate(NavigationRoutes.Welcome);
+  };
+
   return (
     <SafeAreaView style={commonStyle.container}>
       <View style={commonStyle.topWrap} />
@@ -232,7 +234,7 @@ const ProfileScreen = props => {
             text="Clear"
             style={{justifyContent: 'center'}}
             textStyle={{alignItems: 'center'}}
-            onPress={() => handleSubmit()}
+            onPress={() => handleClear()}
           />
         </View>
       </View>

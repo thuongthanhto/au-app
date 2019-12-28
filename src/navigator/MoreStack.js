@@ -20,7 +20,7 @@ const MoreStack = createStackNavigator(
     [NavigationRoutes.Profile]: {
       screen: ProfileScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Home', null, 'Profile', true),
+        ...MainNavigationHeader(props, 'Home', null, 'Profile'),
       }),
     },
     [NavigationRoutes.AboutkJs]: {
