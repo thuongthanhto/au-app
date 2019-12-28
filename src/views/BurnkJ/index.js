@@ -1,19 +1,12 @@
-import React, {useReducer, useEffect, useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import {
-  View,
-  SafeAreaView,
-  ScrollView,
-  ImageBackground,
-  Text,
-} from 'react-native';
+import {View, SafeAreaView, ScrollView, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import stylesBasicInfo from '../BasicInfo/styles';
 import pickerSelectStyles from '../BasicInfo/pickerSelectStyles';
 import {customReducer, calculateBurn} from '../../modules/utils/helpers';
 import {generateDurations, generateActivities} from './configs';
-import {Images} from '../../assets/images';
 import {getProfileSelector} from '../../selectors/homeSelector';
 
 const BurnkJScreen = () => {
@@ -31,7 +24,6 @@ const BurnkJScreen = () => {
 
   const handleChangeActivity = value => {
     setActivity(value);
-    console.log(value);
     const energyUse = calculateBurn(value, duration, profile);
     const resultText = `You'd burn ${energyUse}  kJ from "${activity}" for ${duration}`;
     setState({resultText, energyUseText: `${energyUse} kJ`, energyUse});

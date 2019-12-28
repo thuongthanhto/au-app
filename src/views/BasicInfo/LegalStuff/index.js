@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Layout from '../../../layouts';
 import styles from '../styles';
 import Button from '../../../components/Button';
@@ -9,13 +9,20 @@ import {Images} from '../../../assets/images';
 import Responsive from '../../../modules/utils/responsive';
 import {NavigationRoutes} from '../../../navigator/Routes';
 import FooterActions from '../../../components/FooterActions';
+import {getTouchAgreedSelector} from '../../../selectors/homeSelector';
 
 const LegalStuffScreen = ({navigation}) => {
+  const touchAgreed = useSelector(state => getTouchAgreedSelector(state));
+
   const dispatch = useDispatch();
 
   const handleAgree = () => {
-    dispatch({type: 'SAVE_TOUCH_AGREED'});
-    navigation.navigate(NavigationRoutes.Welcome);
+    if (!touchAgreed) {
+      dispatch({type: 'SAVE_TOUCH_AGREED'});
+      navigation.navigate(NavigationRoutes.Welcome);
+    } else {
+      navigation.navigate(NavigationRoutes.More);
+    }
   };
 
   return (
@@ -44,7 +51,7 @@ const LegalStuffScreen = ({navigation}) => {
         <Button
           width="100%"
           height={Responsive.h(45)}
-          text="I have read and agree"
+          text={touchAgreed ? 'Done' : 'I have read and agree'}
           rightIcon={
             <Image source={Images.arrow_right} style={styles.largerArrowIcon} />
           }
