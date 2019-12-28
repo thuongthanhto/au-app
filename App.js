@@ -1,8 +1,9 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {PersistGate} from 'redux-persist/integration/react';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 
 import RootContainer from './Root';
 import {store, persistor} from './src/store/dev';
@@ -20,6 +21,10 @@ const styles = StyleSheet.create({
 });
 
 class App extends React.PureComponent {
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+  
   render() {
     return (
       <Provider store={store}>
