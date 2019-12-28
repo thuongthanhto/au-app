@@ -26,6 +26,12 @@ export default (state = initialState, actions) => {
         profile: actions.payload,
       };
     }
+    case 'CLEAR_PROFILE': {
+      return {
+        ...state,
+        profile: {},
+      };
+    }
 
     default: {
       return state;

@@ -5,6 +5,7 @@ export const NavigationRoutes = {
   UserInfo: 'UserInfo',
   IdealFigure: 'Ideal Figure',
   BurnkJ: 'Burn kJ',
+  Profile: 'Profile',
   Search: 'Search',
   More: 'More',
   Converter: 'Converter',

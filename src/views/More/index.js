@@ -22,7 +22,7 @@ const MoreScreen = props => {
           leftIcon={
             <Image source={Images.profile} style={styles.homeBigLeftIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
+          onPress={() => props.navigation.navigate(NavigationRoutes.Profile)}
           textStyle={{fontSize: Responsive.h(20)}}
         />
         <Button
@@ -57,7 +57,9 @@ const MoreScreen = props => {
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.WhichOutlets)}
+          onPress={() =>
+            props.navigation.navigate(NavigationRoutes.WhichOutlets)
+          }
           textStyle={{fontSize: Responsive.h(20)}}
         />
         <Button

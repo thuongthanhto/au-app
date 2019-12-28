@@ -28,6 +28,15 @@ const styles = StyleSheet.create({
     fontSize: Responsive.h(40),
     fontFamily: 'PTSans-Bold',
   },
+  h3: {
+    fontSize: Responsive.h(20),
+    fontFamily: 'PTSans-Regular',
+  },
+  h2: {
+    marginTop: Responsive.v(15),
+    fontSize: Responsive.h(20),
+    fontFamily: 'PTSans-Bold',
+  },
   textPragraph: {
     lineHeight: Responsive.h(24),
     fontSize: Responsive.h(16),
