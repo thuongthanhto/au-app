@@ -20,15 +20,15 @@ export const Tooltip = ({
   content,
   isBoldTitle,
 }) => (
-  <Modal isVisible={isVisible}>
+  <Modal isVisible={isVisible} onBackdropPress={onCloseModal}>
     <SafeAreaView style={styles.modalContainer}>
-      <TouchableOpacity style={styles.iconContainer} onPress={onCloseModal}>
+      {/* <TouchableOpacity style={styles.iconContainer} onPress={onCloseModal}>
         <Icon
           name="closecircle"
           size={Responsive.h(20)}
           color={colors.SKIP_BUTTON}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <ScrollView>
         <View style={styles.body}>
           {!isBoldTitle && (

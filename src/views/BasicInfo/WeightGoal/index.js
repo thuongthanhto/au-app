@@ -6,11 +6,11 @@ import {
   ScrollView,
   Text,
   Image,
+  TouchableOpacity as Touch,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import {useSelector, useDispatch} from 'react-redux';
 import HyperLink from 'react-native-hyperlink';
-
 import styles from '../styles';
 import pickerSelectStyles from '../pickerSelectStyles';
 import Button from '../../../components/Button';
@@ -21,6 +21,7 @@ import Responsive from '../../../modules/utils/responsive';
 import {colors} from '../../../modules/colors';
 import {NavigationRoutes} from '../../../navigator/Routes';
 import {getProfileSelector} from '../../../selectors/homeSelector';
+import {Tooltip} from '../../../components/Tooltip';
 
 const WeightGoal = props => {
   const oldProfile = useSelector(state => getProfileSelector(state));
@@ -28,6 +29,7 @@ const WeightGoal = props => {
     weight_goal: '',
   };
   const [dirty, setDirty] = useState(false);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
   const [state, setState] = useReducer(customReducer, initState);
   const dispatch = useDispatch();
 
@@ -38,6 +40,19 @@ const WeightGoal = props => {
 
     return true;
   };
+
+  const renderTooltipContent = () => (
+    <View>
+      <Text style={styles.tooltipPragraph}>
+        'Maintain current weight' if you think you are 'about right'.
+      </Text>
+      <Text style={styles.tooltipPragraph}>
+        'Reduce by 0.5 kg/week' if you want to reduce weight. This is a healthy,
+        reasonable target that people find they can stick with and achieve. Not
+        suitable for children, though.
+      </Text>
+    </View>
+  );
 
   const handleChange = (name, value) => {
     setState({[name]: value});
@@ -80,9 +95,11 @@ const WeightGoal = props => {
                   }}
                 />
 
-                <View style={{position: 'absolute', left: '102%'}}>
+                <Touch
+                  style={{position: 'absolute', left: '102%'}}
+                  onPress={() => setTooltipVisible(true)}>
                   <Image source={Images.info} />
-                </View>
+                </Touch>
               </View>
 
               {dirty && state.weight_goal === '' && (
@@ -111,6 +128,12 @@ const WeightGoal = props => {
           </View>
         </View>
       </ScrollView>
+      <Tooltip
+        isVisible={tooltipVisible}
+        title="Occupational physical activity"
+        content={renderTooltipContent()}
+        onCloseModal={() => setTooltipVisible(false)}
+      />
       <ImageBackground source={Images.bg_main} style={{width: '100%'}}>
         <View style={styles.containerButtonFlexRow}>
           <Button

@@ -1,39 +1,21 @@
 import React, {useReducer, useState} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  ScrollView,
-  SafeAreaView,
-  Image,
-  TouchableOpacity as Touch,
-} from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+import {View, Text, ScrollView, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-
 import styles from '../styles';
 import Button from '../../../components/Button';
-import {
-  SexConfigs,
-  generateAges,
-  generateHeights,
-  generateWeights,
-  EalLevels,
-  OalLevels,
-} from './configs';
 import {colors} from '../../../modules/colors';
 import Responsive from '../../../modules/utils/responsive';
 import {NavigationRoutes} from '../../../navigator/Routes';
 import {Images} from '../../../assets/images';
 import {
-  checkActivityVisibility,
   updateProfileCalculations,
   customReducer,
 } from '../../../modules/utils/helpers';
 import {getProfileSelector} from '../../../selectors/homeSelector';
 import {DEFAULT_PROFILE} from '../../../modules/utils/constants';
-import pickerSelectStyles from '../pickerSelectStyles';
-import {Tooltip} from '../../../components/Tooltip';
+import Layout from '../../../layouts';
+import UserInfoForm from '../../../components/UserInfoForm';
+import FooterActions from '../../../components/FooterActions';
 
 const UserInfoScreen = props => {
   const oldProfile = useSelector(state => getProfileSelector(state));
@@ -46,7 +28,6 @@ const UserInfoScreen = props => {
     eal_level: oldProfile.eal_level || '',
   };
   const [dirty, setDirty] = useState(false);
-  const [tooltipVisible, setTooltipVisible] = useState('');
   const [state, setState] = useReducer(customReducer, initState);
 
   const dispatch = useDispatch();
@@ -55,8 +36,7 @@ const UserInfoScreen = props => {
     if (!state.age) {
       return false;
     }
-    // eslint-disable-next-line radix
-    if (parseInt(state.age) < 10) {
+    if (parseInt(state.age, 0) < 10) {
       if (!state.sex || !state.age || !state.height || !state.weight) {
         return false;
       }
@@ -101,240 +81,48 @@ const UserInfoScreen = props => {
     }
   };
 
-  const renderTooltipNonOccupationalContent = () => (
-    <View>
-      <Text style={styles.tooltipPragraph}>
-        How physically active are you outside of work or the rest of the waking
-        day:
-      </Text>
-      <Text style={styles.h3}>Light</Text>
-      <Text style={styles.tooltipPragraph}>
-        eg light home duties, light gardening, walking for pleasure, small
-        screen activities, homework.
-      </Text>
-      <Text style={styles.h3}>Moderate</Text>
-      <Text style={styles.tooltipPragraph}>
-        eg strenuous gardening several days per week, or moderate activity such
-        as brisk walking on most days.
-      </Text>
-      <Text style={styles.h3}>Very active</Text>
-      <Text style={styles.tooltipPragraph}>
-        eg jogging, strenuous cycling or gym classes on most days.
-      </Text>
-    </View>
-  );
-
-  const renderTooltipOccupationalContent = () => (
-    <View>
-      <Text style={styles.tooltipPragraph}>
-        How physically active is your occupation or main part of the waking day:
-      </Text>
-      <Text style={styles.h3}>Light work</Text>
-      <Text style={styles.tooltipPragraph}>
-        eg. office worker, precision mechanic, mostly seated, retired
-      </Text>
-      <Text style={styles.h3}>Moderate work</Text>
-      <Text style={styles.tooltipPragraph}>
-        eg assembly line, housework, sales visits, student, regular walking
-      </Text>
-      <Text style={styles.h3}>Heavy work</Text>
-      <Text style={styles.tooltipPragraph}>
-        eg mechanic, construction, farming, frequent lifting
-      </Text>
-    </View>
-  );
-
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.topWrap} />
+    <Layout>
       <ScrollView>
-        <View style={styles.contentWrap}>
-          <View style={styles.textContentWrap}>
-            <Text style={styles.welcomeText}>It's this easy</Text>
+        <View style={styles.content}>
+          <View style={styles.contentWrap}>
+            <Text style={styles.title}>It's this easy</Text>
             <Text style={styles.textPragraph}>
               {`Please enter some details about yourself. \nDoing this means when we're talking about kilojoules, we're talking about you.`}
             </Text>
 
-            <View style={styles.formWrap}>
-              <View style={styles.formItem}>
-                <RNPickerSelect
-                  value={state.sex}
-                  items={SexConfigs}
-                  placeholder={{
-                    label: 'Sex',
-                    value: null,
-                  }}
-                  onValueChange={text => handleChange('sex', text)}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
-                {dirty && !state.sex && (
-                  <Text style={styles.errorText}>Select your sex</Text>
-                )}
-              </View>
-              <View style={styles.formItem}>
-                <RNPickerSelect
-                  value={state.age}
-                  items={generateAges()}
-                  placeholder={{
-                    label: 'Age',
-                    value: null,
-                  }}
-                  onValueChange={text => handleChange('age', text)}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
-                {dirty && !state.age && (
-                  <Text style={styles.errorText}>Select your age</Text>
-                )}
-              </View>
-              <View style={styles.formItem}>
-                <RNPickerSelect
-                  value={state.height}
-                  items={generateHeights()}
-                  placeholder={{
-                    label: 'Height',
-                    value: null,
-                  }}
-                  onValueChange={text => handleChange('height', text)}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
-                {dirty && !state.height && (
-                  <Text style={styles.errorText}>Select your height</Text>
-                )}
-              </View>
-              <View style={styles.formItem}>
-                <RNPickerSelect
-                  value={state.weight}
-                  items={generateWeights()}
-                  placeholder={{
-                    label: 'Weight',
-                    value: null,
-                  }}
-                  onValueChange={text => handleChange('weight', text)}
-                  useNativeAndroidPickerStyle={false}
-                  style={pickerSelectStyles}
-                  Icon={() => {
-                    return <View style={styles.iconSelect} />;
-                  }}
-                />
-                {dirty && !state.weight && (
-                  <Text style={styles.errorText}>Select your weight</Text>
-                )}
-              </View>
-              {checkActivityVisibility(state.age) && (
-                <>
-                  <View style={styles.formItem}>
-                    <View style={styles.inputInfo}>
-                      <RNPickerSelect
-                        value={state.oal_level}
-                        items={OalLevels}
-                        placeholder={{
-                          label: 'Occupational activity',
-                          value: null,
-                        }}
-                        onValueChange={text => handleChange('oal_level', text)}
-                        useNativeAndroidPickerStyle={false}
-                        style={pickerSelectStyles}
-                        Icon={() => {
-                          return <View style={styles.iconSelect} />;
-                        }}
-                      />
-                      <Touch
-                        style={{position: 'absolute', left: '102%'}}
-                        onPress={() => setTooltipVisible('occupational')}>
-                        <Image source={Images.info} />
-                      </Touch>
-                    </View>
-
-                    {dirty && !state.oal_level && (
-                      <Text style={styles.errorText}>Please choose one</Text>
-                    )}
-                  </View>
-                  <View style={styles.formItem}>
-                    <View style={styles.inputInfo}>
-                      <RNPickerSelect
-                        value={state.eal_level}
-                        items={EalLevels}
-                        placeholder={{
-                          label: 'Non-occupational activity level',
-                          value: null,
-                        }}
-                        onValueChange={text => handleChange('eal_level', text)}
-                        useNativeAndroidPickerStyle={false}
-                        style={pickerSelectStyles}
-                        Icon={() => {
-                          return <View style={styles.iconSelect} />;
-                        }}
-                      />
-
-                      <Touch
-                        style={{position: 'absolute', left: '102%'}}
-                        onPress={() => setTooltipVisible('non-occupational')}>
-                        <Image source={Images.info} />
-                      </Touch>
-                    </View>
-
-                    {dirty && !state.eal_level && (
-                      <Text style={styles.errorText}>Please choose one</Text>
-                    )}
-                  </View>
-                </>
-              )}
-            </View>
+            <UserInfoForm
+              state={state}
+              handleChange={handleChange}
+              dirty={dirty}
+            />
           </View>
         </View>
       </ScrollView>
-      <Tooltip
-        isVisible={tooltipVisible === 'occupational'}
-        title="Occupational physical activity"
-        content={renderTooltipOccupationalContent()}
-        onCloseModal={() => setTooltipVisible(false)}
-      />
-      <Tooltip
-        isVisible={tooltipVisible === 'non-occupational'}
-        content={renderTooltipNonOccupationalContent()}
-        title="None-occupational physical activity"
-        onCloseModal={() => setTooltipVisible(false)}
-      />
-      <ImageBackground source={Images.bg_main} style={{width: '100%'}}>
-        <View style={styles.containerButtonFlexRow}>
-          <Button
-            text="Skip"
-            width="20%"
-            height={Responsive.h(30)}
-            borderRadius={Responsive.h(10)}
-            textStyle={{color: colors.WHITE, fontSize: Responsive.h(12)}}
-            color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
-            style={{justifyContent: 'center'}}
-            onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
-          />
-          <Button
-            width="25%"
-            height={Responsive.h(45)}
-            borderRadius={Responsive.h(20)}
-            text="Next"
-            rightIcon={
-              <Image
-                source={Images.arrow_right}
-                style={styles.largerArrowIcon}
-              />
-            }
-            onPress={() => handleSubmit()}
-          />
-        </View>
-      </ImageBackground>
-    </SafeAreaView>
+
+      <FooterActions>
+        <Button
+          text="Skip"
+          width="20%"
+          height={Responsive.h(30)}
+          borderRadius={Responsive.h(10)}
+          textStyle={{color: colors.WHITE, fontSize: Responsive.h(12)}}
+          color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
+          style={{justifyContent: 'center'}}
+          onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
+        />
+        <Button
+          width="25%"
+          height={Responsive.h(45)}
+          borderRadius={Responsive.h(20)}
+          text="Next"
+          rightIcon={
+            <Image source={Images.arrow_right} style={styles.largerArrowIcon} />
+          }
+          onPress={() => handleSubmit()}
+        />
+      </FooterActions>
+    </Layout>
   );
 };
 

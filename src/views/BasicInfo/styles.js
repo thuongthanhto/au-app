@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: Responsive.v(7),
     backgroundColor: '#00AAEA',
   },
-  contentWrap: {
+  content: {
     flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: colors.WHITE,
@@ -45,13 +45,18 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: colors.MAIN_BACKGROUND,
   },
-  textContentWrap: {
+  contentWrap: {
     flex: 1,
     marginVertical: 0,
     marginHorizontal: Responsive.h(40),
     paddingVertical: Responsive.v(20),
   },
   welcomeText: {
+    color: '#ED1F24',
+    fontSize: Responsive.h(40),
+    fontFamily: 'PTSans-Bold',
+  },
+  title: {
     color: '#ED1F24',
     fontSize: Responsive.h(40),
     fontFamily: 'PTSans-Bold',
@@ -68,13 +73,13 @@ const styles = StyleSheet.create({
     fontSize: Responsive.v(16),
     fontFamily: 'PTSans-Regular',
   },
-  imageContentWrap: {
+  imageWrap: {
     flex: 3,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   image: {
-    width: '80%',
+    width: '100%',
     resizeMode: 'contain',
   },
   smallArrowIcon: {
@@ -152,7 +157,7 @@ const styles = StyleSheet.create({
   },
   tooltipPragraph: {
     marginTop: Responsive.h(12),
-    fontSize: Responsive.h(14),
+    fontSize: Responsive.h(16),
     fontFamily: 'PTSans-Regular',
     lineHeight: Responsive.h(14),
   },
@@ -174,6 +179,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: Responsive.h(46),
     marginTop: Responsive.v(15),
+  },
+  figureRange: {
+    backgroundColor: '#FFF',
+    color: '#70706E',
+    fontSize: Responsive.h(16),
+    fontFamily: 'PTSans-Regular',
+    textAlign: 'center',
+    paddingVertical: Responsive.v(2),
+    marginBottom: Responsive.v(1),
   },
 });
 

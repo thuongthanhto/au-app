@@ -10,7 +10,7 @@ import {
 import HyperLink from 'react-native-hyperlink';
 import {useSelector} from 'react-redux';
 
-import styles from '../BasicInfo/YourIdealFigure/styles';
+import styles from '../BasicInfo/styles';
 import {getProfileSelector} from '../../selectors/homeSelector';
 import {toClosest} from '../../modules/utils/helpers';
 import {Images} from '../../assets/images';
