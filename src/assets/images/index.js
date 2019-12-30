@@ -19,4 +19,7 @@ export const Images = {
   home_food_1_tablet: require('../icons/home/home_food_1_tablet.png'),
   info: require('../icons/home/info.png'),
   nswfa_logo: require('../icons/home/nswfa_logo.png'),
+  light: require('../icons/light.png'),
+  medium: require('../icons/medium.png'),
+  vigorous: require('../icons/vigorous.png'),
 };
