@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import Pie from 'react-native-pie';
+// import Pie from 'react-native-pie';
 import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image } from 'react-native';
 
+import Pie from './Pie';
 import styles from './styles';
 import {colors} from '../../modules/colors';
 import { Images } from '../../assets/images';
