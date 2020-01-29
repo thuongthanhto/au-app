@@ -15,8 +15,9 @@ import {getProfileSelector} from '../../selectors/homeSelector';
 import {toClosest} from '../../modules/utils/helpers';
 import {Images} from '../../assets/images';
 import {Tooltip} from '../../components/Tooltip';
+import {NavigationRoutes} from '../../navigator/Routes';
 
-const IdealFigureScreen = () => {
+const IdealFigureScreen = ({navigation}) => {
   const profile = useSelector(state => getProfileSelector(state));
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const figure =
@@ -25,6 +26,10 @@ const IdealFigureScreen = () => {
       : '';
   const tolerance =
     profile.BMR && profile.BMR.current ? profile.BMR.current.tolerance : 0;
+
+  if (!tolerance) {
+    navigation.navigate(NavigationRoutes.UserInfo);
+  }
 
   let figureRange = '';
   if (tolerance) {
@@ -77,6 +82,7 @@ const IdealFigureScreen = () => {
                 <Image source={Images.info} />
               </Touch>
             </View>
+
             {tolerance !== 0 && (
               <Text style={styles.figureRange}>{figureRange}</Text>
             )}
@@ -122,8 +128,8 @@ const IdealFigureScreen = () => {
                 If you would like more information about healthy weight or
                 you're concerned you may be under or over weight, consult your
                 doctor or
-                http://daa.collaborative.net.au/dmsweb/frmfindapdsearch.aspx to
-                get the right advice for you.
+                https://daa.asn.au/maintaining-professional-standards/register-of-apds/
+                to get the right advice for you.
               </Text>
             </HyperLink>
           </View>

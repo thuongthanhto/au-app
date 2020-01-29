@@ -113,15 +113,7 @@ const WeightGoal = props => {
                 linkText="Healthy Weight BMI tool">
                 <Text style={styles.textPragraphLink}>
                   To check your weight status, go to the
-                  https://www.govcms.gov.au/ or the
-                </Text>
-              </HyperLink>
-              <HyperLink
-                linkStyle={{color: '#2980b9'}}
-                linkDefault
-                linkText="Measure Up page">
-                <Text style={styles.textPragraphLink}>
-                  https://www.govcms.gov.au
+                  https://www.gethealthynsw.com.au/healthier-you/tools-and-calculators/bmi-calculator/
                 </Text>
               </HyperLink>
             </View>
