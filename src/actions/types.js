@@ -19,3 +19,8 @@ export const SCHEDULE = {
   ...baseCombineActionTypes('BOOK_MARK_TASK'),
   ...baseCombineActionTypes('UPDATE_TASK_STATUS'),
 };
+
+export const SEARCH = {
+  ...baseCombineActionTypes('GET_TYPE_OF_FOOD'),
+  ...baseCombineActionTypes('GET_ALL_CATEGORIES')
+};
