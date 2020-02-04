@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-// import Pie from 'react-native-pie';
+import {connect} from 'react-redux';
+import React, {useState, useEffect} from 'react';
 import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image } from 'react-native';
 
 import Pie from './Pie';
@@ -7,6 +7,7 @@ import styles from './styles';
 import {colors} from '../../modules/colors';
 import { Images } from '../../assets/images';
 import Responsive from '../../modules/utils/responsive';
+import { getAllCategoriesRequest, getTypeOfFoodAvailableRequest } from '../../actions/Search';
 
 const dataDummy = [
   {
@@ -52,8 +53,17 @@ const dataChart = [
   }
 ];
 
-const SearchScreen = () => {
+const SearchScreen = (props) => {
+  console.log('props: ', props);
   const [isDetail, setIsDetail] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await props.getAllCategoriesRequest('GetCategories');
+      await props.getTypeOfFoodAvailableRequest('GetQSRs');
+    };
+    fetchData();
+  });
 
   const ItemMeal = ({ item }) => (
     <Touch style={styles.itemMealContainer} onPress={() => setIsDetail(item.id)}>
@@ -118,5 +128,15 @@ const SearchScreen = () => {
   );
 };
 
-export default SearchScreen;
+const mapStateToProps = (state) => ({
+  listCategory: state.SearchReducer.listCategory,
+  listTypeOfFood: state.SearchReducer.listTypeOfFood
 
+});
+
+const mapDispatchToProps = {
+  getAllCategoriesRequest,
+  getTypeOfFoodAvailableRequest
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen);
