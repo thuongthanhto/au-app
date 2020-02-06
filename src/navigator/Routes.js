@@ -7,6 +7,7 @@ export const NavigationRoutes = {
   BurnkJ: 'Burn kJ',
   Profile: 'Profile',
   Search: 'Search',
+  SearchForm: 'SearchForm',
   More: 'More',
   Converter: 'Converter',
   LegalStuff: 'LegalStuff',

@@ -27,7 +27,7 @@ const IdealFigureScreen = ({navigation}) => {
   const tolerance =
     profile.BMR && profile.BMR.current ? profile.BMR.current.tolerance : 0;
 
-  if (!tolerance) {
+  if (!figure) {
     navigation.navigate(NavigationRoutes.UserInfo);
   }
 

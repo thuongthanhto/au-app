@@ -32,7 +32,7 @@ const HomeScreen = props => {
           leftIcon={
             <Image source={Images.search} style={styles.homeBigLeftIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.Search)}
+          onPress={() => props.navigation.navigate(NavigationRoutes.SearchForm)}
           textStyle={{fontSize: Responsive.h(20)}}
         />
         <Button
