@@ -32,11 +32,23 @@ const styles = StyleSheet.create({
     padding: Responsive.h(16),
     width: '100%',
     borderBottomWidth: 1,
-    borderBottomColor: colors.GRAY
+    borderBottomColor: '#B4ABAA'
   },
   flexRowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  addToMealContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderColor: colors.GRAY,
+    borderWidth: 1,
+    backgroundColor: '#E1E1E1',
+    borderRadius: Responsive.h(4),
+    padding: Responsive.h(10),
+    marginTop: Responsive.h(8)
   },
   itemMealTitle: {
     color: '#00AAEA',
@@ -44,9 +56,14 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSans-Bold'
   },
   itemMealSubTitle: {
+    fontFamily: 'PTSans-Bold',
+    fontSize: Responsive.h(14),
+    color: colors.BLACK,
+    paddingTop: Responsive.h(5)
+  },
+  itemMealSubTitleSize: {
     fontFamily: 'PTSans-Regular',
-    fontSize: Responsive.h(16),
-    color: colors.TEXT_BUTTON,
+    fontSize: Responsive.h(14),
     paddingTop: Responsive.h(5)
   },
   chartContainer: {
@@ -67,6 +84,17 @@ const styles = StyleSheet.create({
     color: colors.BLACK,
     fontSize: Responsive.h(11),
     paddingVertical: Responsive.h(10)
+  },
+  input: {
+    height: Responsive.h(40),
+    width: Responsive.h(60),
+    borderWidth: 1,
+    borderColor: '#657A93',
+    borderRadius: Responsive.h(8),
+    backgroundColor: '#FFFFFD',
+    textAlign: 'center',
+    fontSize: Responsive.h(13),
+    fontFamily: 'PTSans-Bold'
   }
 });
 

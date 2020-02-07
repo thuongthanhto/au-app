@@ -1,8 +1,10 @@
 import {connect} from 'react-redux';
 import React, {useState, useEffect} from 'react';
-import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image, TextInput } from 'react-native';
+import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image } from 'react-native';
 
+import Pie from './Pie';
 import styles from './styles';
+import {colors} from '../../modules/colors';
 import { Images } from '../../assets/images';
 import Responsive from '../../modules/utils/responsive';
 import { getAllCategoriesRequest, getTypeOfFoodAvailableRequest } from '../../actions/Search';
@@ -85,9 +87,20 @@ const dataDummy = [
   }
 ];
 
+const dataChart = [
+  {
+    percentage: 10,
+    color: '#00AAEA',
+  },
+  {
+    percentage: 90,
+    color: colors.GRAY,
+  }
+];
+
 const SearchScreen = (props) => {
+  console.log('props: ', props);
   const [isDetail, setIsDetail] = useState('');
-  const [mealQuantity, setMealQuantity] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,11 +109,6 @@ const SearchScreen = (props) => {
     };
     fetchData();
   }, []);
-
-  const handleChange = (value) => {
-    console.log('value: ', value);
-    setMealQuantity(parseInt(value, 10));
-  };
 
   const ItemMeal = ({ item }) => (
     <Touch style={styles.itemMealContainer} onPress={() => setIsDetail(item.Id)}>
@@ -113,10 +121,10 @@ const SearchScreen = (props) => {
   );
 
   const ItemMealDetail = ({ item }) => (
-    <View style={styles.itemMealContainer}>
-      <Touch style={styles.flexRowContainer} onPress={() => setIsDetail('')}>
+    <Touch style={styles.itemMealContainer} onPress={() => setIsDetail('')}>
+      <View style={styles.flexRowContainer}>
         <Text style={styles.itemMealTitle}>{item.Name}</Text>
-      </Touch>
+      </View>
       <Text style={styles.itemMealSubTitle}>
         {item.QSR_name},
         <Text style={styles.itemMealSubTitleSize}> {item.Size}{item.Unit}</Text>
@@ -134,39 +142,34 @@ const SearchScreen = (props) => {
         kJ in your portion size
       </Text>
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
-        <Text style={[styles.itemMealTitle, { width: '75%'}]} numberOfLines={1}>{item.Energy} kJ</Text>
-        <Text style={[styles.itemMealTitle, { width: '25%', textAlign: 'right' }]}>90%</Text>
-      </View>
-      <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
-      <View style={[styles.addToMealContainer]}>
-        <View style={[styles.flexRowContainer, {width: '40%', alignItems: 'center'}]}>
-          <TextInput
-            value={mealQuantity.toString()}
-            style={styles.input}
-            onChangeText={handleChange}
-            keyboardType="numeric"
-            maxLength={4}
+        <View style={[{ width: '25%' }]}>
+          <Text style={styles.itemMealTitle}>{item.Energy} kJ</Text>
+          <Text style={styles.activityText}>Activity equivalents:</Text>
+          {/* <View style={{ flexDirection: 'row' }}>
+            <Image source={Images.light} style={styles.imagesContent} />
+            <Text style={styles.valueContent}>{item.light} min</Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Image source={Images.medium} style={styles.imagesContent} />
+            <Text style={styles.valueContent}>{item.medium} min</Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Image source={Images.vigorous} style={styles.imagesContent} />
+            <Text style={styles.valueContent}>{item.vigorous} min</Text>
+          </View> */}
+        </View>
+        {/* <View style={[styles.chartContainer, { width: '50%' }]}>
+          <Pie
+            radius={60}
+            sections={dataChart}
           />
-          <Text style={styles.itemMealSubTitleSize}>of</Text>
-          <Text style={styles.itemMealSubTitle}>1</Text>
+          <Text style={styles.valueContent}>% of my daily 8700 kj</Text>
         </View>
-        <Text style={styles.itemMealSubTitleSize}>=</Text>
-        <View style={[styles.flexRowContainer, {width: '40%', alignItems: 'center'}]}>
-          <Text style={styles.itemMealSubTitle}>{item.Energy} kJ</Text>
-          <Image source={Images.check_meal} resizeMode="contain" style={{width: Responsive.h(18), height: Responsive.h(24)}} />
-          <Touch onPress={() => alert('cc')}>
-            <Image source={Images.add_meal} resizeMode="contain" style={{width: Responsive.h(40), height: Responsive.h(40)}} />
-          </Touch>
-        </View>
+        <View style={[{ width: '25%' }]}>
+          <Text style={[styles.itemMealTitle, { textAlign: 'right' }]}>{item.percen}</Text>
+        </View> */}
       </View>
-      <View style={[styles.flexRowContainer, {width: '50%'}]}>
-        <Text style={styles.itemMealSubTitleSize}>Quantity</Text>
-        <Text style={styles.itemMealSubTitleSize}>Servings(s)</Text>
-      </View>
-      <View style={{justifyContent: 'center', alignItems: 'center', paddingTop: Responsive.h(20)}}>
-        <Image source={Images.three_dots} resizeMode="contain" style={{width: Responsive.h(50), height: Responsive.h(10)}} />
-      </View>
-    </View>
+    </Touch>
   );
 
   const renderItem = ({ item }) => isDetail !== item.Id ? <ItemMeal item={item} /> : <ItemMealDetail item={item} />;
@@ -179,7 +182,7 @@ const SearchScreen = (props) => {
         <FlatList
           data={dataDummy}
           renderItem={renderItem}
-          keyExtractor={item => `${item.Id}`}
+          keyExtractor={item => item.Id}
           extraData={isDetail}
         />
       </View>

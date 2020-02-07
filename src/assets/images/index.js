@@ -22,4 +22,8 @@ export const Images = {
   light: require('../icons/light.png'),
   medium: require('../icons/medium.png'),
   vigorous: require('../icons/vigorous.png'),
+  three_dots: require('../icons/three-dots.png'),
+  star: require('../icons/star.png'),
+  check_meal: require('../icons/check-meal.png'),
+  add_meal: require('../icons/add-meal.png'),
 };
