@@ -17,8 +17,27 @@ const defaultOptions = url => ({
   },
 });
 
+const searchOptions = data => ({
+  url: `${API_URL}/getProducts`,
+  method: 'post',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  data: {
+    pageSize: 10,
+    pageIndex: 0,
+    order: 'asc',
+    ...data,
+  },
+});
+
 export const getAll = async params => {
-  console.log(defaultOptions(params));
   const result = await axios(defaultOptions(params));
   return get(result, 'data.d.Results', []);
+};
+
+export const getProducts = async params => {
+  const result = await axios(searchOptions(params));
+
+  return result;
 };

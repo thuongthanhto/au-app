@@ -22,5 +22,6 @@ export const SCHEDULE = {
 
 export const SEARCH = {
   ...baseCombineActionTypes('GET_TYPE_OF_FOOD'),
-  ...baseCombineActionTypes('GET_ALL_CATEGORIES')
+  ...baseCombineActionTypes('GET_ALL_CATEGORIES'),
+  ...baseCombineActionTypes('GET_PRODUCTS'),
 };

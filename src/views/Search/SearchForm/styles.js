@@ -22,14 +22,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: Responsive.h(16),
   },
   input: {
-    height: Responsive.h(60),
+    height: Responsive.h(50),
     borderWidth: 1,
     borderColor: colors.BLACK,
     borderRadius: Responsive.h(4),
     backgroundColor: colors.WHITE,
     textAlign: 'left',
-    fontSize: Responsive.h(35),
+    fontSize: Responsive.h(20),
     fontFamily: 'PTSans-Bold',
+  },
+  largerArrowIcon: {
+    width: Responsive.h(9),
+    height: Responsive.h(14),
   },
 });
 

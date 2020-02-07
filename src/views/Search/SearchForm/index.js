@@ -1,24 +1,20 @@
 import React, {useReducer, useEffect} from 'react';
-import {
-  View,
-  SafeAreaView,
-  Text,
-  FlatList,
-  TouchableOpacity as Touch,
-  Image,
-  TextInput,
-} from 'react-native';
+import {View, SafeAreaView, Text, Image, TextInput} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import CheckBox from 'react-native-check-box';
-import {useDispatch, connect} from 'react-redux';
+import {connect} from 'react-redux';
 import styles from './styles';
 import {customReducer} from '../../../modules/utils/helpers';
 import {
   getTypeOfFoodAvailableRequest,
   getAllCategoriesRequest,
+  getProductsRequest,
 } from '../../../actions/Search';
 import pickerSelectStyles from '../../BasicInfo/pickerSelectStyles';
 import stylesBasicInfo from '../../BasicInfo/styles';
+import Responsive from '../../../modules/utils/responsive';
+import {Images} from '../../../assets/images';
+import Button from '../../../components/Button';
 
 function generateCategories(categories) {
   const list = [];
@@ -37,7 +33,7 @@ const SearchFormScreen = props => {
   const initState = {
     searchTerm: '',
     categories: '',
-    isChecked: false,
+    isChecked: true,
   };
   const [state, setState] = useReducer(customReducer, initState);
 
@@ -55,12 +51,33 @@ const SearchFormScreen = props => {
     setState({categories: value});
   };
 
+  const handleSubmit = async () => {
+    const params = {
+      categories: [],
+      ids: [],
+      order: 'asc',
+      orderBy: 'Name',
+      pageIndex: 0,
+      pageSize: 10,
+      qsrs: [],
+      searchTerm: 'tea',
+      specialTypes: [],
+      timeCategories: [],
+      serves: [],
+    };
+
+    const result = await props.getProductsRequest(params);
+    console.log(result);
+  };
+
+  console.log(state);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
         <Text>Find a fast or snack food product</Text>
         <TextInput
           value={state.searchTerm}
+          placeholder="Enter a product name or Kj number"
           style={styles.input}
           onChangeText={text => setState({searchTerm: text})}
         />
@@ -83,16 +100,24 @@ const SearchFormScreen = props => {
         )}
         {props.listTypeOfFood.length > 0 && (
           <CheckBox
-            style={{flex: 1, padding: 10}}
             onClick={() => {
               setState({
                 isChecked: !state.isChecked,
               });
             }}
             isChecked={state.isChecked}
-            leftText="CheckBox"
+            rightText="All brands"
           />
         )}
+        <Button
+          width="100%"
+          height={Responsive.h(45)}
+          text="Search"
+          rightIcon={
+            <Image source={Images.arrow_right} style={styles.largerArrowIcon} />
+          }
+          onPress={() => handleSubmit()}
+        />
       </View>
     </SafeAreaView>
   );
@@ -106,6 +131,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getAllCategoriesRequest,
   getTypeOfFoodAvailableRequest,
+  getProductsRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchFormScreen);
