@@ -1,5 +1,12 @@
 import React, {useReducer, useEffect} from 'react';
-import {View, SafeAreaView, Text, Image, TextInput} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  Text,
+  Image,
+  TextInput,
+  ScrollView,
+} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import CheckBox from 'react-native-check-box';
 import {connect} from 'react-redux';
@@ -66,49 +73,175 @@ const SearchFormScreen = props => {
       serves: [],
     };
 
-    const result = await props.getProductsRequest(params);
-    console.log(result);
+    await props.getProductsRequest(params);
   };
 
   console.log(state);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
-        <Text>Find a fast or snack food product</Text>
-        <TextInput
-          value={state.searchTerm}
-          placeholder="Enter a product name or Kj number"
-          style={styles.input}
-          onChangeText={text => setState({searchTerm: text})}
-        />
+        <Text style={styles.title}>Search</Text>
+
+        <View style={{marginTop: 15, marginBottom: 15}}>
+          <TextInput
+            value={state.searchTerm}
+            placeholder="Enter a product name or Kj number"
+            style={styles.input}
+            onChangeText={text => setState({searchTerm: text})}
+          />
+        </View>
+
+        <Text style={styles.heading}>Meal options</Text>
 
         {props.listCategory.length > 0 && (
-          <RNPickerSelect
-            value={state.categories}
-            items={generateCategories(props.listCategory)}
-            placeholder={{
-              label: 'Food types',
-              value: '',
-            }}
-            onValueChange={text => handleChangeCategories(text)}
-            useNativeAndroidPickerStyle={false}
-            style={pickerSelectStyles}
-            Icon={() => {
-              return <View style={stylesBasicInfo.iconSelect} />;
-            }}
-          />
+          <View style={{marginBottom: 15}}>
+            <RNPickerSelect
+              value={state.categories}
+              items={generateCategories(props.listCategory)}
+              placeholder={{
+                label: 'Food types',
+                value: '',
+              }}
+              onValueChange={text => handleChangeCategories(text)}
+              useNativeAndroidPickerStyle={false}
+              style={pickerSelectStyles}
+              Icon={() => {
+                return <View style={stylesBasicInfo.iconSelect} />;
+              }}
+            />
+          </View>
         )}
+
+        <Text style={styles.heading}>Brands</Text>
+
         {props.listTypeOfFood.length > 0 && (
-          <CheckBox
-            onClick={() => {
-              setState({
-                isChecked: !state.isChecked,
-              });
-            }}
-            isChecked={state.isChecked}
-            rightText="All brands"
-          />
+          <View style={{marginBottom: 15}}>
+            <CheckBox
+              onClick={() => {
+                setState({
+                  isChecked: !state.isChecked,
+                });
+              }}
+              isChecked={state.isChecked}
+              rightText="All brands"
+            />
+          </View>
         )}
+
+        <View style={{flex: 2}}>
+          <ScrollView>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+            <View style={{marginBottom: 15}}>
+              <CheckBox
+                onClick={() => {
+                  setState({
+                    isChecked: !state.isChecked,
+                  });
+                }}
+                isChecked={state.isChecked}
+                rightText="All brands"
+              />
+            </View>
+          </ScrollView>
+        </View>
         <Button
           width="100%"
           height={Responsive.h(45)}

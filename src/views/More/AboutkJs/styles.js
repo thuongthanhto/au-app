@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Responsive from '../../../modules/utils/responsive';
 
 const styles = StyleSheet.create({

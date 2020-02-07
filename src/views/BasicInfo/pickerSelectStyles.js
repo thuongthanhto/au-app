@@ -28,7 +28,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: Responsive.v(30), // to ensure the text is never behind the icon
   },
   iconContainer: {
-    top: 15,
+    top: 20,
     right: 10,
   },
 });
