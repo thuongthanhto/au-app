@@ -52,7 +52,6 @@ const SearchFormScreen = props => {
     fetchData();
   }, []);
 
-  console.log(props);
 
   const handleChangeCategories = value => {
     setState({categories: value});
@@ -73,10 +72,13 @@ const SearchFormScreen = props => {
       serves: [],
     };
 
-    await props.getProductsRequest(params);
+    await props.getProductsRequest(params, res => {
+      if (res) {
+        props.navigation.navigate('Search', {params});
+      }
+    });
   };
 
-  console.log(state);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>

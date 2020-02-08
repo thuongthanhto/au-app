@@ -10,13 +10,13 @@ const SearchStack = createStackNavigator(
     [NavigationRoutes.SearchForm]: {
       screen: SearchFormScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Home', 'Meal(0)', 'Food Search'),
+        ...MainNavigationHeader(props, 'Home', '', 'Food Search'),
       }),
     },
     [NavigationRoutes.Search]: {
       screen: SearchScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Home', 'Meal(0)', 'Food Search'),
+        ...MainNavigationHeader(props, 'Back', 'Meal', 'kL in Food', true),
       }),
     },
   },

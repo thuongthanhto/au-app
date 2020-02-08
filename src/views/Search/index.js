@@ -1,93 +1,35 @@
 import {connect} from 'react-redux';
+import update from 'immutability-helper';
 import React, {useState, useEffect} from 'react';
+import RNPickerSelect from 'react-native-picker-select';
 import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image, TextInput } from 'react-native';
 
 import styles from './styles';
 import { Images } from '../../assets/images';
+import stylesBasicInfo from '../BasicInfo/styles';
 import Responsive from '../../modules/utils/responsive';
-import { getAllCategoriesRequest, getTypeOfFoodAvailableRequest } from '../../actions/Search';
+import pickerSelectStyles from '../BasicInfo/pickerSelectStyles';
+import { getAllCategoriesRequest, getTypeOfFoodAvailableRequest, getProductsRequest } from '../../actions/Search';
 
-const dataDummy = [
-  {
-    "Id": 20705,
-    "Published": true,
-    "QSR_id": 165,
-    "QSR_name": "Coffee Club",
-    "Name": "Add Cold Milk to Tea (20ml)",
-    "Serves": 1,
-    "Unit": " ml",
-    "Size": 20,
-    "Energy": 56,
-    "Includes": " NULL",
-    "Categories": [
-        {
-            "Id": 108,
-            "Name": "Beverages",
-            "Description": null,
-            "Includes": "",
-            "Excludes": ""
-        }
-    ],
-    "SpecialTypes": [],
-    "TimeCategories": [],
-    "ChildProducts": null,
-    "ChildIds": []
-  },
-  {
-      "Id": 31890,
-      "Published": true,
-      "QSR_id": 215,
-      "QSR_name": "The Coffee Club",
-      "Name": "Add Cold Milk to Tea (20ml)",
-      "Serves": 1,
-      "Unit": " ml",
-      "Size": 20,
-      "Energy": 56,
-      "Includes": " NULL",
-      "Categories": [
-          {
-              "Id": 108,
-              "Name": "Beverages",
-              "Description": null,
-              "Includes": "",
-              "Excludes": ""
-          }
-      ],
-      "SpecialTypes": [],
-      "TimeCategories": [],
-      "ChildProducts": null,
-      "ChildIds": []
-  },
-  {
-      "Id": 27990,
-      "Published": true,
-      "QSR_id": 204,
-      "QSR_name": "Gong Cha Tea",
-      "Name": "Alisan Tea",
-      "Serves": 1,
-      "Unit": " ml",
-      "Size": 0,
-      "Energy": 256,
-      "Includes": " NULL",
-      "Categories": [
-          {
-              "Id": 108,
-              "Name": "Beverages",
-              "Description": null,
-              "Includes": "",
-              "Excludes": ""
-          }
-      ],
-      "SpecialTypes": [],
-      "TimeCategories": [],
-      "ChildProducts": null,
-      "ChildIds": []
-  }
-];
+function formatProductType(prodType) {
+  const list = [];
+  prodType.forEach(element => {
+    const temp = {
+      value: element.Id,
+      label: element.Name,
+    };
+    list.push(temp);
+  });
+
+  return list;
+}
 
 const SearchScreen = (props) => {
+  const params = props.navigation.getParam('params');
   const [isDetail, setIsDetail] = useState('');
-  const [mealQuantity, setMealQuantity] = useState(1);
+  const [resultSearch, setResultSearch] = useState(props.listProducts.Results);
+  const [prodTypeFilter, setProdTypeFilter] = useState(0);
+  const [alphabeticalFilter, setAlphabeticalFilter] = useState('asc');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,9 +39,29 @@ const SearchScreen = (props) => {
     fetchData();
   }, []);
 
-  const handleChange = (value) => {
-    console.log('value: ', value);
-    setMealQuantity(parseInt(value, 10));
+  const handleChange = (value, meal) => {
+    const indexMealUpdate = resultSearch.findIndex(item => item.Id === meal.Id);
+    setResultSearch(
+      update(resultSearch, {
+        [indexMealUpdate]: {
+          quantity: { $set: value },
+          consume: { $set: value * meal.Energy }
+        }
+    }));
+  };
+
+  const handleFilterByProdType = async (value) => {
+    setProdTypeFilter(parseInt(value, 10));
+    const newParams = { ...params };
+    newParams.categories = value ? [value] : [];
+    await props.getProductsRequest(newParams);
+  };
+
+  const handleFilterByAlphabetical = async (value) => {
+    setAlphabeticalFilter(value);
+    const newParams = { ...params };
+    newParams.order = value;
+    await props.getProductsRequest(newParams);
   };
 
   const ItemMeal = ({ item }) => (
@@ -141,9 +103,9 @@ const SearchScreen = (props) => {
       <View style={[styles.addToMealContainer]}>
         <View style={[styles.flexRowContainer, {width: '40%', alignItems: 'center'}]}>
           <TextInput
-            value={mealQuantity.toString()}
+            value={item.quantity.toString()}
             style={styles.input}
-            onChangeText={handleChange}
+            onChangeText={(value) => handleChange(value, item)}
             keyboardType="numeric"
             maxLength={4}
           />
@@ -152,7 +114,7 @@ const SearchScreen = (props) => {
         </View>
         <Text style={styles.itemMealSubTitleSize}>=</Text>
         <View style={[styles.flexRowContainer, {width: '40%', alignItems: 'center'}]}>
-          <Text style={styles.itemMealSubTitle}>{item.Energy} kJ</Text>
+          <Text style={styles.itemMealSubTitle}>{item.consume} kJ</Text>
           <Image source={Images.check_meal} resizeMode="contain" style={{width: Responsive.h(18), height: Responsive.h(24)}} />
           <Touch onPress={() => alert('cc')}>
             <Image source={Images.add_meal} resizeMode="contain" style={{width: Responsive.h(40), height: Responsive.h(40)}} />
@@ -174,10 +136,36 @@ const SearchScreen = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topWrap} />
+      <View style={styles.filterContainer}>
+        <RNPickerSelect
+          value={alphabeticalFilter}
+          items={[
+            {value: 'asc', label: 'Sort by Product Alphabetical A-Z'},
+            {value: 'desc', label: 'Sort by Product Alphabetical Z-A'}
+          ]}
+          onValueChange={handleFilterByAlphabetical}
+          useNativeAndroidPickerStyle={false}
+          style={pickerSelectStyles}
+          Icon={() => <View style={stylesBasicInfo.iconSelect} />}
+        />
+        <View style={{height: Responsive.h(10)}} />
+        <RNPickerSelect
+          value={prodTypeFilter}
+          items={formatProductType(props.listCategory)}
+          placeholder={{
+            label: 'Refine by Chain or Product Type',
+            value: '',
+          }}
+          onValueChange={handleFilterByProdType}
+          useNativeAndroidPickerStyle={false}
+          style={pickerSelectStyles}
+          Icon={() => <View style={stylesBasicInfo.iconSelect} />}
+          disabled={!!params.categories.length}
+        />
+      </View>
       <View style={styles.body}>
-        <Text style={styles.title}>Total kJs in your meal</Text>
         <FlatList
-          data={dataDummy}
+          data={resultSearch}
           renderItem={renderItem}
           keyExtractor={item => `${item.Id}`}
           extraData={isDetail}
@@ -189,12 +177,14 @@ const SearchScreen = (props) => {
 
 const mapStateToProps = (state) => ({
   listCategory: state.SearchReducer.listCategory,
-  listTypeOfFood: state.SearchReducer.listTypeOfFood
+  listTypeOfFood: state.SearchReducer.listTypeOfFood,
+  listProducts: state.SearchReducer.listProducts
 });
 
 const mapDispatchToProps = {
   getAllCategoriesRequest,
-  getTypeOfFoodAvailableRequest
+  getTypeOfFoodAvailableRequest,
+  getProductsRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen);

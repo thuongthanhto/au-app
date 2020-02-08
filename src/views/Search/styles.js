@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: Responsive.h(13),
     fontFamily: 'PTSans-Bold'
+  },
+  filterContainer: {
+    backgroundColor: '#ED1845',
+    padding: Responsive.h(15)
   }
 });
 

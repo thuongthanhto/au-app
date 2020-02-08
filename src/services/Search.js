@@ -38,6 +38,5 @@ export const getAll = async params => {
 
 export const getProducts = async params => {
   const result = await axios(searchOptions(params));
-
-  return result;
+  return get(result, 'data.d', {});;
 };

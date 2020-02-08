@@ -31,11 +31,12 @@ function* handleGetTypeOfFoodAvailable({payload}) {
   }
 }
 
-function* handleGetProducts({payload}) {
+function* handleGetProducts({payload, cb}) {
   try {
     const {params} = payload;
     const res = yield call(getProducts, params);
-    yield put(getProductsSuccess(res.data));
+    yield put(getProductsSuccess(res));
+    cb && cb(res);
   } catch (error) {
     yield put(getProductsFailure(error));
   }
