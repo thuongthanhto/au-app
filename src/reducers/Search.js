@@ -5,15 +5,16 @@ const INITIAL_STATE = {
   listCategory: [],
   listTypeOfFood: [],
   listProducts: {},
-  listMealAdded: []
+  listMealAdded: [],
+  figure: 8700
 };
 
-const formatResult = (listResult) => listResult.map(item => ({
+const formatResult = (listResult, figure) => listResult.map(item => ({
   ...item,
   quantity: 1,
   consume: item.Energy,
   isAdded: false,
-  percent:  Math.round((item.Energy / toClosest(8700, 100)) * 100)
+  percent: ((item.Energy / toClosest(figure, 100)) * 100).toFixed(1)
 }));
 
 const User = (state = INITIAL_STATE, action) => {
@@ -42,8 +43,9 @@ const User = (state = INITIAL_STATE, action) => {
         listProducts: {
           AllCategories: action.payload.AllCategories,
           AllQSRs: action.payload.AllQSRs,
-          Results: formatResult(action.payload.Results)
-        }
+          Results: formatResult(action.payload.Results, action.payload.figure)
+        },
+        figure: action.payload.figure
       };
     }
     

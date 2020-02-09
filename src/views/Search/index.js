@@ -41,7 +41,7 @@ const SearchScreen = (props) => {
         [indexMealUpdate]: {
           quantity: { $set: value },
           consume: { $set: value * meal.Energy },
-          percent: { $set: Math.round(((value * meal.Energy) / toClosest(8700, 100)) * 100) }
+          percent: { $set: ((value * meal.Energy) / toClosest(props.figure, 100) * 100).toFixed(1) }
         }
     }));
   };
@@ -213,7 +213,7 @@ const mapStateToProps = (state) => ({
   listCategory: state.SearchReducer.listCategory,
   listTypeOfFood: state.SearchReducer.listTypeOfFood,
   listProducts: state.SearchReducer.listProducts,
-  ...state
+  figure: state.SearchReducer.figure
 });
 
 const mapDispatchToProps = {

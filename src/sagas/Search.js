@@ -1,7 +1,9 @@
-import {call, put, fork, takeEvery, all} from 'redux-saga/effects';
+import {call, put, fork, takeEvery, all, select} from 'redux-saga/effects';
+import get from 'lodash.get';
 
 import {getAll as getAllService, getProducts} from '../services/Search';
 import {SEARCH} from '../actions/types';
+import { toClosest } from '../modules/utils/helpers';
 import {
   getAllCategoriesSuccess,
   getAllCategoriesFailure,
@@ -34,7 +36,11 @@ function* handleGetTypeOfFoodAvailable({payload}) {
 function* handleGetProducts({payload, cb}) {
   try {
     const {params} = payload;
+    const state = yield select();
+    const profile = get(state, 'homeReducer.profile', {});
+    const figure = profile.BMR && profile.BMR.goal ? toClosest(profile.BMR.goal.value, 100) : 8700;
     const res = yield call(getProducts, params);
+    res.figure = figure;
     yield put(getProductsSuccess(res));
     cb && cb(res);
   } catch (error) {
