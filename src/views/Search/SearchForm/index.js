@@ -10,6 +10,7 @@ import {
 import RNPickerSelect from 'react-native-picker-select';
 import CheckBox from 'react-native-check-box';
 import {connect} from 'react-redux';
+import {object} from 'prop-types';
 import styles from './styles';
 import {customReducer} from '../../../modules/utils/helpers';
 import {
@@ -36,11 +37,27 @@ function generateCategories(categories) {
   return list;
 }
 
+function generateBrands(brands) {
+  const finalObject = {};
+
+  brands.forEach(element => {
+    finalObject[element.Id] = {
+      name: element.Name,
+      checked: true,
+    };
+  });
+
+  return finalObject;
+}
+
 const SearchFormScreen = props => {
   const initState = {
     searchTerm: '',
-    categories: '',
+    category: '',
+    categories: [],
     isChecked: true,
+    qsrs: [],
+    brands: generateBrands(props.listTypeOfFood),
   };
   const [state, setState] = useReducer(customReducer, initState);
 
@@ -52,31 +69,53 @@ const SearchFormScreen = props => {
     fetchData();
   }, []);
 
-  console.log(props);
+  useEffect(() => {
+    setState({brands: generateBrands(props.listTypeOfFood)});
+  }, [props.listTypeOfFood]);
 
   const handleChangeCategories = value => {
-    setState({categories: value});
+    const temp = state.categories;
+
+    temp.push(value);
+    setState({category: value});
+  };
+
+  const handleCheckBrand = key => {
+    const temp = state.brands;
+    const listQsrs = [];
+    let finalQsrs = [];
+
+    temp[key].checked = !state.brands[key].checked;
+    Object.keys(temp).forEach(item => {
+      if (temp[item].checked) {
+        listQsrs.push(item);
+      }
+    });
+
+    finalQsrs = props.listTypeOfFood.length > listQsrs.length ? listQsrs : [];
+    setState({brands: temp, qsrs: finalQsrs});
   };
 
   const handleSubmit = async () => {
     const params = {
-      categories: [],
+      categories: state.categories,
       ids: [],
       order: 'asc',
       orderBy: 'Name',
       pageIndex: 0,
       pageSize: 10,
-      qsrs: [],
-      searchTerm: 'tea',
+      qsrs: state.qsrs,
+      searchTerm: state.searchTerm,
       specialTypes: [],
       timeCategories: [],
       serves: [],
     };
 
+    console.log(params);
+
     await props.getProductsRequest(params);
   };
 
-  console.log(state);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
@@ -96,7 +135,7 @@ const SearchFormScreen = props => {
         {props.listCategory.length > 0 && (
           <View style={{marginBottom: 15}}>
             <RNPickerSelect
-              value={state.categories}
+              value={state.category}
               items={generateCategories(props.listCategory)}
               placeholder={{
                 label: 'Food types',
@@ -128,120 +167,22 @@ const SearchFormScreen = props => {
           </View>
         )}
 
-        <View style={{flex: 2}}>
-          <ScrollView>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-            <View style={{marginBottom: 15}}>
-              <CheckBox
-                onClick={() => {
-                  setState({
-                    isChecked: !state.isChecked,
-                  });
-                }}
-                isChecked={state.isChecked}
-                rightText="All brands"
-              />
-            </View>
-          </ScrollView>
-        </View>
+        {!state.isChecked && props.listTypeOfFood.length > 0 && (
+          <View style={{flex: 1}}>
+            <ScrollView>
+              {Object.keys(state.brands).map(key => (
+                <View style={{marginBottom: 15}} key={key}>
+                  <CheckBox
+                    onClick={() => handleCheckBrand(key)}
+                    isChecked={state.brands[key].checked}
+                    rightText={state.brands[key].name}
+                  />
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+        )}
+
         <Button
           width="100%"
           height={Responsive.h(45)}

@@ -35,6 +35,7 @@ function* handleGetProducts({payload}) {
   try {
     const {params} = payload;
     const res = yield call(getProducts, params);
+    console.log(res);
     yield put(getProductsSuccess(res.data));
   } catch (error) {
     yield put(getProductsFailure(error));
