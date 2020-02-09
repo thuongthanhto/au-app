@@ -55,8 +55,8 @@ const SearchFormScreen = props => {
     category: '',
     categories: [],
     isChecked: true,
-    brands: generateBrands(props.listTypeOfFood),
     qsrs: [],
+    brands: generateBrands(props.listTypeOfFood),
   };
   const [state, setState] = useReducer(customReducer, initState);
 
@@ -69,15 +69,30 @@ const SearchFormScreen = props => {
   }, []);
 
   useEffect(() => {
-    const brands = generateBrands(props.listTypeOfFood);
-
-    setState({brands});
+    setState({brands: generateBrands(props.listTypeOfFood)});
   }, [props.listTypeOfFood]);
 
   const handleChangeCategories = value => {
     const temp = state.categories;
+
     temp.push(value);
-    setState({category: value, categories: temp});
+    setState({category: value});
+  };
+
+  const handleCheckBrand = key => {
+    const temp = state.brands;
+    const listQsrs = [];
+    let finalQsrs = [];
+
+    temp[key].checked = !state.brands[key].checked;
+    Object.keys(temp).forEach(item => {
+      if (temp[item].checked) {
+        listQsrs.push(item);
+      }
+    });
+
+    finalQsrs = props.listTypeOfFood.length > listQsrs.length ? listQsrs : [];
+    setState({brands: temp, qsrs: finalQsrs});
   };
 
   const handleSubmit = async () => {
@@ -102,14 +117,6 @@ const SearchFormScreen = props => {
     });
   };
 
-  const handleCheckItem = key => {
-    const temp = state.brands;
-    const {qsrs} = state;
-    qsrs.push(key);
-    temp[key].checked = !state.brands[key].checked;
-
-    setState({brands: temp, qsrs});
-  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
@@ -167,7 +174,7 @@ const SearchFormScreen = props => {
               {Object.keys(state.brands).map(key => (
                 <View style={{marginBottom: 15}} key={key}>
                   <CheckBox
-                    onClick={() => handleCheckItem(key)}
+                    onClick={() => handleCheckBrand(key)}
                     isChecked={state.brands[key].checked}
                     rightText={state.brands[key].name}
                   />
