@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import React, {useState, useEffect} from 'react';
 import {
   View,
@@ -18,6 +18,12 @@ import {
   getAllCategoriesRequest,
   getTypeOfFoodAvailableRequest,
 } from '../../actions/Search';
+import {
+  getActivityDuration,
+  getRMR,
+  toClosest,
+} from '../../modules/utils/helpers';
+import {getProfileSelector} from '../../selectors/homeSelector';
 
 const dataChart = [
   {
@@ -31,6 +37,34 @@ const dataChart = [
 ];
 
 const SearchScreen = props => {
+  const profile = useSelector(state => getProfileSelector(state));
+  let weight;
+  let rmr = getRMR(profile.sex, profile.height, profile.weight, profile.age);
+  if (profile.weight) {
+    weight = profile.weight;
+  } else {
+    weight = profile.weight || 55;
+    rmr = 1319.6;
+  }
+  const totalEnery = props.listMealAdded.reduce(function(sum, item) {
+    return sum + item.consume;
+  }, 0);
+  const firgual = toClosest(profile.BMR.goal.value, 100);
+  const totalPercent = ((totalEnery / firgual) * 100).toFixed(1);
+  const light = Math.round(
+    getActivityDuration('Light', rmr, weight, totalEnery) * 60,
+  );
+  const medium = Math.round(
+    getActivityDuration('Medium', rmr, weight, totalEnery) * 60,
+  );
+
+  const vigorous = Math.round(
+    getActivityDuration('Vigorous', rmr, weight, totalEnery) * 60,
+  );
+
+  console.log(firgual);
+  console.log(totalPercent);
+
   const ItemMeal = ({item}) => (
     <View style={styles.itemMealContainer}>
       <View style={styles.flexRowContainer}>
@@ -45,9 +79,6 @@ const SearchScreen = props => {
       <Text style={styles.itemMealSubTitle}>{item.QSR_name}</Text>
     </View>
   );
-  const totalEnery = props.listMealAdded.reduce(function(sum, item) {
-    return sum + item.consume;
-  }, 0);
 
   const renderSummary = () => {
     return (
@@ -57,20 +88,20 @@ const SearchScreen = props => {
           <Text style={styles.activityText}>Excercise equivalents:</Text>
           <View style={{flexDirection: 'row'}}>
             <Image source={Images.light} style={styles.imagesContent} />
-            <Text style={styles.valueContent}>10 min</Text>
+            <Text style={styles.valueContent}>{light} mins</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
             <Image source={Images.medium} style={styles.imagesContent} />
-            <Text style={styles.valueContent}>10 min</Text>
+            <Text style={styles.valueContent}>{medium} mins</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
             <Image source={Images.vigorous} style={styles.imagesContent} />
-            <Text style={styles.valueContent}>10 min</Text>
+            <Text style={styles.valueContent}>{vigorous} mins</Text>
           </View>
         </View>
         <View style={[styles.chartContainer, {width: '50%'}]}>
           <Text style={styles.itemMealTitle}>{totalEnery || 0} kJ</Text>
-          <Text style={styles.itemMealTitle}>6.3%</Text>
+          <Text style={styles.itemMealTitle}>{totalPercent}%</Text>
           <Pie radius={60} sections={dataChart} />
         </View>
       </View>

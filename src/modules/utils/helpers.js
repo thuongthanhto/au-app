@@ -349,7 +349,7 @@ export function calculateGoalBMR(goal, oldProfile) {
   return profile;
 }
 
-function getRMR(sex = 'male', height = 175, weight = 70, age = 40) {
+export function getRMR(sex = 'male', height = 175, weight = 70, age = 40) {
   const rmrValues = _lookup[sex].rmr;
   return (
     rmrValues[0] +
@@ -385,4 +385,10 @@ export function toDP(value, places) {
 
 export function convert(value, source, destination) {
   return value * ratios[source][destination];
+}
+
+export function getActivityDuration(activity, rmr, weight, energy) {
+  const met = _activity_METs[activity] || _summary_METs[activity];
+
+  return energy / 4.184 / weight / met / (1 / (rmr / weight / 24));
 }
