@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import CheckBox from 'react-native-check-box';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import styles from './styles';
 import {customReducer} from '../../../modules/utils/helpers';
 import {
@@ -51,6 +51,7 @@ function generateBrands(brands) {
 }
 
 const SearchFormScreen = props => {
+  const dispatch = useDispatch();
   const initState = {
     searchTerm: '',
     category: '',
@@ -58,7 +59,7 @@ const SearchFormScreen = props => {
     isChecked: true,
     qsrs: [],
     brands: generateBrands(props.listTypeOfFood),
-    loading: false
+    loading: false,
   };
   const [state, setState] = useReducer(customReducer, initState);
 
@@ -98,7 +99,7 @@ const SearchFormScreen = props => {
   };
 
   const handleSubmit = async () => {
-    setState({ loading: true });
+    setState({loading: true});
     const params = {
       categories: state.categories,
       ids: [],
@@ -116,14 +117,15 @@ const SearchFormScreen = props => {
     await props.getProductsRequest(params, res => {
       if (res) {
         props.navigation.navigate('Search', {params});
-        setState({ loading: false });
+        setState({loading: false});
+        dispatch({type: 'ADD_TO_MEAL', payload: []});
       }
     });
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <CircleLoading isVisible={state.loading}/>
+      <CircleLoading isVisible={state.loading} />
       <View style={styles.body}>
         <Text style={styles.title}>Search</Text>
 

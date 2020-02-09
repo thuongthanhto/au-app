@@ -36,7 +36,11 @@ export const HeaderRight = ({props, text}) => (
     width={Responsive.h(100)}
     height={Responsive.v(30)}
     text={text}
-    onPress={() => text && props.navigation.navigate(NavigationRoutes.Profile)}
+    onPress={() =>
+      text && text === 'Meal'
+        ? props.navigation.navigate(NavigationRoutes.Meal)
+        : props.navigation.navigate(NavigationRoutes.Profile)
+    }
     textStyle={styles.textButton}
     styleGradient={[
       styles.button,

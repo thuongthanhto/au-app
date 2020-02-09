@@ -1,21 +1,22 @@
 import {SEARCH} from '../actions/types';
-import { toClosest } from '../modules/utils/helpers';
+import {toClosest} from '../modules/utils/helpers';
 
 const INITIAL_STATE = {
   listCategory: [],
   listTypeOfFood: [],
   listProducts: {},
   listMealAdded: [],
-  figure: 8700
+  figure: 8700,
 };
 
-const formatResult = (listResult, figure) => listResult.map(item => ({
-  ...item,
-  quantity: 1,
-  consume: item.Energy,
-  isAdded: false,
-  percent: ((item.Energy / toClosest(figure, 100)) * 100).toFixed(1)
-}));
+const formatResult = (listResult, figure) =>
+  listResult.map(item => ({
+    ...item,
+    quantity: 1,
+    consume: item.Energy,
+    isAdded: false,
+    percent: ((item.Energy / toClosest(figure, 100)) * 100).toFixed(1),
+  }));
 
 const User = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -39,16 +40,23 @@ const User = (state = INITIAL_STATE, action) => {
       return state;
     case SEARCH.GET_PRODUCTS_SUCCESS: {
       return {
-        ...state, 
+        ...state,
         listProducts: {
           AllCategories: action.payload.AllCategories,
           AllQSRs: action.payload.AllQSRs,
-          Results: formatResult(action.payload.Results, action.payload.figure)
+          Results: formatResult(action.payload.Results, action.payload.figure),
         },
-        figure: action.payload.figure
+        figure: action.payload.figure,
       };
     }
-    
+
+    case 'ADD_TO_MEAL': {
+      return {
+        ...state,
+        listMealAdded: action.payload,
+      };
+    }
+
     default:
       return state;
   }

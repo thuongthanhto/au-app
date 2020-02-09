@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
@@ -9,13 +9,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width,
-    backgroundColor: colors.BLACK
+    backgroundColor: colors.BLACK,
   },
   body: {
     flex: 1,
     width,
     paddingVertical: Responsive.h(20),
-    backgroundColor: colors.MAIN_BACKGROUND
+    backgroundColor: colors.MAIN_BACKGROUND,
+  },
+  summaryWrap: {
+    paddingHorizontal: Responsive.h(16),
   },
   topWrap: {
     height: Responsive.v(7),
@@ -26,17 +29,17 @@ const styles = StyleSheet.create({
     fontSize: Responsive.h(27),
     paddingHorizontal: Responsive.h(16),
     paddingBottom: Responsive.h(16),
-    color: colors.RED
+    color: colors.RED,
   },
   itemMealContainer: {
     padding: Responsive.h(16),
     width: '100%',
     borderBottomWidth: 1,
-    borderBottomColor: '#B4ABAA'
+    borderBottomColor: '#B4ABAA',
   },
   flexRowContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   addToMealContainer: {
     width: '100%',
@@ -48,42 +51,42 @@ const styles = StyleSheet.create({
     backgroundColor: '#E1E1E1',
     borderRadius: Responsive.h(4),
     padding: Responsive.h(10),
-    marginTop: Responsive.h(8)
+    marginTop: Responsive.h(8),
   },
   itemMealTitle: {
     color: '#00AAEA',
     fontSize: Responsive.h(20),
-    fontFamily: 'PTSans-Bold'
+    fontFamily: 'PTSans-Bold',
   },
   itemMealSubTitle: {
     fontFamily: 'PTSans-Bold',
     fontSize: Responsive.h(14),
     color: colors.BLACK,
-    paddingTop: Responsive.h(5)
+    paddingTop: Responsive.h(5),
   },
   itemMealSubTitleSize: {
     fontFamily: 'PTSans-Regular',
     fontSize: Responsive.h(14),
-    paddingTop: Responsive.h(5)
+    paddingTop: Responsive.h(5),
   },
   chartContainer: {
     flex: 1,
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   imagesContent: {
     marginBottom: Responsive.h(5),
-    marginRight: Responsive.h(5)
+    marginRight: Responsive.h(5),
   },
   valueContent: {
     fontFamily: 'PTSans-Regular',
     fontSize: Responsive.h(11),
-    color: colors.TEXT_BUTTON
+    color: colors.TEXT_BUTTON,
   },
   activityText: {
     fontFamily: 'PTSans-Bold',
     color: colors.BLACK,
     fontSize: Responsive.h(11),
-    paddingVertical: Responsive.h(10)
+    paddingVertical: Responsive.h(10),
   },
   input: {
     height: Responsive.h(40),
@@ -94,13 +97,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFD',
     textAlign: 'center',
     fontSize: Responsive.h(18),
-    fontFamily: 'PTSans-Bold'
+    fontFamily: 'PTSans-Bold',
   },
   filterContainer: {
     backgroundColor: '#ED1845',
-    padding: Responsive.h(15)
-  }
+    padding: Responsive.h(15),
+  },
 });
 
 export default styles;
-

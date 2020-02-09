@@ -1,6 +1,7 @@
 import {createStackNavigator} from 'react-navigation';
 
 import SearchScreen from '../views/Search';
+import MealScreen from '../views/Search/Meal';
 import {NavigationRoutes} from './Routes';
 import {MainNavigationHeader} from './DefaultNavigationOptions';
 import SearchFormScreen from '../views/Search/SearchForm';
@@ -17,6 +18,12 @@ const SearchStack = createStackNavigator(
       screen: SearchScreen,
       navigationOptions: props => ({
         ...MainNavigationHeader(props, 'Back', 'Meal', 'kL in Food', true),
+      }),
+    },
+    [NavigationRoutes.Meal]: {
+      screen: MealScreen,
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Back', '', 'kL in Food', true),
       }),
     },
   },

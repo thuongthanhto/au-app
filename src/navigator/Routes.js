@@ -8,6 +8,7 @@ export const NavigationRoutes = {
   Profile: 'Profile',
   Search: 'Search',
   SearchForm: 'SearchForm',
+  Meal: 'Meal',
   More: 'More',
   Converter: 'Converter',
   LegalStuff: 'LegalStuff',
