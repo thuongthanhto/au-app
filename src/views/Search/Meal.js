@@ -1,5 +1,6 @@
-import {connect, useSelector} from 'react-redux';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import React, {useState, useEffect} from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   View,
   SafeAreaView,
@@ -25,18 +26,8 @@ import {
 } from '../../modules/utils/helpers';
 import {getProfileSelector} from '../../selectors/homeSelector';
 
-const dataChart = [
-  {
-    percentage: 10,
-    color: '#00AAEA',
-  },
-  {
-    percentage: 90,
-    color: colors.GRAY,
-  },
-];
-
 const SearchScreen = props => {
+  const dispatch = useDispatch();
   const profile = useSelector(state => getProfileSelector(state));
   let weight;
   let rmr = getRMR(profile.sex, profile.height, profile.weight, profile.age);
@@ -62,8 +53,27 @@ const SearchScreen = props => {
     getActivityDuration('Vigorous', rmr, weight, totalEnery) * 60,
   );
 
-  console.log(firgual);
-  console.log(totalPercent);
+  let percent = totalPercent;
+  if (totalPercent > 100) {
+    percent = 99.9;
+  }
+
+  const dataChart = [
+    {
+      percentage: percent,
+      color: '#00AAEA',
+    },
+    {
+      percentage: 100 - percent,
+      color: colors.GRAY,
+    },
+  ];
+
+  const handleRemoveItem = Id => {
+    const temp = props.listMealAdded.filter(item => item.Id !== Id);
+
+    dispatch({type: 'ADD_TO_MEAL', payload: temp});
+  };
 
   const ItemMeal = ({item}) => (
     <View style={styles.itemMealContainer}>
@@ -76,7 +86,16 @@ const SearchScreen = props => {
           {item.consume} kJ
         </Text>
       </View>
-      <Text style={styles.itemMealSubTitle}>{item.QSR_name}</Text>
+      <View style={styles.flexRowContainer}>
+        <Text style={[styles.itemMealSubTitle, {width: '75%'}]}>
+          {item.QSR_name}
+        </Text>
+        <View style={{width: '25%', flex: 1, alignItems: 'flex-end'}}>
+          <Touch onPress={() => handleRemoveItem(item.Id)}>
+            <Icon name="trash" size={30} color="#900" />
+          </Touch>
+        </View>
+      </View>
     </View>
   );
 
