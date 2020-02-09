@@ -22,6 +22,7 @@ import stylesBasicInfo from '../../BasicInfo/styles';
 import Responsive from '../../../modules/utils/responsive';
 import {Images} from '../../../assets/images';
 import Button from '../../../components/Button';
+import CircleLoading from '../../../components/Presentations/CircleLoading';
 
 function generateCategories(categories) {
   const list = [];
@@ -57,6 +58,7 @@ const SearchFormScreen = props => {
     isChecked: true,
     qsrs: [],
     brands: generateBrands(props.listTypeOfFood),
+    loading: false
   };
   const [state, setState] = useReducer(customReducer, initState);
 
@@ -96,13 +98,14 @@ const SearchFormScreen = props => {
   };
 
   const handleSubmit = async () => {
+    setState({ loading: true });
     const params = {
       categories: state.categories,
       ids: [],
       order: 'asc',
       orderBy: 'Name',
       pageIndex: 0,
-      pageSize: 10,
+      pageSize: 100,
       qsrs: state.qsrs,
       searchTerm: state.searchTerm,
       specialTypes: [],
@@ -113,12 +116,14 @@ const SearchFormScreen = props => {
     await props.getProductsRequest(params, res => {
       if (res) {
         props.navigation.navigate('Search', {params});
+        setState({ loading: false });
       }
     });
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <CircleLoading isVisible={state.loading}/>
       <View style={styles.body}>
         <Text style={styles.title}>Search</Text>
 

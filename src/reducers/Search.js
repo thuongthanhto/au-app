@@ -1,4 +1,5 @@
 import {SEARCH} from '../actions/types';
+import { toClosest } from '../modules/utils/helpers';
 
 const INITIAL_STATE = {
   listCategory: [],
@@ -11,7 +12,8 @@ const formatResult = (listResult) => listResult.map(item => ({
   ...item,
   quantity: 1,
   consume: item.Energy,
-  isAdded: false
+  isAdded: false,
+  percent:  Math.round((item.Energy / toClosest(8700, 100)) * 100)
 }));
 
 const User = (state = INITIAL_STATE, action) => {

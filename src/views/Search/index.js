@@ -1,43 +1,35 @@
 import {connect} from 'react-redux';
 import update from 'immutability-helper';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image, TextInput } from 'react-native';
+import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image, TextInput, Platform } from 'react-native';
 
 import styles from './styles';
 import { Images } from '../../assets/images';
 import stylesBasicInfo from '../BasicInfo/styles';
 import Responsive from '../../modules/utils/responsive';
 import pickerSelectStyles from '../BasicInfo/pickerSelectStyles';
-import { getAllCategoriesRequest, getTypeOfFoodAvailableRequest, getProductsRequest } from '../../actions/Search';
-
-function formatProductType(prodType) {
-  const list = [];
-  prodType.forEach(element => {
-    const temp = {
-      value: element.Id,
-      label: element.Name,
-    };
-    list.push(temp);
-  });
-
-  return list;
-}
+import CircleLoading from '../../components/Presentations/CircleLoading';
+import { getProductsRequest } from '../../actions/Search';
+import { toClosest } from '../../modules/utils/helpers';
 
 const SearchScreen = (props) => {
-  const params = props.navigation.getParam('params');
+  const prevParam = props.navigation.getParam('params');
+  const [params, setParams] = useState(prevParam);
   const [isDetail, setIsDetail] = useState('');
   const [resultSearch, setResultSearch] = useState(props.listProducts.Results);
   const [prodTypeFilter, setProdTypeFilter] = useState(0);
   const [alphabeticalFilter, setAlphabeticalFilter] = useState('asc');
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await props.getAllCategoriesRequest('GetCategories');
-      await props.getTypeOfFoodAvailableRequest('GetQSRs');
-    };
-    fetchData();
-  }, []);
+  React.useEffect(() => {
+    setResultSearch(props.listProducts.Results);
+  }, [props.listProducts]);
+
+  const formatProductType = (prodType) => prodType.map(item => ({
+    value: item.Id,
+    label: item.Name,
+  }));
 
   const handleChange = (value, meal) => {
     const indexMealUpdate = resultSearch.findIndex(item => item.Id === meal.Id);
@@ -45,23 +37,31 @@ const SearchScreen = (props) => {
       update(resultSearch, {
         [indexMealUpdate]: {
           quantity: { $set: value },
-          consume: { $set: value * meal.Energy }
+          consume: { $set: value * meal.Energy },
+          percent: { $set: Math.round(((value * meal.Energy) / toClosest(8700, 100)) * 100) }
         }
     }));
   };
 
-  const handleFilterByProdType = async (value) => {
-    setProdTypeFilter(parseInt(value, 10));
-    const newParams = { ...params };
-    newParams.categories = value ? [value] : [];
-    await props.getProductsRequest(newParams);
+  const handleGetProducts = async (newParams) => {
+    setLoading(true);
+    await props.getProductsRequest(newParams, res => {
+      if (res) {
+        setLoading(false);
+      }
+    });
   };
 
-  const handleFilterByAlphabetical = async (value) => {
-    setAlphabeticalFilter(value);
+  const handleFilter = async (value, type) => {
     const newParams = { ...params };
-    newParams.order = value;
-    await props.getProductsRequest(newParams);
+    type === 'prodType' ? setProdTypeFilter(value) : setAlphabeticalFilter(value);
+    type === 'prodType' ? newParams.categories = (value ? [value] : []) : newParams.order = value;
+    setParams(newParams);
+    Platform.OS === 'android' && await handleGetProducts(newParams);
+  };
+
+  const onDonePressIos = async () => {
+    Platform.OS === 'ios' && await handleGetProducts(params);
   };
 
   const ItemMeal = ({ item }) => (
@@ -97,7 +97,7 @@ const SearchScreen = (props) => {
       </Text>
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
         <Text style={[styles.itemMealTitle, { width: '75%'}]} numberOfLines={1}>{item.Energy} kJ</Text>
-        <Text style={[styles.itemMealTitle, { width: '25%', textAlign: 'right' }]}>90%</Text>
+        <Text style={[styles.itemMealTitle, { width: '25%', textAlign: 'right' }]}>{item.percent}%</Text>
       </View>
       <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
       <View style={[styles.addToMealContainer]}>
@@ -110,11 +110,11 @@ const SearchScreen = (props) => {
             maxLength={4}
           />
           <Text style={styles.itemMealSubTitleSize}>of</Text>
-          <Text style={styles.itemMealSubTitle}>1</Text>
+          <Text style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>1</Text>
         </View>
         <Text style={styles.itemMealSubTitleSize}>=</Text>
         <View style={[styles.flexRowContainer, {width: '40%', alignItems: 'center'}]}>
-          <Text style={styles.itemMealSubTitle}>{item.consume} kJ</Text>
+          <Text style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>{item.consume} kJ</Text>
           <Image source={Images.check_meal} resizeMode="contain" style={{width: Responsive.h(18), height: Responsive.h(24)}} />
           <Touch onPress={() => alert('cc')}>
             <Image source={Images.add_meal} resizeMode="contain" style={{width: Responsive.h(40), height: Responsive.h(40)}} />
@@ -135,6 +135,7 @@ const SearchScreen = (props) => {
   
   return (
     <SafeAreaView style={styles.container}>
+      <CircleLoading isVisible={loading}/>
       <View style={styles.topWrap} />
       <View style={styles.filterContainer}>
         <RNPickerSelect
@@ -143,7 +144,8 @@ const SearchScreen = (props) => {
             {value: 'asc', label: 'Sort by Product Alphabetical A-Z'},
             {value: 'desc', label: 'Sort by Product Alphabetical Z-A'}
           ]}
-          onValueChange={handleFilterByAlphabetical}
+          onValueChange={(value) => handleFilter(value, 'alphabet')}
+          onDonePress={onDonePressIos}
           useNativeAndroidPickerStyle={false}
           style={pickerSelectStyles}
           Icon={() => <View style={stylesBasicInfo.iconSelect} />}
@@ -156,11 +158,12 @@ const SearchScreen = (props) => {
             label: 'Refine by Chain or Product Type',
             value: '',
           }}
-          onValueChange={handleFilterByProdType}
+          onValueChange={(value) => handleFilter(value, 'prodType')}
+          onDonePress={onDonePressIos}
           useNativeAndroidPickerStyle={false}
           style={pickerSelectStyles}
           Icon={() => <View style={stylesBasicInfo.iconSelect} />}
-          disabled={!!params.categories.length}
+          disabled={!!prevParam.categories.length}
         />
       </View>
       <View style={styles.body}>
@@ -178,13 +181,12 @@ const SearchScreen = (props) => {
 const mapStateToProps = (state) => ({
   listCategory: state.SearchReducer.listCategory,
   listTypeOfFood: state.SearchReducer.listTypeOfFood,
-  listProducts: state.SearchReducer.listProducts
+  listProducts: state.SearchReducer.listProducts,
+  ...state
 });
 
 const mapDispatchToProps = {
-  getAllCategoriesRequest,
-  getTypeOfFoodAvailableRequest,
-  getProductsRequest,
+  getProductsRequest
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen);

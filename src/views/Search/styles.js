@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: Responsive.h(8),
     backgroundColor: '#FFFFFD',
     textAlign: 'center',
-    fontSize: Responsive.h(13),
+    fontSize: Responsive.h(18),
     fontFamily: 'PTSans-Bold'
   },
   filterContainer: {
