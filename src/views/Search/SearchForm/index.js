@@ -105,7 +105,7 @@ const SearchFormScreen = props => {
       order: 'asc',
       orderBy: 'Name',
       pageIndex: 0,
-      pageSize: 100,
+      pageSize: 10,
       qsrs: state.qsrs,
       searchTerm: state.searchTerm,
       specialTypes: [],

@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import update from 'immutability-helper';
 import React, {useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image, TextInput, Platform } from 'react-native';
+import { View, SafeAreaView, Text, FlatList, TouchableOpacity as Touch, Image, TextInput, Platform, RefreshControl, ActivityIndicator } from 'react-native';
 
 import styles from './styles';
 import { Images } from '../../assets/images';
@@ -12,6 +12,7 @@ import pickerSelectStyles from '../BasicInfo/pickerSelectStyles';
 import CircleLoading from '../../components/Presentations/CircleLoading';
 import { getProductsRequest } from '../../actions/Search';
 import { toClosest } from '../../modules/utils/helpers';
+import { colors } from '../../modules/colors';
 
 const SearchScreen = (props) => {
   const prevParam = props.navigation.getParam('params');
@@ -21,6 +22,8 @@ const SearchScreen = (props) => {
   const [prodTypeFilter, setProdTypeFilter] = useState(0);
   const [alphabeticalFilter, setAlphabeticalFilter] = useState('asc');
   const [loading, setLoading] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isLoadMore, setIsLoadMore] = useState(false);
 
   React.useEffect(() => {
     setResultSearch(props.listProducts.Results);
@@ -46,9 +49,26 @@ const SearchScreen = (props) => {
   const handleGetProducts = async (newParams) => {
     setLoading(true);
     await props.getProductsRequest(newParams, res => {
-      if (res) {
-        setLoading(false);
-      }
+      res && setLoading(false);
+    });
+  };
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    setAlphabeticalFilter('asc');
+    setProdTypeFilter(0);
+    await props.getProductsRequest(prevParam, res => {
+      res && setIsRefreshing(false);
+    });
+  };
+
+  const handleLoadMore = async () => {
+    setIsLoadMore(true);
+    const newParams = { ...params };
+    newParams.pageSize = params.pageSize + 10;
+    setParams(newParams);
+    await props.getProductsRequest(newParams, res => {
+      res && setIsLoadMore(false);
     });
   };
 
@@ -132,6 +152,8 @@ const SearchScreen = (props) => {
   );
 
   const renderItem = ({ item }) => isDetail !== item.Id ? <ItemMeal item={item} /> : <ItemMealDetail item={item} />;
+
+  const renderFooter = () => isLoadMore ? <ActivityIndicator style={{ color: colors.BLACK }} /> : null;
   
   return (
     <SafeAreaView style={styles.container}>
@@ -172,6 +194,15 @@ const SearchScreen = (props) => {
           renderItem={renderItem}
           keyExtractor={item => `${item.Id}`}
           extraData={isDetail}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefreshing}
+              onRefresh={handleRefresh}
+            />
+          }
+          ListFooterComponent={renderFooter}
+          onEndReachedThreshold={0}
+          onEndReached={handleLoadMore}
         />
       </View>
     </SafeAreaView>
