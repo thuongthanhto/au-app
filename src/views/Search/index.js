@@ -1,7 +1,8 @@
-import {connect, useDispatch} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import update from 'immutability-helper';
 import React, {useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
+import Swiper from 'react-native-swiper';
 import {
   View,
   SafeAreaView,
@@ -13,8 +14,10 @@ import {
   Platform,
   RefreshControl,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 
+import Pie from './Pie';
 import styles from './styles';
 import {Images} from '../../assets/images';
 import stylesBasicInfo from '../BasicInfo/styles';
@@ -22,8 +25,13 @@ import Responsive from '../../modules/utils/responsive';
 import pickerSelectStyles from '../BasicInfo/pickerSelectStyles';
 import CircleLoading from '../../components/Presentations/CircleLoading';
 import {getProductsRequest} from '../../actions/Search';
-import {toClosest} from '../../modules/utils/helpers';
+import {
+  toClosest,
+  getRMR,
+  getActivityDuration,
+} from '../../modules/utils/helpers';
 import {colors} from '../../modules/colors';
+import {getProfileSelector} from '../../selectors/homeSelector';
 
 const SearchScreen = props => {
   const dispatch = useDispatch();
@@ -37,6 +45,16 @@ const SearchScreen = props => {
   const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoadMore, setIsLoadMore] = useState(false);
+
+  const stylesTemp = StyleSheet.create({
+    wrapper: {},
+    slide1: {
+      flex: 1,
+    },
+    slide2: {
+      flex: 1,
+    },
+  });
 
   React.useEffect(() => {
     setResultSearch(props.listProducts.Results);
@@ -133,6 +151,72 @@ const SearchScreen = props => {
     </Touch>
   );
 
+  const renderSummary = item => {
+    const profile = useSelector(state => getProfileSelector(state));
+    let weight;
+    let rmr = getRMR(profile.sex, profile.height, profile.weight, profile.age);
+    if (profile.weight) {
+      weight = profile.weight;
+    } else {
+      weight = profile.weight || 55;
+      rmr = 1319.6;
+    }
+    const firgual = toClosest(profile.BMR.goal.value, 100);
+    const totalPercent = ((item.Energy / firgual) * 100).toFixed(1);
+    const totalEnery = item.consume * item.quantity;
+
+    const light = Math.round(
+      getActivityDuration('Light', rmr, weight, totalEnery) * 60,
+    );
+    const medium = Math.round(
+      getActivityDuration('Medium', rmr, weight, totalEnery) * 60,
+    );
+
+    const vigorous = Math.round(
+      getActivityDuration('Vigorous', rmr, weight, totalEnery) * 60,
+    );
+
+    let percent = totalPercent;
+    if (totalPercent > 100) {
+      percent = 99.9;
+    }
+
+    const dataChart = [
+      {
+        percentage: percent,
+        color: '#00AAEA',
+      },
+      {
+        percentage: 100 - percent,
+        color: colors.GRAY,
+      },
+    ];
+
+    return (
+      <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
+        <View style={[{width: '50%'}]}>
+          <Text style={styles.itemMealTitle}>Meal Summary:</Text>
+          <Text style={styles.activityText}>Excercise equivalents:</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Image source={Images.light} style={styles.imagesContent} />
+            <Text style={styles.valueContent}>{light} mins</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Image source={Images.medium} style={styles.imagesContent} />
+            <Text style={styles.valueContent}>{medium} mins</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Image source={Images.vigorous} style={styles.imagesContent} />
+            <Text style={styles.valueContent}>{vigorous} mins</Text>
+          </View>
+        </View>
+        <View style={[styles.chartContainer, {width: '50%'}]}>
+          <Pie radius={60} sections={dataChart} />
+        </View>
+      </View>
+    );
+  };
+
   const ItemMealDetail = ({item}) => (
     <View style={styles.itemMealContainer}>
       <Touch style={styles.flexRowContainer} onPress={() => setIsDetail('')}>
@@ -167,53 +251,8 @@ const SearchScreen = props => {
           {item.percent}%
         </Text>
       </View>
-      <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
-      <View style={[styles.addToMealContainer]}>
-        <View
-          style={[
-            styles.flexRowContainer,
-            {width: '40%', alignItems: 'center'},
-          ]}>
-          <TextInput
-            value={item.quantity.toString()}
-            style={styles.input}
-            onChangeText={value => handleChange(value, item)}
-            keyboardType="numeric"
-            maxLength={4}
-          />
-          <Text style={styles.itemMealSubTitleSize}>of</Text>
-          <Text style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
-            1
-          </Text>
-        </View>
-        <Text style={styles.itemMealSubTitleSize}>=</Text>
-        <View
-          style={[
-            styles.flexRowContainer,
-            {width: '40%', alignItems: 'center'},
-          ]}>
-          <Text style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
-            {item.consume} kJ
-          </Text>
-          <Image
-            source={Images.check_meal}
-            resizeMode="contain"
-            style={{width: Responsive.h(18), height: Responsive.h(24)}}
-          />
-          <Touch onPress={() => addToMeal(item)}>
-            <Image
-              source={Images.add_meal}
-              resizeMode="contain"
-              style={{width: Responsive.h(40), height: Responsive.h(40)}}
-            />
-          </Touch>
-        </View>
-      </View>
-      <View style={[styles.flexRowContainer, {width: '50%'}]}>
-        <Text style={styles.itemMealSubTitleSize}>Quantity</Text>
-        <Text style={styles.itemMealSubTitleSize}>Servings(s)</Text>
-      </View>
-      <View
+
+      {/* <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
@@ -224,7 +263,60 @@ const SearchScreen = props => {
           resizeMode="contain"
           style={{width: Responsive.h(50), height: Responsive.h(10)}}
         />
-      </View>
+      </View> */}
+      <Swiper style={stylesTemp.wrapper} height={200}>
+        <View style={stylesTemp.slide1}>
+          <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
+          <View style={[styles.addToMealContainer]}>
+            <View
+              style={[
+                styles.flexRowContainer,
+                {width: '40%', alignItems: 'center'},
+              ]}>
+              <TextInput
+                value={item.quantity.toString()}
+                style={styles.input}
+                onChangeText={value => handleChange(value, item)}
+                keyboardType="numeric"
+                maxLength={4}
+              />
+              <Text style={styles.itemMealSubTitleSize}>of</Text>
+              <Text
+                style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
+                1
+              </Text>
+            </View>
+            <Text style={styles.itemMealSubTitleSize}>=</Text>
+            <View
+              style={[
+                styles.flexRowContainer,
+                {width: '40%', alignItems: 'center'},
+              ]}>
+              <Text
+                style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
+                {item.consume} kJ
+              </Text>
+              <Image
+                source={Images.check_meal}
+                resizeMode="contain"
+                style={{width: Responsive.h(18), height: Responsive.h(24)}}
+              />
+              <Touch onPress={() => addToMeal(item)}>
+                <Image
+                  source={Images.add_meal}
+                  resizeMode="contain"
+                  style={{width: Responsive.h(40), height: Responsive.h(40)}}
+                />
+              </Touch>
+            </View>
+          </View>
+          <View style={[styles.flexRowContainer, {width: '50%'}]}>
+            <Text style={styles.itemMealSubTitleSize}>Quantity</Text>
+            <Text style={styles.itemMealSubTitleSize}>Servings(s)</Text>
+          </View>
+        </View>
+        <View style={stylesTemp.slide2}>{renderSummary(item)}</View>
+      </Swiper>
     </View>
   );
 
