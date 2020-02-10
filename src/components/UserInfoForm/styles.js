@@ -55,7 +55,7 @@ export const pickerSelectStyles = StyleSheet.create({
     fontSize: Responsive.v(16),
     fontFamily: 'PTSans-Regular',
     paddingHorizontal: Responsive.h(8),
-    paddingVertical: Responsive.v(4),
+    paddingVertical: Responsive.v(8),
     borderWidth: 0.5,
     borderColor: 'gray',
     borderRadius: Responsive.v(8),

@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 import Responsive from '../../modules/utils/responsive';
-import { colors } from '../../modules/colors';
+import {colors} from '../../modules/colors';
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
@@ -15,20 +15,20 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: Responsive.v(4),
     color: 'black',
     paddingRight: Responsive.v(30), // to ensure the text is never behind the icon
-    backgroundColor: colors.GRAY_SHADE
+    backgroundColor: colors.GRAY_SHADE,
   },
   inputAndroid: {
     width: '100%',
     fontSize: Responsive.v(16),
     fontFamily: 'PTSans-Regular',
     paddingHorizontal: Responsive.h(8),
-    paddingVertical: Responsive.v(4),
+    paddingVertical: Responsive.v(8),
     borderWidth: 0.5,
     borderColor: 'gray',
     borderRadius: Responsive.v(8),
     color: 'black',
     paddingRight: Responsive.v(30), // to ensure the text is never behind the icon
-    backgroundColor: colors.GRAY_SHADE
+    backgroundColor: colors.GRAY_SHADE,
   },
   iconContainer: {
     top: 20,
