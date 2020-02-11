@@ -54,7 +54,7 @@ const User = (state = INITIAL_STATE, action) => {
     case 'ADD_TO_MEAL': {
       return {
         ...state,
-        listMealAdded: action.payload,
+        listMealAdded: [...state.listMealAdded, action.payload],
         quantityMeals: state.quantityMeals + 1,
       };
     }

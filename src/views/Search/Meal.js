@@ -71,9 +71,7 @@ const SearchScreen = props => {
   ];
 
   const handleRemoveItem = Id => {
-    const index = props.listMealAdded.findIndex(
-      item => (item.id === Id) !== Id,
-    );
+    const index = props.listMealAdded.findIndex(item => item.Id === Id);
 
     dispatch({type: 'REMOVE_FROM_MEAL', payload: index});
   };

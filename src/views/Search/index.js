@@ -38,7 +38,6 @@ const SearchScreen = props => {
   const prevParam = props.navigation.getParam('params');
   const [params, setParams] = useState(prevParam);
   const [isDetail, setIsDetail] = useState('');
-  const [listMeal, setListMeal] = useState([]);
   const [resultSearch, setResultSearch] = useState(props.listProducts.Results);
   const [prodTypeFilter, setProdTypeFilter] = useState(0);
   const [alphabeticalFilter, setAlphabeticalFilter] = useState('asc');
@@ -131,11 +130,7 @@ const SearchScreen = props => {
   };
 
   const addToMeal = item => {
-    const temp = listMeal;
-    temp.push(item);
-    setListMeal(temp);
-
-    dispatch({type: 'ADD_TO_MEAL', payload: temp});
+    dispatch({type: 'ADD_TO_MEAL', payload: item});
   };
 
   useEffect(() => {
@@ -202,7 +197,7 @@ const SearchScreen = props => {
 
     return (
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
-        <View style={[{width: '50%'}]}>
+        <View style={[{paddingHorizontal: Responsive.h(5)}]}>
           <Text style={styles.itemMealTitle}>Meal Summary:</Text>
           <Text style={styles.activityText}>Excercise equivalents:</Text>
           <View style={{flexDirection: 'row'}}>
