@@ -118,7 +118,6 @@ const SearchFormScreen = props => {
       if (res) {
         props.navigation.navigate('Search', {params});
         setState({loading: false});
-        dispatch({type: 'ADD_TO_MEAL', payload: []});
       }
     });
   };

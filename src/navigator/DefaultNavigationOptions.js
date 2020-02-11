@@ -37,7 +37,7 @@ export const HeaderRight = ({props, text}) => (
     height={Responsive.v(30)}
     text={text}
     onPress={() =>
-      text && text === 'Meal'
+      text && text.includes('Meal')
         ? props.navigation.navigate(NavigationRoutes.Meal)
         : props.navigation.navigate(NavigationRoutes.Profile)
     }

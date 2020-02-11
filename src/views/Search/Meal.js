@@ -37,6 +37,7 @@ const SearchScreen = props => {
     weight = profile.weight || 55;
     rmr = 1319.6;
   }
+  console.log(props.listMealAdded);
   const totalEnery = props.listMealAdded.reduce(function(sum, item) {
     return sum + item.consume;
   }, 0);
@@ -70,9 +71,11 @@ const SearchScreen = props => {
   ];
 
   const handleRemoveItem = Id => {
-    const temp = props.listMealAdded.filter(item => item.Id !== Id);
+    const index = props.listMealAdded.findIndex(
+      item => (item.id === Id) !== Id,
+    );
 
-    dispatch({type: 'ADD_TO_MEAL', payload: temp});
+    dispatch({type: 'REMOVE_FROM_MEAL', payload: index});
   };
 
   const ItemMeal = ({item}) => (
@@ -129,6 +132,7 @@ const SearchScreen = props => {
 
   const renderItem = ({item}) => <ItemMeal item={item} />;
 
+  console.log(props.listMealAdded);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topWrap} />

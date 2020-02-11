@@ -1,6 +1,6 @@
 import {connect, useDispatch, useSelector} from 'react-redux';
 import update from 'immutability-helper';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import Swiper from 'react-native-swiper';
 import {
@@ -55,6 +55,10 @@ const SearchScreen = props => {
       flex: 1,
     },
   });
+
+  React.useEffect(() => {
+    props.navigation.setParams({quantity: props.quantityMeals});
+  }, []);
 
   React.useEffect(() => {
     setResultSearch(props.listProducts.Results);
@@ -134,6 +138,10 @@ const SearchScreen = props => {
     dispatch({type: 'ADD_TO_MEAL', payload: temp});
   };
 
+  useEffect(() => {
+    props.navigation.setParams({quantity: props.quantityMeals});
+  }, [props.quantityMeals]);
+
   const ItemMeal = ({item}) => (
     <Touch
       style={styles.itemMealContainer}
@@ -183,11 +191,11 @@ const SearchScreen = props => {
 
     const dataChart = [
       {
-        percentage: percent,
+        percentage: percent.toString(),
         color: '#00AAEA',
       },
       {
-        percentage: 100 - percent,
+        percentage: (100 - percent).toString(),
         color: colors.GRAY,
       },
     ];
@@ -390,6 +398,7 @@ const mapStateToProps = state => ({
   listProducts: state.SearchReducer.listProducts,
   figure: state.SearchReducer.figure,
   listMealAdded: state.SearchReducer.listMealAdded,
+  quantityMeals: state.SearchReducer.quantityMeals,
   ...state,
 });
 

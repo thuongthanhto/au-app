@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   listProducts: {},
   listMealAdded: [],
   figure: 8700,
+  quantityMeals: 0,
 };
 
 const formatResult = (listResult, figure) =>
@@ -54,6 +55,18 @@ const User = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         listMealAdded: action.payload,
+        quantityMeals: state.quantityMeals + 1,
+      };
+    }
+    case 'REMOVE_FROM_MEAL': {
+      return {
+        ...state,
+
+        listMealAdded: [
+          ...state.listMealAdded.slice(0, action.payload),
+          ...state.listMealAdded.slice(action.payload + 1),
+        ],
+        quantityMeals: state.listMealAdded.length - 1,
       };
     }
 

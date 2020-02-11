@@ -17,7 +17,13 @@ const SearchStack = createStackNavigator(
     [NavigationRoutes.Search]: {
       screen: SearchScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Back', 'Meal', 'kL in Food', true),
+        ...MainNavigationHeader(
+          props,
+          'Back',
+          `Meal (${props.navigation.getParam('quantity')})`,
+          'kL in Food',
+          true,
+        ),
       }),
     },
     [NavigationRoutes.Meal]: {
