@@ -21,7 +21,7 @@ const SearchStack = createStackNavigator(
           props,
           'Back',
           `Meal (${props.navigation.getParam('quantity')})`,
-          'kL in Food',
+          'kJ in Food',
           true,
         ),
       }),

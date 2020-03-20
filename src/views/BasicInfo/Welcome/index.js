@@ -17,7 +17,7 @@ const WelcomeScreen = ({navigation}) => {
           <Text style={styles.textPragraph}>
             We all need different amounts of energy for our bodies and physical
             activity. To make this app specific to you, we need to grab some
-            details. If this is ok...
+            details.
           </Text>
 
           <View style={styles.imageWrap}>
@@ -29,7 +29,7 @@ const WelcomeScreen = ({navigation}) => {
         <Button
           width="100%"
           height={Responsive.h(45)}
-          text="Let's get start"
+          text="Let's get started"
           rightIcon={
             <Image source={Images.arrow_right} style={styles.largerArrowIcon} />
           }

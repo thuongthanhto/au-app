@@ -131,7 +131,7 @@ const SearchFormScreen = props => {
         <View style={{marginTop: 15, marginBottom: 15}}>
           <TextInput
             value={state.searchTerm}
-            placeholder="Enter a product name or Kj number"
+            placeholder="Enter a product name or kJ number"
             style={styles.input}
             onChangeText={text => setState({searchTerm: text})}
           />

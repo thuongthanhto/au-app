@@ -47,9 +47,9 @@ const WeightGoal = props => {
         'Maintain current weight' if you think you are 'about right'.
       </Text>
       <Text style={styles.tooltipPragraph}>
-        'Reduce by 0.5 kg/week' if you want to reduce weight. This is a healthy,
-        reasonable target that people find they can stick with and achieve. Not
-        suitable for children, though.
+        'Reduce by 0.5 kg/week' if you want to maintain weight. This is a
+        healthy, reasonable target that people find they can stick with and
+        achieve. Not suitable for children, though.
       </Text>
     </View>
   );

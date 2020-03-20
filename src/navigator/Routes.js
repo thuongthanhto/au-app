@@ -12,6 +12,7 @@ export const NavigationRoutes = {
   More: 'More',
   Converter: 'Converter',
   LegalStuff: 'LegalStuff',
+  LegalStuffMore: 'LegalStuffMore',
   YourIdealFigure: 'YourIdealFigure',
   WeightGoal: 'WeightGoal',
   WhichOutlets: 'WhichOutlets',

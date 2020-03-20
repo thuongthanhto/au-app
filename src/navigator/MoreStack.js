@@ -8,6 +8,7 @@ import KilojoulesAndKidsScreen from '../views/More/KilojoulesAndKids';
 import AboutTheCampaignScreen from '../views/More/AboutTheCampaign';
 import WhichOutletsScreen from '../views/More/WhichOutlets';
 import ProfileScreen from '../views/More/Profile';
+import LegalStuffMore from '../views/More/LegalStuffMore';
 
 const MoreStack = createStackNavigator(
   {
@@ -26,25 +27,43 @@ const MoreStack = createStackNavigator(
     [NavigationRoutes.AboutkJs]: {
       screen: AboutkJsScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, 'More', true),
+        ...MainNavigationHeader(props, 'Done', null, 'About kJs', true),
       }),
     },
     [NavigationRoutes.KilojoulesAndKids]: {
       screen: KilojoulesAndKidsScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, 'More', true),
+        ...MainNavigationHeader(
+          props,
+          'Done',
+          null,
+          'Kilojoules and kids',
+          true,
+        ),
       }),
     },
     [NavigationRoutes.AboutTheCampaign]: {
       screen: AboutTheCampaignScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, 'More', true),
+        ...MainNavigationHeader(
+          props,
+          'Done',
+          null,
+          'About the campaign',
+          true,
+        ),
       }),
     },
     [NavigationRoutes.WhichOutlets]: {
       screen: WhichOutletsScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, 'More', true),
+        ...MainNavigationHeader(props, 'Done', null, 'Which outlets?', true),
+      }),
+    },
+    [NavigationRoutes.LegalStuffMore]: {
+      screen: LegalStuffMore,
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Done', null, 'Legal Stuff', true),
       }),
     },
   },

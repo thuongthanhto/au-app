@@ -115,11 +115,6 @@ const IdealFigureScreen = ({navigation}) => {
               with a little effort you can make the changes you want.
             </Text>
 
-            <Text style={styles.textPragraph}>
-              The good news is: small changes can make a big difference. And
-              with a little effort you can make the changes you want.
-            </Text>
-
             <HyperLink
               linkStyle={{color: '#2980b9'}}
               linkDefault

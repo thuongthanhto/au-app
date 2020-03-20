@@ -25,14 +25,14 @@ const BurnkJScreen = () => {
   const handleChangeActivity = value => {
     setActivity(value);
     const energyUse = calculateBurn(value, duration, profile);
-    const resultText = `You'd burn ${energyUse}  kJ from "${activity}" for ${duration}`;
+    const resultText = `You'd burn ${energyUse} kJ from "${value}" for ${duration}`;
     setState({resultText, energyUseText: `${energyUse} kJ`, energyUse});
   };
 
   const handleChangeDuration = value => {
     setDuration(value);
     const energyUse = calculateBurn(activity, value, profile);
-    const resultText = `You'd burn ${energyUse}  kJ from "${activity}" for ${duration}`;
+    const resultText = `You'd burn ${energyUse} kJ from "${activity}" for ${value}`;
     setState({resultText, energyUseText: `${energyUse} kJ`, energyUse});
   };
 

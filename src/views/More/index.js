@@ -44,7 +44,7 @@ const MoreScreen = props => {
         <Button
           width="100%"
           height={Responsive.h(50)}
-          text="Kilojoules and Kids"
+          text="Kilojoules and kids"
           styleGradient={{marginBottom: Responsive.v(16)}}
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
@@ -81,7 +81,7 @@ const MoreScreen = props => {
         <Button
           width="100%"
           height={Responsive.h(50)}
-          text="About the campain"
+          text="About the campaign"
           styleGradient={{marginBottom: Responsive.v(16)}}
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
@@ -99,7 +99,9 @@ const MoreScreen = props => {
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
           }
-          onPress={() => props.navigation.navigate(NavigationRoutes.LegalStuff)}
+          onPress={() =>
+            props.navigation.navigate(NavigationRoutes.LegalStuffMore)
+          }
           textStyle={{fontSize: Responsive.h(20)}}
         />
       </ScrollView>

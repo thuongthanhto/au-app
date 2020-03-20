@@ -35,16 +35,13 @@ const KilojoulesAndKids = () => {
             If you're concerned about their weight, consult a qualified health
             professional.
           </Text>
-          <Text style={stylesBasicInfo.textPragraph}>
-            For more information about explaining kJs to kids and fun activities
-            to get kids moving:
-          </Text>
           <HyperLink
             linkStyle={{color: '#2980b9'}}
             linkDefault
             linkText="8700.com.au/kids">
             <Text style={stylesBasicInfo.textPragraph}>
-              Go to
+              For more information about explaining kJs to kids and fun
+              activities to get kids moving: go to
               https://www.8700.com.au/kjs-and-kids/how-many-kjs-do-kids-need
             </Text>
           </HyperLink>
