@@ -31,6 +31,13 @@ const styles = StyleSheet.create({
     paddingBottom: Responsive.h(16),
     color: colors.RED,
   },
+  noResultText: {
+    fontFamily: 'PTSans-Bold',
+    color: colors.BLACK,
+    fontSize: Responsive.h(20),
+    paddingHorizontal: Responsive.h(10),
+    paddingVertical: Responsive.h(30),
+  },
   itemMealContainer: {
     padding: Responsive.h(16),
     width: '100%',

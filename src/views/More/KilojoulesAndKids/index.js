@@ -1,7 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, ScrollView, Text} from 'react-native';
-import HyperLink from 'react-native-hyperlink';
-
+import {SafeAreaView, View, ScrollView, Text, Linking} from 'react-native';
 import stylesBasicInfo from '../../BasicInfo/styles';
 import styles from '../AboutkJs/styles';
 
@@ -35,16 +33,19 @@ const KilojoulesAndKids = () => {
             If you're concerned about their weight, consult a qualified health
             professional.
           </Text>
-          <HyperLink
-            linkStyle={{color: '#2980b9'}}
-            linkDefault
-            linkText="8700.com.au/kids">
-            <Text style={stylesBasicInfo.textPragraph}>
-              For more information about explaining kJs to kids and fun
-              activities to get kids moving: go to
-              https://www.8700.com.au/kjs-and-kids/how-many-kjs-do-kids-need
+          <Text
+            style={stylesBasicInfo.textPragraph}
+            onPress={() =>
+              Linking.openURL(
+                'https://www.8700.com.au/kjs-and-kids/how-many-kjs-do-kids-need',
+              )
+            }>
+            For more information about explaining kJs to kids and fun activities
+            to get kids moving: go to{' '}
+            <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
+              8700.com.au/kids
             </Text>
-          </HyperLink>
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>

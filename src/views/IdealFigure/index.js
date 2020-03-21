@@ -6,8 +6,8 @@ import {
   ScrollView,
   Image,
   TouchableOpacity as Touch,
+  Linking,
 } from 'react-native';
-import HyperLink from 'react-native-hyperlink';
 import {useSelector} from 'react-redux';
 
 import styles from '../BasicInfo/styles';
@@ -115,18 +115,23 @@ const IdealFigureScreen = ({navigation}) => {
               with a little effort you can make the changes you want.
             </Text>
 
-            <HyperLink
-              linkStyle={{color: '#2980b9'}}
-              linkDefault
-              linkText="accredited practising dietician">
+            <Text
+              style={styles.textPragraph}
+              onPress={() =>
+                Linking.openURL(
+                  'https://daa.asn.au/maintaining-professional-standards/register-of-apds/',
+                )
+              }>
+              If you would like more information about healthy weight or you're
+              concerned you may be under or over weight, consult your doctor or{' '}
+              <Text style={[styles.textPragraph, {color: '#00AAEA'}]}>
+                accredited practising dietician
+              </Text>
               <Text style={styles.textPragraph}>
-                If you would like more information about healthy weight or
-                you're concerned you may be under or over weight, consult your
-                doctor or
-                https://daa.asn.au/maintaining-professional-standards/register-of-apds/
+                {' '}
                 to get the right advice for you.
               </Text>
-            </HyperLink>
+            </Text>
           </View>
         </View>
       </ScrollView>

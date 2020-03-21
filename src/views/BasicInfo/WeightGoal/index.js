@@ -7,10 +7,10 @@ import {
   Text,
   Image,
   TouchableOpacity as Touch,
+  Linking,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import {useSelector, useDispatch} from 'react-redux';
-import HyperLink from 'react-native-hyperlink';
 import styles from '../styles';
 import pickerSelectStyles from '../pickerSelectStyles';
 import Button from '../../../components/Button';
@@ -107,15 +107,18 @@ const WeightGoal = props => {
               )}
             </View>
             <View style={styles.linkWrap}>
-              <HyperLink
-                linkStyle={{color: '#2980b9'}}
-                linkDefault
-                linkText="Healthy Weight BMI tool">
-                <Text style={styles.textPragraphLink}>
-                  To check your weight status, go to the
-                  https://www.gethealthynsw.com.au/healthier-you/tools-and-calculators/bmi-calculator/
+              <Text
+                style={styles.textPragraphLink}
+                onPress={() =>
+                  Linking.openURL(
+                    'https://www.gethealthynsw.com.au/healthier-you/tools-and-calculators/bmi-calculator/',
+                  )
+                }>
+                To check your weight status, go to the{' '}
+                <Text style={[styles.textPragraphLink, {color: '#00AAEA'}]}>
+                  Healthy Weight BMI tool
                 </Text>
-              </HyperLink>
+              </Text>
             </View>
           </View>
         </View>

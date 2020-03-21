@@ -46,9 +46,13 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSans-Regular',
     fontSize: Responsive.h(16),
   },
+  contentOutlet: {
+    fontFamily: 'PTSans-Regular',
+    fontSize: Responsive.h(16),
+    paddingRight: Responsive.h(15),
+  },
   flexRow: {
     flexDirection: 'row',
-    alignItems: 'center',
   },
   paddingLine: {
     paddingTop: Responsive.v(15),

@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
-import Hyperlink from 'react-native-hyperlink';
+import {View, Text, Image, Linking} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Layout from '../../../layouts';
 import styles from '../styles';
@@ -36,15 +35,16 @@ const LegalStuffScreen = ({navigation}) => {
             appropriate medical or nutrition advice, nor can it be relied upon
             as medical, nutrition or legal advice.
           </Text>
-          <Hyperlink
-            linkDefault
-            linkStyle={{color: '#2980b9'}}
-            linkText="8700.com.au/termsofuse">
-            <Text style={styles.textPragraph}>
-              Please review our full Terms of Use at
-              https://www.8700.com.au/disclaimer
+          <Text
+            style={styles.textPragraph}
+            onPress={() =>
+              Linking.openURL('https://www.8700.com.au/disclaimer')
+            }>
+            Please review our full Terms of Use at{' '}
+            <Text style={[styles.textPragraph, {color: '#00AAEA'}]}>
+              8700.com.au/termsofuse
             </Text>
-          </Hyperlink>
+          </Text>
         </View>
       </View>
       <FooterActions>

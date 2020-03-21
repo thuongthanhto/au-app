@@ -26,7 +26,6 @@
     "react-native-dotenv": "^0.2.0",
     "react-native-easy-toast": "^1.2.0",
     "react-native-gesture-handler": "^1.4.1",
-    "react-native-hyperlink": "^0.0.18",
     "react-native-indicators": "^0.13.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-linear-gradient": "^2.5.6",

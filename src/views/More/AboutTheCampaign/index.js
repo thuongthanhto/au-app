@@ -1,7 +1,12 @@
 import React from 'react';
-import {SafeAreaView, View, ScrollView, Text, Image} from 'react-native';
-import HyperLink from 'react-native-hyperlink';
-
+import {
+  SafeAreaView,
+  View,
+  ScrollView,
+  Text,
+  Image,
+  Linking,
+} from 'react-native';
 import stylesBasicInfo from '../../BasicInfo/styles';
 import styles from '../AboutkJs/styles';
 import {Images} from '../../../assets/images';
@@ -28,15 +33,15 @@ const AboutTheCampaign = () => {
             <Image source={Images.nswfa_logo} style={styles.image} />
           </View>
 
-          <HyperLink
-            linkStyle={{color: '#2980b9'}}
-            linkDefault
-            linkText="www.8700.com.au">
-            <Text style={stylesBasicInfo.textPragraph}>
-              Go to https://www.8700.com.au/
+          <Text
+            style={stylesBasicInfo.textPragraph}
+            onPress={() => Linking.openURL('https://www.8700.com.au/')}>
+            Go to{' '}
+            <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
+              www.8700.com.au
             </Text>
-          </HyperLink>
-          <View style={{marginBottom: Responsive.v(200)}} />
+          </Text>
+          <View style={{marginBottom: Responsive.v(100)}} />
         </View>
       </ScrollView>
     </SafeAreaView>

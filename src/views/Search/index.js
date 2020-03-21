@@ -333,6 +333,7 @@ const SearchScreen = props => {
   const renderFooter = () =>
     isLoadMore ? <ActivityIndicator style={{color: colors.BLACK}} /> : null;
 
+  console.log(resultSearch);
   return (
     <SafeAreaView style={styles.container}>
       <CircleLoading isVisible={loading} />
@@ -367,21 +368,29 @@ const SearchScreen = props => {
         />
       </View>
       <View style={styles.body}>
-        <FlatList
-          data={resultSearch}
-          renderItem={renderItem}
-          keyExtractor={item => `${item.Id}`}
-          extraData={isDetail}
-          refreshControl={
-            <RefreshControl
-              refreshing={isRefreshing}
-              onRefresh={handleRefresh}
-            />
-          }
-          ListFooterComponent={renderFooter}
-          onEndReachedThreshold={0}
-          onEndReached={handleLoadMore}
-        />
+        {resultSearch.length > 0 && (
+          <FlatList
+            data={resultSearch}
+            renderItem={renderItem}
+            keyExtractor={item => `${item.Id}`}
+            extraData={isDetail}
+            refreshControl={
+              <RefreshControl
+                refreshing={isRefreshing}
+                onRefresh={handleRefresh}
+              />
+            }
+            ListFooterComponent={renderFooter}
+            onEndReachedThreshold={0}
+            onEndReached={handleLoadMore}
+          />
+        )}
+        {resultSearch.length === 0 && (
+          <Text style={styles.noResultText}>
+            No results found. Check your spelling or try to filtering by product
+            type.
+          </Text>
+        )}
       </View>
     </SafeAreaView>
   );

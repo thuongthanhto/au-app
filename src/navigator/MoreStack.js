@@ -27,7 +27,7 @@ const MoreStack = createStackNavigator(
     [NavigationRoutes.AboutkJs]: {
       screen: AboutkJsScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, 'About kJs', true),
+        ...MainNavigationHeader(props, 'Back', null, 'About kJs', true),
       }),
     },
     [NavigationRoutes.KilojoulesAndKids]: {
@@ -35,7 +35,7 @@ const MoreStack = createStackNavigator(
       navigationOptions: props => ({
         ...MainNavigationHeader(
           props,
-          'Done',
+          'Back',
           null,
           'Kilojoules and kids',
           true,
@@ -47,7 +47,7 @@ const MoreStack = createStackNavigator(
       navigationOptions: props => ({
         ...MainNavigationHeader(
           props,
-          'Done',
+          'Back',
           null,
           'About the campaign',
           true,
@@ -57,13 +57,13 @@ const MoreStack = createStackNavigator(
     [NavigationRoutes.WhichOutlets]: {
       screen: WhichOutletsScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, 'Which outlets?', true),
+        ...MainNavigationHeader(props, 'Back', null, 'Which outlets?', true),
       }),
     },
     [NavigationRoutes.LegalStuffMore]: {
       screen: LegalStuffMore,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Done', null, 'Legal Stuff', true),
+        ...MainNavigationHeader(props, 'Back', null, 'Legal Stuff', true),
       }),
     },
   },
