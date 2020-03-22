@@ -1,6 +1,6 @@
 import {connect, useDispatch, useSelector} from 'react-redux';
 import update from 'immutability-helper';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import Swiper from 'react-native-swiper';
 import {
@@ -44,6 +44,7 @@ const SearchScreen = props => {
   const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoadMore, setIsLoadMore] = useState(false);
+  const inputRef = useRef(null);
 
   const stylesTemp = StyleSheet.create({
     wrapper: {},
@@ -85,7 +86,12 @@ const SearchScreen = props => {
         },
       }),
     );
+    inputRef.current.focus();
   };
+
+  React.useEffect(() => {
+    console.log('go here');
+  }, [JSON.stringify(resultSearch)]);
 
   const handleGetProducts = async newParams => {
     setLoading(true);
@@ -269,7 +275,7 @@ const SearchScreen = props => {
       </View> */}
       <Swiper style={stylesTemp.wrapper} height={200}>
         <View style={stylesTemp.slide1}>
-          <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
+          {/* <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text> */}
           <View style={[styles.addToMealContainer]}>
             <View
               style={[
@@ -282,6 +288,7 @@ const SearchScreen = props => {
                 onChangeText={value => handleChange(value, item)}
                 keyboardType="numeric"
                 maxLength={4}
+                ref={inputRef}
               />
               <Text style={styles.itemMealSubTitleSize}>of</Text>
               <Text
