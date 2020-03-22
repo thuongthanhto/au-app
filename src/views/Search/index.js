@@ -15,8 +15,9 @@ import {
   RefreshControl,
   ActivityIndicator,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
-
+import _debounce from 'lodash/debounce';
 import Pie from './Pie';
 import styles from './styles';
 import {Images} from '../../assets/images';
@@ -70,7 +71,12 @@ const SearchScreen = props => {
       label: item.Name,
     }));
 
+  const bounced = _debounce(() => {
+    inputRef.current.focus();
+  }, 300);
+
   const handleChange = (value, meal) => {
+    console.log(inputRef);
     const indexMealUpdate = resultSearch.findIndex(item => item.Id === meal.Id);
     setResultSearch(
       update(resultSearch, {
@@ -86,7 +92,7 @@ const SearchScreen = props => {
         },
       }),
     );
-    inputRef.current.focus();
+    bounced();
   };
 
   React.useEffect(() => {
@@ -171,7 +177,7 @@ const SearchScreen = props => {
       rmr = 1319.6;
     }
     const firgual = toClosest(profile.BMR.goal.value, 100);
-    const totalPercent = ((item.Energy / firgual) * 100).toFixed(1);
+    const totalPercent = ((item.consume / firgual) * 100).toFixed(1);
     const totalEnery = item.consume * item.quantity;
 
     const light = Math.round(
@@ -192,11 +198,11 @@ const SearchScreen = props => {
 
     const dataChart = [
       {
-        percentage: percent.toString(),
+        percentage: parseFloat(percent),
         color: '#00AAEA',
       },
       {
-        percentage: (100 - percent).toString(),
+        percentage: parseFloat(100 - percent),
         color: colors.GRAY,
       },
     ];
@@ -246,14 +252,14 @@ const SearchScreen = props => {
       </Text>
       <Text style={styles.itemMealSubTitleSize}>
         Eating
-        <Text style={styles.itemMealSubTitle}> {item.Serves} </Text>of
+        <Text style={styles.itemMealSubTitle}> {item.quantity} </Text>of
         <Text style={styles.itemMealSubTitle}> {item.Serves} </Text>
         serving =<Text style={styles.itemMealSubTitle}> {item.Energy} </Text>
         kJ in your portion size
       </Text>
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
         <Text style={[styles.itemMealTitle, {width: '75%'}]} numberOfLines={1}>
-          {item.Energy} kJ
+          {item.consume} kJ
         </Text>
         <Text
           style={[styles.itemMealTitle, {width: '25%', textAlign: 'right'}]}>
@@ -293,7 +299,7 @@ const SearchScreen = props => {
               <Text style={styles.itemMealSubTitleSize}>of</Text>
               <Text
                 style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
-                1
+                {item.Serves}
               </Text>
             </View>
             <Text style={styles.itemMealSubTitleSize}>=</Text>
@@ -343,7 +349,7 @@ const SearchScreen = props => {
   console.log(resultSearch);
   return (
     <SafeAreaView style={styles.container}>
-      <CircleLoading isVisible={loading} />
+      {/* <CircleLoading isVisible={loading} /> */}
       <View style={styles.topWrap} />
       <View style={styles.filterContainer}>
         <RNPickerSelect
@@ -375,29 +381,31 @@ const SearchScreen = props => {
         />
       </View>
       <View style={styles.body}>
-        {resultSearch.length > 0 && (
-          <FlatList
-            data={resultSearch}
-            renderItem={renderItem}
-            keyExtractor={item => `${item.Id}`}
-            extraData={isDetail}
-            refreshControl={
-              <RefreshControl
-                refreshing={isRefreshing}
-                onRefresh={handleRefresh}
-              />
-            }
-            ListFooterComponent={renderFooter}
-            onEndReachedThreshold={0}
-            onEndReached={handleLoadMore}
-          />
-        )}
-        {resultSearch.length === 0 && (
-          <Text style={styles.noResultText}>
-            No results found. Check your spelling or try to filtering by product
-            type.
-          </Text>
-        )}
+        <ScrollView>
+          {resultSearch.length > 0 && (
+            <FlatList
+              data={resultSearch}
+              renderItem={renderItem}
+              keyExtractor={item => `${item.Id}`}
+              extraData={isDetail}
+              refreshControl={
+                <RefreshControl
+                  refreshing={isRefreshing}
+                  onRefresh={handleRefresh}
+                />
+              }
+              ListFooterComponent={renderFooter}
+              onEndReachedThreshold={0}
+              onEndReached={handleLoadMore}
+            />
+          )}
+          {resultSearch.length === 0 && (
+            <Text style={styles.noResultText}>
+              No results found. Check your spelling or try to filtering by
+              product type.
+            </Text>
+          )}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
