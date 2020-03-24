@@ -25,7 +25,6 @@ import {Images} from '../../assets/images';
 import stylesBasicInfo from '../BasicInfo/styles';
 import Responsive from '../../modules/utils/responsive';
 import pickerSelectStyles from '../BasicInfo/pickerSelectStyles';
-import CircleLoading from '../../components/Presentations/CircleLoading';
 import {getProductsRequest} from '../../actions/Search';
 import {
   toClosest,
@@ -300,7 +299,7 @@ const SearchScreen = props => {
           style={{width: Responsive.h(50), height: Responsive.h(10)}}
         />
       </View> */}
-      <Swiper style={stylesTemp.wrapper} height={200}>
+      <Swiper style={stylesTemp.wrapper} height={200} loop={false}>
         <View style={stylesTemp.slide1}>
           <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
           <View style={[styles.addToMealContainer]}>
