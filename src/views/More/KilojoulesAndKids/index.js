@@ -23,12 +23,22 @@ const KilojoulesAndKids = () => {
             of weight-for-age and weight-for-height and they can consider a
             child's growth patterns.
           </Text>
-          <Text style={stylesBasicInfo.textPragraph}>
-            Our Ideal figure calculator uses special equations to suggest an
-            ideal figure to maintain weight in children younger than 10 years
-            and for teens. There is no option to make weight loss a goal if the
-            profile age is less than 18 years.
+          <Text
+            style={stylesBasicInfo.textPragraph}
+            onPress={() =>
+              Linking.openURL(
+                'https://www.8700.com.au/kj-explained/your-ideal-figure/',
+              )
+            }>
+            Our{' '}
+            <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
+              Ideal Figure Calculator
+            </Text>{' '}
+            uses special equations to suggest an ideal figure to maintain weight
+            in children younger than 10 years and for teens. There is no option
+            to make weight loss a goal if the profile age is less than 18 years.
           </Text>
+          <Text style={stylesBasicInfo.textPragraph} />
           <Text style={stylesBasicInfo.textPragraph}>
             If you're concerned about their weight, consult a qualified health
             professional.
@@ -40,8 +50,8 @@ const KilojoulesAndKids = () => {
                 'https://www.8700.com.au/kjs-and-kids/how-many-kjs-do-kids-need',
               )
             }>
-            For more information about explaining kJs to kids and fun activities
-            to get kids moving: go to{' '}
+            For more information about explaining kJs to kind and fun activities
+            to get kids moving, go to:{' '}
             <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
               8700.com.au/kids
             </Text>

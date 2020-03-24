@@ -46,7 +46,7 @@ const ConverterScreen = () => {
         <Text style={styles.description}>
           Enter a number in Calories or Kilojoules to see the equivalent value
         </Text>
-        <Text style={styles.description}>1 Calories = 4.184 kilojoules</Text>
+        <Text style={styles.description}>1 calorie = 4.184 kilojoules</Text>
       </View>
     </SafeAreaView>
   );

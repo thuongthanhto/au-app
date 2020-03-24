@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 import React, {useState, useEffect, useRef} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import Swiper from 'react-native-swiper';
+import Toast from 'react-native-root-toast';
 import {
   View,
   SafeAreaView,
@@ -143,6 +144,26 @@ const SearchScreen = props => {
 
   const addToMeal = item => {
     dispatch({type: 'ADD_TO_MEAL', payload: item});
+    const toast = Toast.show('Added to meal', {
+      duration: Toast.durations.SHORT,
+      position: Toast.positions.CENTER,
+      shadow: true,
+      animation: true,
+      hideOnPress: true,
+      delay: 0,
+      onShow: () => {
+        // calls on toast\`s appear animation start
+      },
+      onShown: () => {
+        // calls on toast\`s appear animation end.
+      },
+      onHide: () => {
+        // calls on toast\`s hide animation start.
+      },
+      onHidden: () => {
+        // calls on toast\`s hide animation end.
+      },
+    });
   };
 
   useEffect(() => {
@@ -258,12 +279,12 @@ const SearchScreen = props => {
         kJ in your portion size
       </Text>
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
-        <Text style={[styles.itemMealTitle, {width: '75%'}]} numberOfLines={1}>
+        <Text style={[styles.itemMealTitle, {width: '50%'}]} numberOfLines={1}>
           {item.consume} kJ
         </Text>
         <Text
-          style={[styles.itemMealTitle, {width: '25%', textAlign: 'right'}]}>
-          {item.percent}%
+          style={[styles.itemMealTitle, {width: '50%', textAlign: 'right'}]}>
+          {item.percent}% daily kJ
         </Text>
       </View>
 
@@ -281,7 +302,7 @@ const SearchScreen = props => {
       </View> */}
       <Swiper style={stylesTemp.wrapper} height={200}>
         <View style={stylesTemp.slide1}>
-          {/* <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text> */}
+          <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
           <View style={[styles.addToMealContainer]}>
             <View
               style={[
@@ -401,8 +422,8 @@ const SearchScreen = props => {
           )}
           {resultSearch.length === 0 && (
             <Text style={styles.noResultText}>
-              No results found. Check your spelling or try to filtering by
-              product type.
+              No results found. Check your spelling or try filtering by product
+              type.
             </Text>
           )}
         </ScrollView>
