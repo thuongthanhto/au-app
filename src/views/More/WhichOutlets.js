@@ -39,7 +39,7 @@ const WhichOutletsScreen = () => {
       <View style={styles.topWrap} />
       <ScrollView>
         <View style={styles.bodyWhichOutlets}>
-          <Text style={styles.title}>Which Outlets?</Text>
+          <Text style={styles.title}>Which outlets?</Text>
           <Text style={styles.content}>
             {
               "The NSW laws apply to larger 'fast' and snack food chains and supermarkets selling selected ready-to-eat foods. \n'Fast' food chains - You will find menu items from larger 'fast' food chains in our database if the chain has:"

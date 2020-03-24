@@ -9,7 +9,7 @@ const KilojoulesAndKids = () => {
       <View style={stylesBasicInfo.topWrap} />
       <ScrollView>
         <View style={stylesBasicInfo.mainBody}>
-          <Text style={styles.title}>Kilojoules and Kids</Text>
+          <Text style={styles.title}>Kilojoules and kids</Text>
           <Text style={stylesBasicInfo.textPragraph}>
             Eating a healthy, balanced diet and being physically active are
             particularly important for kids. Bodies are still growing and

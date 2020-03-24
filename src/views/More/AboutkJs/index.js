@@ -9,7 +9,7 @@ const AboutkJs = () => {
       <View style={stylesBasicInfo.topWrap} />
       <ScrollView>
         <View style={stylesBasicInfo.mainBody}>
-          <Text style={styles.title}>About kJs</Text>
+          <Text style={styles.title}>About kilojoules</Text>
           <Text style={stylesBasicInfo.textPragraph}>
             kJ (kilojoules) is the Australian measure of how much energy people
             get from consuming a food or drink.
