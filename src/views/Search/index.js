@@ -11,14 +11,13 @@ import {
   FlatList,
   TouchableOpacity as Touch,
   Image,
-  TextInput,
   Platform,
   RefreshControl,
   ActivityIndicator,
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import _debounce from 'lodash/debounce';
+import NumericInput from 'react-native-numeric-input';
 import Pie from './Pie';
 import styles from './styles';
 import {Images} from '../../assets/images';
@@ -45,7 +44,6 @@ const SearchScreen = props => {
   const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoadMore, setIsLoadMore] = useState(false);
-  const inputRef = useRef(null);
 
   const stylesTemp = StyleSheet.create({
     wrapper: {},
@@ -71,12 +69,7 @@ const SearchScreen = props => {
       label: item.Name,
     }));
 
-  const bounced = _debounce(() => {
-    inputRef.current.focus();
-  }, 300);
-
   const handleChange = (value, meal) => {
-    console.log(inputRef);
     const indexMealUpdate = resultSearch.findIndex(item => item.Id === meal.Id);
     setResultSearch(
       update(resultSearch, {
@@ -92,7 +85,6 @@ const SearchScreen = props => {
         },
       }),
     );
-    bounced();
   };
 
   React.useEffect(() => {
@@ -306,19 +298,28 @@ const SearchScreen = props => {
             <View
               style={[
                 styles.flexRowContainer,
-                {width: '40%', alignItems: 'center'},
+                {width: '45%', alignItems: 'center'},
               ]}>
-              <TextInput
+              <NumericInput
+                type="plus-minus"
+                minValue={1}
+                initValue={item.quantity}
+                onChange={value => handleChange(value, item)}
+              />
+              {/* <TextInput
                 value={item.quantity.toString()}
                 style={styles.input}
                 onChangeText={value => handleChange(value, item)}
                 keyboardType="numeric"
                 maxLength={4}
                 ref={inputRef}
-              />
+              /> */}
               <Text style={styles.itemMealSubTitleSize}>of</Text>
               <Text
-                style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
+                style={[
+                  styles.itemMealSubTitle,
+                  {fontSize: Responsive.h(18), paddingRight: Responsive.h(5)},
+                ]}>
                 {item.Serves}
               </Text>
             </View>
@@ -326,7 +327,7 @@ const SearchScreen = props => {
             <View
               style={[
                 styles.flexRowContainer,
-                {width: '40%', alignItems: 'center'},
+                {width: '35%', alignItems: 'center'},
               ]}>
               <Text
                 style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>

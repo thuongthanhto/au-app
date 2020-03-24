@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSans-Regular',
     fontSize: Responsive.h(14),
     paddingTop: Responsive.h(5),
+    paddingHorizontal: Responsive.h(5),
   },
   chartContainer: {
     flex: 1,
