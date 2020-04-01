@@ -17,6 +17,7 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 import NumericInput from 'react-native-numeric-input';
 import Pie from './Pie';
 import styles from './styles';
@@ -279,26 +280,13 @@ const SearchScreen = props => {
         </Text>
       </View>
 
-      {/* <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingTop: Responsive.h(20),
-        }}>
-        <Image
-          source={Images.three_dots}
-          resizeMode="contain"
-          style={{width: Responsive.h(50), height: Responsive.h(10)}}
-        />
-      </View> */}
       <Swiper style={stylesTemp.wrapper} height={200} loop={false}>
         <View style={stylesTemp.slide1}>
-          <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
           <View style={[styles.addToMealContainer]}>
             <View
               style={[
                 styles.flexRowContainer,
-                {width: '45%', alignItems: 'center'},
+                {width: '50%', alignItems: 'center'},
               ]}>
               <NumericInput
                 type="plus-minus"
@@ -306,14 +294,6 @@ const SearchScreen = props => {
                 initValue={item.quantity}
                 onChange={value => handleChange(value, item)}
               />
-              {/* <TextInput
-                value={item.quantity.toString()}
-                style={styles.input}
-                onChangeText={value => handleChange(value, item)}
-                keyboardType="numeric"
-                maxLength={4}
-                ref={inputRef}
-              /> */}
               <Text style={styles.itemMealSubTitleSize}>of</Text>
               <Text
                 style={[
@@ -323,12 +303,13 @@ const SearchScreen = props => {
                 {item.Serves}
               </Text>
             </View>
-            <Text style={styles.itemMealSubTitleSize}>=</Text>
+
             <View
               style={[
                 styles.flexRowContainer,
-                {width: '35%', alignItems: 'center'},
+                {width: '45%', alignItems: 'center'},
               ]}>
+              <Text style={styles.itemMealSubTitleSize}>=</Text>
               <Text
                 style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
                 {item.consume} kJ
@@ -347,9 +328,10 @@ const SearchScreen = props => {
               </Touch>
             </View>
           </View>
-          <View style={[styles.flexRowContainer, {width: '50%'}]}>
+          <View style={[styles.flexRowContainer, {width: '100%'}]}>
             <Text style={styles.itemMealSubTitleSize}>Quantity</Text>
             <Text style={styles.itemMealSubTitleSize}>Servings(s)</Text>
+            <Text style={styles.itemMealSubTitleSize}>Add to Meal</Text>
           </View>
         </View>
         <View style={stylesTemp.slide2}>{renderSummary(item)}</View>
@@ -367,10 +349,9 @@ const SearchScreen = props => {
   const renderFooter = () =>
     isLoadMore ? <ActivityIndicator style={{color: colors.BLACK}} /> : null;
 
-  console.log(resultSearch);
   return (
     <SafeAreaView style={styles.container}>
-      {/* <CircleLoading isVisible={loading} /> */}
+      <Spinner visible={loading} />
       <View style={styles.topWrap} />
       <View style={styles.filterContainer}>
         <RNPickerSelect

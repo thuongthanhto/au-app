@@ -10,6 +10,7 @@ import {
 import RNPickerSelect from 'react-native-picker-select';
 import CheckBox from 'react-native-check-box';
 import {connect, useDispatch} from 'react-redux';
+import Spinner from 'react-native-loading-spinner-overlay';
 import styles from './styles';
 import {customReducer} from '../../../modules/utils/helpers';
 import {
@@ -22,7 +23,6 @@ import stylesBasicInfo from '../../BasicInfo/styles';
 import Responsive from '../../../modules/utils/responsive';
 import {Images} from '../../../assets/images';
 import Button from '../../../components/Button';
-import CircleLoading from '../../../components/Presentations/CircleLoading';
 
 function generateCategories(categories) {
   const list = [];
@@ -124,7 +124,7 @@ const SearchFormScreen = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CircleLoading isVisible={state.loading} />
+      <Spinner visible={state.loading} />
       <View style={styles.body}>
         <Text style={styles.title}>Search</Text>
 
