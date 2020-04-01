@@ -206,7 +206,7 @@ const UserInfoForm = ({state, handleChange, dirty}) => {
       <Tooltip
         isVisible={tooltipVisible === 'non-occupational'}
         content={renderTooltipNonOccupationalContent()}
-        title="None-occupational physical activity"
+        title="Non-occupational physical activity"
         onCloseModal={() => setTooltipVisible('')}
       />
     </View>

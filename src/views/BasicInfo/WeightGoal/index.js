@@ -67,6 +67,7 @@ const WeightGoal = props => {
       props.navigation.navigate(NavigationRoutes.YourIdealFigure);
     }
   };
+  console.log(state);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topWrap} />
@@ -85,7 +86,7 @@ const WeightGoal = props => {
                   items={weightGoals}
                   placeholder={{
                     label: 'Your weight goal',
-                    value: null,
+                    value: '',
                   }}
                   onValueChange={text => handleChange('weight_goal', text)}
                   useNativeAndroidPickerStyle={false}

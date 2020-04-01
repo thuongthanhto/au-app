@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     marginTop: Responsive.v(20),
   },
   imageWrap: {
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },

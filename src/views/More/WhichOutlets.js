@@ -81,7 +81,7 @@ const WhichOutletsScreen = () => {
               content: `Donut King`,
             }}
             column2={{
-              title: 'Ice Cream chains',
+              title: 'Ice cream chains',
               content: `Baskin Robbins\nCold Rocks Ice Creamery\nNew Zealand Natural\nWendy's`,
             }}
           />
