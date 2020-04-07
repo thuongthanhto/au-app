@@ -1,5 +1,5 @@
 /**
-* 8700 APP
+* AU APP
 * AUTHOR: DINH TIEN && THANH THUONG
 * VERSION: 0.1
 */
