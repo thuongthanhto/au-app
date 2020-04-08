@@ -71,7 +71,11 @@ const ProfileScreen = props => {
       activeProfile = updateProfileCalculations(activeProfile);
       dispatch({type: 'SAVE_PROFILE', payload: activeProfile});
 
-      props.navigation.navigate(NavigationRoutes.Home);
+      if (state.age < 18) {
+        props.navigation.navigate(NavigationRoutes.Home);
+      } else {
+        props.navigation.navigate(NavigationRoutes.WeightGoal);
+      }
     }
   };
 

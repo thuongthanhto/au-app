@@ -88,9 +88,7 @@ const SearchScreen = props => {
     );
   };
 
-  React.useEffect(() => {
-    console.log('go here');
-  }, [JSON.stringify(resultSearch)]);
+  React.useEffect(() => {}, [JSON.stringify(resultSearch)]);
 
   const handleGetProducts = async newParams => {
     setLoading(true);
@@ -383,7 +381,7 @@ const SearchScreen = props => {
         />
       </View>
       <View style={styles.body}>
-        <ScrollView>
+        <View style={{flex: 1}}>
           {resultSearch.length > 0 && (
             <FlatList
               data={resultSearch}
@@ -397,7 +395,7 @@ const SearchScreen = props => {
                 />
               }
               ListFooterComponent={renderFooter}
-              onEndReachedThreshold={0}
+              onEndReachedThreshold={0.5}
               onEndReached={handleLoadMore}
             />
           )}
@@ -407,7 +405,7 @@ const SearchScreen = props => {
               type.
             </Text>
           )}
-        </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );
