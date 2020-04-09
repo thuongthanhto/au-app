@@ -63,7 +63,7 @@ const MoreStack = createStackNavigator(
     [NavigationRoutes.LegalStuffMore]: {
       screen: LegalStuffMore,
       navigationOptions: props => ({
-        ...MainNavigationHeader(props, 'Back', null, 'Legal Stuff', true),
+        ...MainNavigationHeader(props, 'Back', null, 'Legal stuff', true),
       }),
     },
   },

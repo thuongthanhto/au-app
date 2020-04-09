@@ -97,6 +97,12 @@ const SearchScreen = props => {
     });
   };
 
+  const handleGetProductsAndroid = async newParams => {
+    await props.getProductsRequest(newParams, res => {
+      return res;
+    });
+  };
+
   const handleRefresh = async () => {
     setIsRefreshing(true);
     setAlphabeticalFilter('asc');
@@ -125,7 +131,7 @@ const SearchScreen = props => {
       ? (newParams.categories = value ? [value] : [])
       : (newParams.order = value);
     setParams(newParams);
-    Platform.OS === 'android' && (await handleGetProducts(newParams));
+    Platform.OS === 'android' && (await handleGetProductsAndroid(newParams));
   };
 
   const onDonePressIos = async () => {
@@ -395,7 +401,7 @@ const SearchScreen = props => {
                 />
               }
               ListFooterComponent={renderFooter}
-              onEndReachedThreshold={0.5}
+              onEndReachedThreshold={0.4}
               onEndReached={handleLoadMore}
             />
           )}

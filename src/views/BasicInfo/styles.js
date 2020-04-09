@@ -69,6 +69,12 @@ const styles = StyleSheet.create({
     paddingTop: Responsive.v(15),
     color: '#3B3B3B',
   },
+  textPragraphFake: {
+    lineHeight: Responsive.h(24),
+    fontSize: Responsive.h(16),
+    fontFamily: 'PTSans-Regular',
+    color: '#3B3B3B',
+  },
   textPragraphLink: {
     lineHeight: Responsive.h(24),
     fontSize: Responsive.v(16),
