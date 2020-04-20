@@ -55,6 +55,7 @@ const KilojoulesAndKids = () => {
               8700.com.au/kids
             </Text>
           </Text>
+          <Text style={stylesBasicInfo.textPragraph} />
         </View>
       </ScrollView>
     </SafeAreaView>

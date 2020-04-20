@@ -149,6 +149,7 @@ const WhichOutletsScreen = () => {
             information alongside the product description and price on the shelf
             and on the product itself.
           </Text>
+          <Text style={[styles.content, styles.paddingLine]} />
         </View>
       </ScrollView>
     </SafeAreaView>

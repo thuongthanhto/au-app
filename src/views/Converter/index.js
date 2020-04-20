@@ -15,7 +15,7 @@ const ConverterScreen = () => {
     if (name === 'calories') {
       const result = convert(value, 'Cal', 'kJ');
       setCalories(value);
-      setKilojoules(result.toString());
+      setKilojoules(result.toFixed(3).toString());
     } else {
       const result = toDP(convert(value, 'kJ', 'Cal'), 0);
       setKilojoules(value);
