@@ -671,7 +671,7 @@
 			baseConfigurationReference = 1923C0135E69EEFA937718BB /* Pods-FrontEnd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2.5;
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FrontEnd/Info.plist;
@@ -683,6 +683,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = FrontEnd;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -692,7 +693,7 @@
 			baseConfigurationReference = D1E373CCBC9067C96AADF6ED /* Pods-FrontEnd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2.5;
 				DEVELOPMENT_TEAM = 8PJ8C8SH39;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FrontEnd/Info.plist;
@@ -704,6 +705,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = au.gov.nsw.foodauthority.Edesia;
 				PRODUCT_NAME = FrontEnd;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

@@ -128,11 +128,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.frontend"
+        applicationId "au.gov.nsw.foodauthority.edesia"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 10205
+        versionName "1.2.5"
     }
     splits {
         abi {
