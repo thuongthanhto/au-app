@@ -1,13 +1,13 @@
-import { baseCombineActionTypes } from './baseTypes';
+import {baseCombineActionTypes} from './baseTypes';
 
 export const USER = {
   ...baseCombineActionTypes('LOGIN'),
   ...baseCombineActionTypes('PROFILE'),
-  ...baseCombineActionTypes('GET_ALL_USER')
+  ...baseCombineActionTypes('GET_ALL_USER'),
 };
 
 export const HOME = {
-  ...baseCombineActionTypes('GET_ALL_PRODUCT')
+  ...baseCombineActionTypes('GET_ALL_PRODUCT'),
 };
 
 export const SCHEDULE = {
@@ -18,4 +18,10 @@ export const SCHEDULE = {
   ...baseCombineActionTypes('GET_ALL_TASK'),
   ...baseCombineActionTypes('BOOK_MARK_TASK'),
   ...baseCombineActionTypes('UPDATE_TASK_STATUS'),
+};
+
+export const SEARCH = {
+  ...baseCombineActionTypes('GET_TYPE_OF_FOOD'),
+  ...baseCombineActionTypes('GET_ALL_CATEGORIES'),
+  ...baseCombineActionTypes('GET_PRODUCTS'),
 };

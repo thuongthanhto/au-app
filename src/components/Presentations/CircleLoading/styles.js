@@ -1,11 +1,11 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
-import { colors } from '../../../modules/colors';
+import {colors} from '../../../modules/colors';
 import Responsive from '../../../modules/utils/responsive';
 
 const styles = StyleSheet.create({
   container: {
-    position:'absolute',
+    position: 'absolute',
     backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     width: Responsive.h(70),
-    height: Responsive.h(70),
-    borderRadius: Responsive.h(5),
-    backgroundColor: colors.WHITE
-  }
+    height: Responsive.v(70),
+    borderRadius: Responsive.v(5),
+    backgroundColor: colors.WHITE,
+  },
 });
 
 export default styles;

@@ -1,15 +1,15 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
-import { colors } from '../../modules/colors';
+import {colors} from '../../modules/colors';
 import Responsive from '../../modules/utils/responsive';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     width,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   content: {
     flexDirection: 'row',
@@ -18,18 +18,19 @@ const styles = StyleSheet.create({
     borderColor: colors.GRAY_SHADE,
     padding: Responsive.h(10),
     backgroundColor: colors.GRAY_SHADE,
-    borderRadius: Responsive.h(8),
+    borderRadius: Responsive.v(8),
     overflow: 'hidden',
   },
   icon: {
-    fontSize: Responsive.h(16),
+    fontSize: Responsive.v(16),
     color: colors.GRAY,
+    fontFamily: 'PTSans-Regular',
   },
   input: {
     width: '99%',
     paddingLeft: Responsive.v(14),
     paddingRight: Responsive.v(10),
-  }
+  },
 });
 
 export default styles;

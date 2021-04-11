@@ -11,7 +11,7 @@ export const USER_INFO = [
 export const FILTER_TAB = {
   TO_DO: 'TO_DO',
   IN_PROGRESS: 'IN_PROGRESS',
-  COMPLETED: 'COMPLETED'
+  COMPLETED: 'COMPLETED',
 };
 
 export const DEFAULT_TASK_MODEL = {
@@ -26,4 +26,18 @@ export const DEFAULT_TASK_MODEL = {
   isComplete: false,
   isPinned: false,
   tags: [],
+};
+
+export const DEFAULT_PROFILE = {
+  sex: '',
+  age: 0,
+  height: 0,
+  weight: 0,
+  oal_level: '',
+  eal_level: '',
+  BMR: {
+    current: {},
+    goal: {},
+  },
+  weight_goal: 1,
 };

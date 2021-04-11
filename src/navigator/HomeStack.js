@@ -1,40 +1,43 @@
-import { createStackNavigator } from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
-import HomeScreen from '../views/Home';
-import { NavigationRoutes } from './Routes';
-import FavouriteUserScreen from '../views/Home/FavouriteUser';
+import {NavigationRoutes} from './Routes';
+import WelcomeScreen from '../views/BasicInfo/Welcome';
+import HomeScreen from '../views/BasicInfo/Home';
+import UserInfoScreen from '../views/BasicInfo/UserInfo';
+import LegalStuffScreen from '../views/BasicInfo/LegalStuff';
+import YourIdealFigureScreen from '../views/BasicInfo/YourIdealFigure';
+import TabNavigator from './TabNavigator';
+import WeightGoalScreen from '../views/BasicInfo/WeightGoal';
 
-const HomeStack = createStackNavigator(
+const WelcomeStack = createStackNavigator(
   {
-    [NavigationRoutes.Home]: {
-      screen: HomeScreen
+    [NavigationRoutes.Welcome]: {
+      screen: WelcomeScreen,
     },
-    [NavigationRoutes.FavouriteUser]: {
-      screen: FavouriteUserScreen
-    }
+    [NavigationRoutes.UserInfo]: {
+      screen: UserInfoScreen,
+    },
+    [NavigationRoutes.Home]: {
+      screen: HomeScreen,
+    },
+    [NavigationRoutes.LegalStuff]: {
+      screen: LegalStuffScreen,
+    },
+    [NavigationRoutes.YourIdealFigure]: {
+      screen: YourIdealFigureScreen,
+    },
+    TabNavigator,
+    [NavigationRoutes.WeightGoal]: {
+      screen: WeightGoalScreen,
+    },
   },
   {
-    initialRouteName: NavigationRoutes.Home,
-    headerMode: 'screen',
-    navigationOptions: {
-      gesturesEnabled: false,
-    },
-  }
-);
-
-const HomeRootScreen = createStackNavigator(
-  {
-    [NavigationRoutes.Home]: {
-      screen: HomeStack
-    }
-  },
-  {
-    initialRouteName: NavigationRoutes.Home,
+    initialRouteName: NavigationRoutes.Welcome,
     headerMode: 'none',
     navigationOptions: {
       gesturesEnabled: false,
     },
-  }
+  },
 );
 
-export default HomeRootScreen;
+export default WelcomeStack;
