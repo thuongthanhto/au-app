@@ -1,17 +1,17 @@
-import { createStackNavigator } from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
-import { NavigationRoutes } from './Routes';
+import {NavigationRoutes} from './Routes';
 import IdealFigureScreen from '../views/IdealFigure';
-import { MainNavigationHeader } from './DefaultNavigationOptions';
+import {MainNavigationHeader} from './DefaultNavigationOptions';
 
 const IdealFigureStack = createStackNavigator(
   {
     [NavigationRoutes.IdealFigure]: {
       screen: IdealFigureScreen,
-      navigationOptions: (props) => ({
-        ...MainNavigationHeader(props, 'Home', 'Inputs', 'Ideal Figure')
-      })
-    }
+      navigationOptions: props => ({
+        ...MainNavigationHeader(props, 'Home', 'Inputs', 'KJ calculator'),
+      }),
+    },
   },
   {
     initialRouteName: NavigationRoutes.IdealFigure,
@@ -19,7 +19,7 @@ const IdealFigureStack = createStackNavigator(
     navigationOptions: {
       gesturesEnabled: false,
     },
-  }
+  },
 );
 
 export default IdealFigureStack;

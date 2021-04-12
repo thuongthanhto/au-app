@@ -41,11 +41,12 @@ const KilojoulesAndKids = () => {
             }>
             Our{' '}
             <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
-              Ideal Figure Calculator
+              KJ Calculator
             </Text>{' '}
-            uses special equations to suggest an ideal figure to maintain weight
-            in children younger than 10 years and for teens. There is no option
-            to make weight loss a goal if the profile age is less than 18 years.
+            uses special equations to suggest an KJ calculator to maintain
+            weight in children younger than 10 years and for teens. There is no
+            option to make weight loss a goal if the profile age is less than 18
+            years.
           </Text>
           <Text style={stylesBasicInfo.textPragraph}>
             If you're concerned about their weight, consult a qualified health

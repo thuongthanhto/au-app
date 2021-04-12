@@ -33,7 +33,7 @@ const YourIdealFigureScreen = props => {
       <ScrollView>
         <View style={styles.content}>
           <View style={styles.contentWrap}>
-            <Text style={styles.title}>Your ideal figure</Text>
+            <Text style={styles.title}>Your KJ calculator</Text>
             <Text style={styles.figure}>{figure}</Text>
             {tolerance !== 0 && (
               <Text style={styles.figureRange}>{figureRange}</Text>
@@ -76,7 +76,7 @@ const YourIdealFigureScreen = props => {
 
             <Text style={styles.textPragraph}>
               This is just a guide, and it may take some trial and error. For
-              more details, see My Ideal Figure on the Home screen.
+              more details, see My KJ calculator on the Home screen.
             </Text>
           </View>
         </View>

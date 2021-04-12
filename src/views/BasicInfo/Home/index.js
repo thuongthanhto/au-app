@@ -38,7 +38,7 @@ const HomeScreen = props => {
         <Button
           width="100%"
           height={Responsive.h(50)}
-          text="My Ideal Figure"
+          text="Find your kilojoule needs"
           styleGradient={{marginBottom: Responsive.v(10)}}
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />

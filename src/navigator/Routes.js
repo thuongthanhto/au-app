@@ -3,7 +3,7 @@ export const NavigationRoutes = {
   Home: 'Home',
   Welcome: 'Welcome',
   UserInfo: 'UserInfo',
-  IdealFigure: 'Ideal Figure',
+  IdealFigure: 'KJ calculator',
   BurnkJ: 'Burn kJ',
   Profile: 'Profile',
   Search: 'Search',
