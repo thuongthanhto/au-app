@@ -36,7 +36,12 @@ const WelcomeScreen = ({navigation}) => {
           onPress={() => navigation.navigate(NavigationRoutes.UserInfo)}
         />
       </FooterActions>
-      <ImageBackground source={Images.heal_banner} style={{width: '100%'}}>
+      <ImageBackground
+        source={Images.heal_banner}
+        style={{width: '100%'}}
+        imageStyle={{
+          resizeMode: 'contain', // works only here!
+        }}>
         <View style={{height: 80}} />
       </ImageBackground>
     </Layout>

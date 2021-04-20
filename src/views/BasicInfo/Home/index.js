@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView, Image} from 'react-native';
+import {View, SafeAreaView, Image, ImageBackground} from 'react-native';
 
 import styles from '../styles';
 import Button from '../../../components/Button';
@@ -115,6 +115,16 @@ const HomeScreen = props => {
           />
         </View>
       </View>
+      <ImageBackground
+        source={Images.heal_banner}
+        style={{
+          width: '100%',
+        }}
+        imageStyle={{
+          resizeMode: 'contain', // works only here!
+        }}>
+        <View style={{height: 80}} />
+      </ImageBackground>
     </SafeAreaView>
   );
 };
