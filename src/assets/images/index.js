@@ -26,4 +26,5 @@ export const Images = {
   star: require('../icons/star.png'),
   check_meal: require('../icons/check-meal.png'),
   add_meal: require('../icons/add-meal.png'),
+  heal_banner: require('../icons/heal_banner.png'),
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ImageBackground} from 'react-native';
 import styles from '../styles';
 import {Images} from '../../../assets/images';
 import Layout from '../../../layouts';
@@ -36,6 +36,9 @@ const WelcomeScreen = ({navigation}) => {
           onPress={() => navigation.navigate(NavigationRoutes.UserInfo)}
         />
       </FooterActions>
+      <ImageBackground source={Images.heal_banner} style={{width: '100%'}}>
+        <View style={{height: 80}} />
+      </ImageBackground>
     </Layout>
   );
 };
