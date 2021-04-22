@@ -45,13 +45,7 @@ const MoreStack = createStackNavigator(
     [NavigationRoutes.AboutTheCampaign]: {
       screen: AboutTheCampaignScreen,
       navigationOptions: props => ({
-        ...MainNavigationHeader(
-          props,
-          'Back',
-          null,
-          'About the campaign',
-          true,
-        ),
+        ...MainNavigationHeader(props, 'Back', null, 'About 8700', true),
       }),
     },
     [NavigationRoutes.WhichOutlets]: {

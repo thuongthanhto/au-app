@@ -81,7 +81,7 @@ const MoreScreen = props => {
         <Button
           width="100%"
           height={Responsive.h(50)}
-          text="About the campaign"
+          text="About 8700"
           styleGradient={{marginBottom: Responsive.v(16)}}
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
