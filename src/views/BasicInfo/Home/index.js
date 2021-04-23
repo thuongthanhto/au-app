@@ -123,7 +123,7 @@ const HomeScreen = props => {
         imageStyle={{
           resizeMode: 'contain', // works only here!
         }}>
-        <View style={{height: 80}} />
+        <View style={{height: 70}} />
       </ImageBackground>
     </SafeAreaView>
   );
