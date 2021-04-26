@@ -1,9 +1,6 @@
-/\*\*
-
 - 8700 app
 - AUTHOR: TO THANH THUONG
-- VERSION: 0.2
-  \*/
+- VERSION: 1.2.6
 
 ## Background
 
@@ -25,11 +22,6 @@ AcJve Living” (HEAL).
 
 ## Getting Started
 
-```
-git clone https://github.com/thuongtodev/8700.git
-cd FrontEnd
-```
-
 Install node modules, [Yarn](https://yarnpkg.com/en/) is highly recommended.
 
 ```
@@ -45,6 +37,12 @@ pod install
 
 ```
 
+Run command:
+
+```
+yarn start
+```
+
 Point backend to `https://randomuser.me/api` for example
 Run on Android/iOS device or simulator
 
@@ -53,6 +51,18 @@ $ react-native run-ios
 $ react-native run-android
 ```
 
-## Demo:
+## Build:
 
-Screen shot:
+Build Android:
+
+```
+npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle
+```
+
+```
+cd android
+```
+
+```
+./gradlew assembleRelease
+```
