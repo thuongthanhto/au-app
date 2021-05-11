@@ -9,7 +9,7 @@ import {NavigationRoutes} from '../../navigator/Routes';
 
 const MoreScreen = props => {
   const goto8700 = () => {
-    Linking.openURL('https://www.8700.com.au/').catch(err =>
+    Linking.openURL('https://www.healthyliving.nsw.gov.au/').catch(err =>
       console.error("Couldn't load page", err),
     );
   };
@@ -44,19 +44,6 @@ const MoreScreen = props => {
         <Button
           width="100%"
           height={Responsive.h(50)}
-          text="Kilojoules and kids"
-          styleGradient={{marginBottom: Responsive.v(16)}}
-          rightIcon={
-            <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
-          }
-          onPress={() =>
-            props.navigation.navigate(NavigationRoutes.KilojoulesAndKids)
-          }
-          textStyle={{fontSize: Responsive.h(20)}}
-        />
-        <Button
-          width="100%"
-          height={Responsive.h(50)}
           text="Which outlets?"
           styleGradient={{marginBottom: Responsive.v(16)}}
           rightIcon={
@@ -70,7 +57,7 @@ const MoreScreen = props => {
         <Button
           width="100%"
           height={Responsive.h(50)}
-          text="Go to 8700.com.au"
+          text="Visit Healthy Eating Active Living"
           styleGradient={{marginBottom: Responsive.v(16)}}
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />

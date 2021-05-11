@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, ScrollView, Text} from 'react-native';
+import {SafeAreaView, View, ScrollView, Text, Linking} from 'react-native';
 import stylesBasicInfo from '../../BasicInfo/styles';
 import styles from './styles';
 
@@ -19,7 +19,7 @@ const AboutkJs = () => {
             (kilojoules) it provides.
           </Text>
           <Text style={stylesBasicInfo.textPragraph}>
-            We need energy for our bodies and physical activity.
+            Good eating habits help you live a longer, healthier life
           </Text>
           <Text style={stylesBasicInfo.textPragraph}>
             Knowing the number of kJs in the food we eat can help ensure we get
@@ -28,6 +28,24 @@ const AboutkJs = () => {
           <Text style={stylesBasicInfo.textPragraph}>
             If we eat more kJs than our bodies burn off on a regular basis, then
             we gain weight.
+          </Text>
+          <Text style={stylesBasicInfo.textPragraph}>
+            Like adults, there is no exact kilojoule number for kids – every
+            child is different, and the most important thing is to support their
+            overall health and wellbeing. If you're concerned about your or your
+            family’s weight, consult a qualified health professional.
+          </Text>
+          <Text
+            style={stylesBasicInfo.textPragraph}
+            onPress={() =>
+              Linking.openURL(
+                'https://www.healthyliving.nsw.gov.au/Pages/Terms-Conditions.aspx',
+              )
+            }>
+            Learn more about kilojoules at{' '}
+            <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
+              Healthy Eating Active Living.
+            </Text>
           </Text>
         </View>
       </ScrollView>

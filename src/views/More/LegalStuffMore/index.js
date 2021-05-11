@@ -19,11 +19,11 @@ const LegalStuffMoreScreen = () => {
           <Text
             style={styles.textPragraph}
             onPress={() =>
-              Linking.openURL('https://www.8700.com.au/disclaimer')
+              Linking.openURL('https://www.healthyliving.nsw.gov.au/Pages/kilojoules-calories.aspx')
             }>
-            Please review our full Terms of Use at{' '}
+            Learn more at{' '}
             <Text style={[styles.textPragraph, {color: '#00AAEA'}]}>
-              8700.com.au/termsofuse
+            Healthy Eating Active Living.
             </Text>
           </Text>
         </View>
