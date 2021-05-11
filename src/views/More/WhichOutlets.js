@@ -127,18 +127,7 @@ const WhichOutletsScreen = () => {
           <ItemList content="catering chains" />
           <ItemList content="chains that only sell food intended to be consumed on the premises, and" />
           <ItemList content="retail outlets at health care facilities." />
-          <Text
-            style={[styles.content, styles.paddingLine]}
-            onPress={() =>
-              Linking.openURL(
-                'https://www.8700.com.au/who-is-involved-and-why/',
-              )
-            }>
-            Go to{' '}
-            <Text style={[styles.content, {color: '#00AAEA'}]}>
-              8700.com.au/who-is-involved-and-why
-            </Text>
-          </Text>
+
           <Text style={[styles.subTitle, styles.paddingLine]}>
             Supermarkets
           </Text>
@@ -148,6 +137,19 @@ const WhichOutletsScreen = () => {
             chickens, salads, some cakes and bakery items. You will find this kJ
             information alongside the product description and price on the shelf
             and on the product itself.
+          </Text>
+          <Text
+            style={[styles.content, styles.paddingLine]}
+            onPress={() =>
+              Linking.openURL(
+                'https://www.foodauthority.nsw.gov.au/about-us/legislation/proposals-and-policy/kJ-labelling-nutrition-information',
+              )
+            }>
+            Visit{' '}
+            <Text style={[styles.content, {color: '#00AAEA'}]}>
+              NSW Food Authority
+            </Text>{' '}
+            for more information about the legislation.
           </Text>
           <Text style={[styles.content, styles.paddingLine]} />
         </View>

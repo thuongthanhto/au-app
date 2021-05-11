@@ -38,10 +38,14 @@ const AboutTheCampaign = () => {
           </View>
           <Text
             style={stylesBasicInfo.textPragraph}
-            onPress={() => Linking.openURL('https://www.8700.com.au/')}>
-            Go to{' '}
+            onPress={() =>
+              Linking.openURL(
+                'https://www.healthyliving.nsw.gov.au/Pages/kilojoules-calories.aspx',
+              )
+            }>
+            Learn more at{' '}
             <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
-              www.8700.com.au
+              Healthy Eating Active Living
             </Text>
           </Text>
         </View>

@@ -15,9 +15,8 @@ const WelcomeScreen = ({navigation}) => {
         <View style={styles.contentWrap}>
           <Text style={styles.title}>Welcome</Text>
           <Text style={styles.textPragraph}>
-            We all need different amounts of energy for our bodies and physical
-            activity. To make this app specific to you, we need to grab some
-            details.
+            Good eating habits help you live a longer, healthier life. To make
+            this app specific to you, we need to grab some details.
           </Text>
 
           <View style={styles.imageWrap}>
@@ -40,7 +39,7 @@ const WelcomeScreen = ({navigation}) => {
         source={Images.heal_banner}
         style={{width: '100%'}}
         imageStyle={{
-          resizeMode: 'contain', // works only here!
+          resizeMode: 'cover', // works only here!
         }}>
         <View style={{height: 80}} />
       </ImageBackground>

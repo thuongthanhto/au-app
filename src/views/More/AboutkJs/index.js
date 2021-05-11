@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, ScrollView, Text} from 'react-native';
+import {SafeAreaView, View, ScrollView, Text, Linking} from 'react-native';
 import stylesBasicInfo from '../../BasicInfo/styles';
 import styles from './styles';
 
@@ -29,6 +29,26 @@ const AboutkJs = () => {
             If we eat more kJs than our bodies burn off on a regular basis, then
             we gain weight.
           </Text>
+          <Text style={stylesBasicInfo.textPragraph}>
+            Like adults, there is no exact kilojoule number for kids – every
+            child is different, and the most important thing is to support their
+            overall health and wellbeing. If you're concerned about your or your
+            family’s weight, consult a qualified health professional.
+          </Text>
+          <Text
+            style={[stylesBasicInfo.textPragraph, styles.paddingLine]}
+            onPress={() =>
+              Linking.openURL(
+                'https://www.foodauthority.nsw.gov.au/about-us/legislation/proposals-and-policy/kJ-labelling-nutrition-information',
+              )
+            }>
+            Visit{' '}
+            <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
+              NSW Food Authority
+            </Text>{' '}
+            for more information about the legislation.
+          </Text>
+          <Text style={[stylesBasicInfo.textPragraph, styles.paddingLine]} />
         </View>
       </ScrollView>
     </SafeAreaView>
