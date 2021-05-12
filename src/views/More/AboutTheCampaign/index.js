@@ -24,12 +24,9 @@ const AboutTheCampaign = () => {
               consumers have information about the kJ content of menu items
               available for sale in major 'fast' food and snack chains. It also
               includes kJ content information on ready-to-eat foods and salads
-              available through major supermarkets.
-            </Text>
-
-            <Text style={stylesBasicInfo.textPragraphFake}>
-              This initiative is being delivered jointly by the NSW Ministry of
-              Health and the NSW Food Authority.
+              available through major supermarkets. This initiative is being
+              delivered jointly by the NSW Ministry of Health and the NSW Food
+              Authority.
             </Text>
           </View>
 
