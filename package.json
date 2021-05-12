@@ -10,9 +10,6 @@
   "dependencies": {
     "@react-native-community/art": "^1.1.2",
     "@react-native-community/async-storage": "^1.7.1",
-    "appcenter": "2.6.1",
-    "appcenter-analytics": "2.6.1",
-    "appcenter-crashes": "2.6.1",
     "axios": ">=0.21.1",
     "immutability-helper": "^3.0.1",
     "immutable": "^4.0.0-rc.12",
