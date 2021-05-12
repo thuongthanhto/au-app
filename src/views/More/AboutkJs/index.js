@@ -39,14 +39,13 @@ const AboutkJs = () => {
             style={[stylesBasicInfo.textPragraph, styles.paddingLine]}
             onPress={() =>
               Linking.openURL(
-                'https://www.foodauthority.nsw.gov.au/about-us/legislation/proposals-and-policy/kJ-labelling-nutrition-information',
+                'https://www.healthyliving.nsw.gov.au/Pages/kilojoules-calories.aspx',
               )
             }>
-            Visit{' '}
+            Learn more about kilojoules at{' '}
             <Text style={[stylesBasicInfo.textPragraph, {color: '#00AAEA'}]}>
-              NSW Food Authority
-            </Text>{' '}
-            for more information about the legislation.
+              Healthy Eating Active Living.
+            </Text>
           </Text>
           <Text style={[stylesBasicInfo.textPragraph, styles.paddingLine]} />
         </View>
