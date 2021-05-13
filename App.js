@@ -4,6 +4,10 @@ import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {PersistGate} from 'redux-persist/integration/react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from 'react-native-safe-area-context';
 
 import RootContainer from './Root';
 import {store, persistor} from './src/store/dev';
@@ -22,9 +26,9 @@ const styles = StyleSheet.create({
 
 class App extends React.PureComponent {
   componentDidMount() {
-    setTimeout(() => SplashScreen.hide() , 2000);
+    setTimeout(() => SplashScreen.hide(), 2000);
   }
-  
+
   render() {
     return (
       <Provider store={store}>
@@ -35,7 +39,9 @@ class App extends React.PureComponent {
             </View>
           }
           persistor={persistor}>
-          <RootContainer />
+          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+            <RootContainer />
+          </SafeAreaProvider>
         </PersistGate>
       </Provider>
     );
