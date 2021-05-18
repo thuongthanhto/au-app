@@ -41,9 +41,12 @@ const WhichOutletsScreen = () => {
         <View style={styles.bodyWhichOutlets}>
           <Text style={styles.title}>Which outlets?</Text>
           <Text style={styles.content}>
-            {
-              "The NSW laws apply to larger 'fast' and snack food chains and supermarkets selling selected ready-to-eat foods. \n'Fast' food chains - You will find menu items from larger 'fast' food chains in our database if the chain has:"
-            }
+            The NSW laws apply to larger 'fast' and snack food chains and
+            supermarkets selling selected ready-to-eat foods.
+          </Text>
+          <Text style={[styles.content, styles.paddingLine]}>
+            'Fast' food chains - You will find menu items from larger 'fast'
+            food chains in our database if the chain has:
           </Text>
           <ItemList content="20 or more outlets in NSW, or" isPaddingTop />
           <ItemList content="50 or more outlets in Australia" />

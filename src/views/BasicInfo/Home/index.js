@@ -121,9 +121,9 @@ const HomeScreen = props => {
           width: '100%',
         }}
         imageStyle={{
-          resizeMode: 'cover',
+          resizeMode: 'stretch',
         }}>
-        <View style={{height: 70}} />
+        <View style={{height: 72}} />
       </ImageBackground>
     </SafeAreaView>
   );

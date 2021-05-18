@@ -37,11 +37,13 @@ const WelcomeScreen = ({navigation}) => {
       </FooterActions>
       <ImageBackground
         source={Images.heal_banner}
-        style={{width: '100%'}}
+        style={{
+          width: '100%',
+        }}
         imageStyle={{
-          resizeMode: 'cover', // works only here!
+          resizeMode: 'stretch',
         }}>
-        <View style={{height: 80}} />
+        <View style={{height: 72}} />
       </ImageBackground>
     </Layout>
   );
