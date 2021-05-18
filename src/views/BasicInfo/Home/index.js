@@ -123,7 +123,7 @@ const HomeScreen = props => {
         imageStyle={{
           resizeMode: 'stretch',
         }}>
-        <View style={{height: 74}} />
+        <View style={{height: 76}} />
       </ImageBackground>
     </SafeAreaView>
   );
