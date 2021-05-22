@@ -43,7 +43,7 @@ const WelcomeScreen = ({navigation}) => {
         imageStyle={{
           resizeMode: 'stretch',
         }}>
-        <View style={{height: 76}} />
+        <View style={{height: 70}} />
       </ImageBackground>
     </Layout>
   );
