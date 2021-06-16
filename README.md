@@ -1,6 +1,6 @@
 - 8700 app
 - AUTHOR: TO THANH THUONG
-- VERSION: 1.2.6
+- VERSION: 1.2.7
 
 ## Background
 
