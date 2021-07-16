@@ -47,8 +47,8 @@ Point backend to `https://randomuser.me/api` for example
 Run on Android/iOS device or simulator
 
 ```
-$ react-native run-ios
-$ react-native run-android
+$ npx react-native run-ios
+$ npx react-native run-android
 ```
 
 ## Build:
