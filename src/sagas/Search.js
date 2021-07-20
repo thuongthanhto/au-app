@@ -3,7 +3,7 @@ import get from 'lodash.get';
 
 import {getAll as getAllService, getProducts} from '../services/Search';
 import {SEARCH} from '../actions/types';
-import { toClosest } from '../modules/utils/helpers';
+import {toClosest} from '../modules/utils/helpers';
 import {
   getAllCategoriesSuccess,
   getAllCategoriesFailure,
@@ -12,22 +12,22 @@ import {
   getProductsSuccess,
   getProductsFailure,
 } from '../actions/Search';
+import categoriesData from '../db/categories.json';
+import qsrsData from '../db/qsrs.json';
+import productsData from '../db/products.json';
+import {getCategories, getQsrs, searchProduct} from '../db/dbFunctions';
 
-function* handleGetAllCategories({payload}) {
+function* handleGetAllCategories() {
   try {
-    const {params} = payload;
-    const res = yield call(getAllService, params);
-    yield put(getAllCategoriesSuccess(res));
+    yield put(getAllCategoriesSuccess(getCategories(categoriesData)));
   } catch (error) {
     yield put(getAllCategoriesFailure(error));
   }
 }
 
-function* handleGetTypeOfFoodAvailable({payload}) {
+function* handleGetTypeOfFoodAvailable() {
   try {
-    const {params} = payload;
-    const res = yield call(getAllService, params);
-    yield put(getTypeOfFoodAvailableSuccess(res));
+    yield put(getTypeOfFoodAvailableSuccess(getQsrs(qsrsData)));
   } catch (error) {
     yield put(getTypeOfFoodAvailableFailure(error));
   }
@@ -36,13 +36,27 @@ function* handleGetTypeOfFoodAvailable({payload}) {
 function* handleGetProducts({payload, cb}) {
   try {
     const {params} = payload;
+    console.log(params);
     const state = yield select();
     const profile = get(state, 'homeReducer.profile', {});
-    const figure = profile.BMR && profile.BMR.goal ? toClosest(profile.BMR.goal.value, 100) : 8700;
-    const res = yield call(getProducts, params);
-    res.figure = figure;
-    yield put(getProductsSuccess(res));
-    cb && cb(res);
+    const figure =
+      profile.BMR && profile.BMR.goal
+        ? toClosest(profile.BMR.goal.value, 100)
+        : 8700;
+    // const res = yield call(getProducts, params);
+    const products = searchProduct(
+      productsData,
+      params.pageSize,
+      params.order,
+      params.categories,
+      params.qsrs,
+      params.searchTerm,
+    );
+    // console.log(res);
+    console.log(products);
+    // console.log({Results: res.Results, figure});
+    yield put(getProductsSuccess({Results: products, figure}));
+    cb && cb(products);
   } catch (error) {
     yield put(getProductsFailure(error));
   }

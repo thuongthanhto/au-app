@@ -43,8 +43,6 @@ const User = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         listProducts: {
-          AllCategories: action.payload.AllCategories,
-          AllQSRs: action.payload.AllQSRs,
           Results: formatResult(action.payload.Results, action.payload.figure),
         },
         figure: action.payload.figure,

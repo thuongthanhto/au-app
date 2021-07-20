@@ -43,7 +43,7 @@ function generateBrands(brands) {
   brands.forEach(element => {
     finalObject[element.Id] = {
       name: element.Name,
-      checked: true,
+      checked: false,
     };
   });
 
@@ -122,6 +122,14 @@ const SearchFormScreen = props => {
     });
   };
 
+  const handleAllBrands = () => {
+    setState({
+      isChecked: !state.isChecked,
+      brands: generateBrands(props.listTypeOfFood),
+      qsrs: [],
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Spinner visible={state.loading} />
@@ -163,11 +171,7 @@ const SearchFormScreen = props => {
         {props.listTypeOfFood.length > 0 && (
           <View style={{marginBottom: 15}}>
             <CheckBox
-              onClick={() => {
-                setState({
-                  isChecked: !state.isChecked,
-                });
-              }}
+              onClick={handleAllBrands}
               isChecked={state.isChecked}
               rightText="All brands"
             />
