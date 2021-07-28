@@ -24,7 +24,7 @@ export function searchProduct(
       });
     } else {
       arraysClone = arraysClone.filter(item => {
-        return item.Name.includes(searchTerm);
+        return item.Name.toLowerCase().includes(searchTerm.toLowerCase());
       });
     }
   }
