@@ -14,6 +14,7 @@ export function searchProduct(
     const energyMatch = searchTerm.match(energyPattern);
 
     if (energyMatch) {
+      
       const searchEnergyTerm = parseInt(energyMatch[1], 10);
       arraysClone = arraysClone.filter(item => {
         return (
@@ -25,11 +26,8 @@ export function searchProduct(
       const arraysCloneName = arraysClone.filter(item => {
         return item.Name.split("'").join('').toLowerCase().includes(searchTerm.split("’").join('').toLowerCase());
       });
-      const arraysCloneQSRName = arraysClone.filter(item => {
-        return item.QSR_name.split("'").join('').toLowerCase().includes(searchTerm.split("’").join('').toLowerCase());
-      });
 
-      arraysClone = [...arraysCloneName, ...arraysCloneQSRName];
+      arraysClone = [...arraysCloneName];
     }
   }
 
@@ -51,6 +49,8 @@ export function searchProduct(
     }
     return b.Name.localeCompare(a.Name);
   });
+
+  console.log('arraysClone', arraysClone)
   const result = arraysClone.slice(0, pageSize);
 
   return result;
