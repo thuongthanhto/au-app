@@ -21,14 +21,9 @@ const KilojoulesAndKids = () => {
               So they need fuel, but every child is different. Like adults,
               there is no magic, single kJ number for all kids. Doctors and
               other health care professionals are the best people to determine
-              whether a child or adolescent's current weight is healthy.
-            </Text>
-
-            <Text style={stylesBasicInfo.textPragraphFake}>
-              Doctors and other health care professionals are the best people to
-              determine whether a child or adolescent's current weight is
-              healthy. They have growth charts of weight-for-age and
-              weight-for-height and they can consider a child's growth patterns.
+              whether a child or adolescent's current weight is healthy. They
+              have growth charts of weight-for-age and weight-for-height and
+              they can consider a child's growth patterns.
             </Text>
           </View>
 
