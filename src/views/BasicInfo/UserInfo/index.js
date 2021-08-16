@@ -101,16 +101,7 @@ const UserInfoScreen = props => {
       </ScrollView>
 
       <FooterActions>
-        <Button
-          text="Skip"
-          width="20%"
-          height={Responsive.h(30)}
-          borderRadius={Responsive.h(10)}
-          textStyle={{color: colors.WHITE, fontSize: Responsive.h(12)}}
-          color={[colors.SKIP_BUTTON, colors.SKIP_BUTTON, colors.SKIP_BUTTON]}
-          style={{justifyContent: 'center'}}
-          onPress={() => props.navigation.navigate(NavigationRoutes.Home)}
-        />
+        <Text></Text>
         <Button
           width="25%"
           height={Responsive.h(45)}
