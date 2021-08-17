@@ -257,9 +257,7 @@ const SearchScreen = props => {
       <Text style={styles.itemMealSubTitle}>
         {item.QSR_name},
         <Text style={styles.itemMealSubTitleSize}>
-          {' '}
-          {item.Size}
-          {item.Unit}
+          {item.Size === 0 ? ' N/A' : ` ${item.Size} ${item.Unit}`}
         </Text>
       </Text>
       <Text style={styles.itemMealSubTitleSize}>
@@ -271,7 +269,8 @@ const SearchScreen = props => {
         Eating
         <Text style={styles.itemMealSubTitle}> {item.quantity} </Text>of
         <Text style={styles.itemMealSubTitle}> {item.Serves} </Text>
-        serving =<Text style={styles.itemMealSubTitle}> {item.Energy} </Text>
+        serving =
+        <Text style={styles.itemMealSubTitle}> {parseFloat(item.Energy)} </Text>
         kJ in your portion size
       </Text>
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
