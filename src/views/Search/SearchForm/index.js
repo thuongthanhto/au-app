@@ -76,9 +76,6 @@ const SearchFormScreen = props => {
   }, [props.listTypeOfFood]);
 
   const handleChangeCategories = value => {
-    const temp = state.categories;
-
-    temp.push(value);
     setState({category: value});
   };
 
@@ -101,7 +98,7 @@ const SearchFormScreen = props => {
   const handleSubmit = async () => {
     setState({loading: true});
     const params = {
-      categories: state.categories,
+      categories: state.category ? [state.category] : [],
       ids: [],
       order: 'asc',
       orderBy: 'Name',
@@ -113,6 +110,8 @@ const SearchFormScreen = props => {
       timeCategories: [],
       serves: [],
     };
+
+    console.log('params', params);
 
     await props.getProductsRequest(params, res => {
       if (res) {
