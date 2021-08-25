@@ -111,8 +111,6 @@ const SearchFormScreen = props => {
       serves: [],
     };
 
-    console.log('params', params);
-
     await props.getProductsRequest(params, res => {
       if (res) {
         props.navigation.navigate('Search', {params});

@@ -50,9 +50,11 @@ const SearchScreen = props => {
     wrapper: {},
     slide1: {
       flex: 1,
+      width: '100%',
     },
     slide2: {
       flex: 1,
+      width: '100%',
     },
   });
 
@@ -70,22 +72,21 @@ const SearchScreen = props => {
       label: item.Name,
     }));
 
-  const handleChange = (value, meal) => {
+  const handleChange = async (value, meal) => {
     const indexMealUpdate = resultSearch.findIndex(item => item.Id === meal.Id);
-    setResultSearch(
-      update(resultSearch, {
-        [indexMealUpdate]: {
-          quantity: {$set: value},
-          consume: {$set: value * meal.Energy},
-          percent: {
-            $set: (
-              ((value * meal.Energy) / toClosest(props.figure, 100)) *
-              100
-            ).toFixed(1),
-          },
+    const newData = await update(resultSearch, {
+      [indexMealUpdate]: {
+        quantity: {$set: value},
+        consume: {$set: value * meal.Energy},
+        percent: {
+          $set: (
+            ((value * meal.Energy) / toClosest(props.figure, 100)) *
+            100
+          ).toFixed(1),
         },
-      }),
-    );
+      },
+    });
+    setResultSearch(newData);
   };
 
   React.useEffect(() => {}, [JSON.stringify(resultSearch)]);
@@ -283,7 +284,11 @@ const SearchScreen = props => {
         </Text>
       </View>
 
-      <Swiper style={stylesTemp.wrapper} height={200} loop={false}>
+      <Swiper
+        style={stylesTemp.wrapper}
+        height={200}
+        loop={false}
+        removeClippedSubviews={false}>
         <View style={stylesTemp.slide1}>
           <View style={[styles.addToMealContainer]}>
             <View
