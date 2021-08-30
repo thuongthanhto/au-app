@@ -37,9 +37,8 @@ const SearchScreen = props => {
     weight = profile.weight || 55;
     rmr = 1319.6;
   }
-  console.log(props.listMealAdded);
   const totalEnery = props.listMealAdded.reduce(function(sum, item) {
-    return sum + item.consume;
+    return sum + parseInt(item.consume, 10);
   }, 0);
   const firgual = toClosest(profile.BMR.goal.value, 100);
   const totalPercent = ((totalEnery / firgual) * 100).toFixed(1);
@@ -84,7 +83,7 @@ const SearchScreen = props => {
         </Text>
         <Text
           style={[styles.itemMealTitle, {width: '25%', textAlign: 'right'}]}>
-          {item.consume} kJ
+          {parseInt(item.consume, 10)} kJ
         </Text>
       </View>
       <View style={styles.flexRowContainer}>

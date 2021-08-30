@@ -177,7 +177,7 @@ const SearchScreen = props => {
         </Text>
         <Text
           style={[styles.itemMealTitle, {width: '25%', textAlign: 'right'}]}>
-          {item.Energy} kJ
+          {parseInt(item.Energy, 10)} kJ
         </Text>
       </View>
       <Text style={styles.itemMealSubTitle}>{item.QSR_name}</Text>
@@ -271,12 +271,15 @@ const SearchScreen = props => {
         <Text style={styles.itemMealSubTitle}> {item.quantity} </Text>of
         <Text style={styles.itemMealSubTitle}> {item.Serves} </Text>
         serving =
-        <Text style={styles.itemMealSubTitle}> {parseFloat(item.Energy)} </Text>
+        <Text style={styles.itemMealSubTitle}>
+          {' '}
+          {parseInt(item.Energy, 10)}{' '}
+        </Text>
         kJ in your portion size
       </Text>
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
         <Text style={[styles.itemMealTitle, {width: '50%'}]} numberOfLines={1}>
-          {item.consume} kJ
+          {parseInt(item.consume, 10)} kJ
         </Text>
         <Text
           style={[styles.itemMealTitle, {width: '50%', textAlign: 'right'}]}>
@@ -320,7 +323,7 @@ const SearchScreen = props => {
               <Text style={styles.itemMealSubTitleSize}>=</Text>
               <Text
                 style={[styles.itemMealSubTitle, {fontSize: Responsive.h(18)}]}>
-                {item.consume} kJ
+                {parseInt(item.consume, 10)} kJ
               </Text>
               <Image
                 source={Images.check_meal}
