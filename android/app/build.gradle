@@ -131,8 +131,8 @@ android {
         applicationId "au.gov.nsw.foodauthority.edesia"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10206
-        versionName "1.2.7"
+        versionCode 10207
+        versionName "1.2.8"
     }
     splits {
         abi {

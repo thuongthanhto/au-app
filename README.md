@@ -1,6 +1,6 @@
 - 8700 app
 - AUTHOR: TO THANH THUONG
-- VERSION: 1.2.7
+- VERSION: 1.2.8
 
 ## Background
 
@@ -66,3 +66,12 @@ cd android
 ```
 ./gradlew assembleRelease
 ```
+
+Passwords for both are p0pc0rn!! and alias is 8700Key
+change versionCode 10207
+versionName "1.2.8"
+
+keytool -genkey -v -keystore NSWFA-8700-app-release.keystore -alias NFA_8700 -keyalg RSA -keysize 2048 -validity 10000
+
+Your new password:
+o792o7L3G1BnV6r
