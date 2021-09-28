@@ -23,6 +23,7 @@ import stylesBasicInfo from '../../BasicInfo/styles';
 import Responsive from '../../../modules/utils/responsive';
 import {Images} from '../../../assets/images';
 import Button from '../../../components/Button';
+import ListBrand from './ListBrands';
 
 function generateCategories(categories) {
   const list = [];
@@ -176,19 +177,10 @@ const SearchFormScreen = props => {
         )}
 
         {props.listTypeOfFood.length > 0 && !state.isChecked && (
-          <View style={{flex: 1}}>
-            <ScrollView>
-              {Object.keys(state.brands).map(key => (
-                <View style={{marginBottom: 15}} key={key}>
-                  <CheckBox
-                    onClick={() => handleCheckBrand(key)}
-                    isChecked={state.brands[key].checked}
-                    rightText={state.brands[key].name}
-                  />
-                </View>
-              ))}
-            </ScrollView>
-          </View>
+          <ListBrand
+            brandsObject={state.brands}
+            handleCheckBrand={handleCheckBrand}
+          />
         )}
 
         <View style={{marginTop: 10}}>
