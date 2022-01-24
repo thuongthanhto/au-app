@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   flexRowContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   addToMealContainer: {
     width: '100%',
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   chartContainer: {
     flex: 1,
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
   imagesContent: {
     marginBottom: Responsive.h(5),

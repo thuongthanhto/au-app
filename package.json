@@ -3,7 +3,7 @@
   "version": "1.2.8",
   "private": true,
   "scripts": {
-    "start": "react-native start",
+    "start": "react-native start --reset-cache",
     "test": "jest",
     "lint": "eslint *.js **/*.js"
   },

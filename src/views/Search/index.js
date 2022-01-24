@@ -227,7 +227,7 @@ const SearchScreen = props => {
 
     return (
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
-        <View style={[{paddingHorizontal: Responsive.h(5)}]}>
+        {/* <View style={[{paddingHorizontal: Responsive.h(5)}]}>
           <Text style={styles.itemMealTitle}>Meal Summary:</Text>
           <Text style={styles.activityText}>Excercise equivalents:</Text>
           <View style={{flexDirection: 'row'}}>
@@ -242,8 +242,8 @@ const SearchScreen = props => {
             <Image source={Images.vigorous} style={styles.imagesContent} />
             <Text style={styles.valueContent}>{vigorous} mins</Text>
           </View>
-        </View>
-        <View style={[styles.chartContainer, {width: '50%'}]}>
+        </View> */}
+        <View style={[styles.chartContainer, {width: '100%'}]}>
           <Pie radius={60} sections={dataChart} />
         </View>
       </View>
@@ -278,11 +278,8 @@ const SearchScreen = props => {
         kJ in your portion size
       </Text>
       <View style={[styles.flexRowContainer, {paddingTop: Responsive.h(5)}]}>
-        <Text style={[styles.itemMealTitle, {width: '50%'}]} numberOfLines={1}>
-          {parseInt(item.consume, 10)} kJ
-        </Text>
         <Text
-          style={[styles.itemMealTitle, {width: '50%', textAlign: 'right'}]}>
+          style={[styles.itemMealTitle, {width: '100%', textAlign: 'center'}]}>
           {item.percent}% daily kJ
         </Text>
       </View>

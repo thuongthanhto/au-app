@@ -25,14 +25,14 @@ const BurnkJScreen = () => {
   const handleChangeActivity = value => {
     setActivity(value);
     const energyUse = calculateBurn(value, duration, profile);
-    const resultText = `You'd burn ${energyUse} kJ from "${value}" for ${duration} min(s).`;
+    const resultText = `You would use around ${energyUse} kJ from "${value}" for ${duration} min(s).`;
     setState({resultText, energyUseText: `${energyUse} kJ`, energyUse});
   };
 
   const handleChangeDuration = value => {
     setDuration(value);
     const energyUse = calculateBurn(activity, value, profile);
-    const resultText = `You'd burn ${energyUse} kJ from "${activity}" for ${value} min(s).`;
+    const resultText = `You would use around ${energyUse} kJ from "${activity}" for ${value} min(s).`;
     setState({resultText, energyUseText: `${energyUse} kJ`, energyUse});
   };
 
@@ -77,29 +77,28 @@ const BurnkJScreen = () => {
         {(activity === '' || duration === '') && (
           <>
             <Text style={stylesBasicInfo.textPragraph}>
-              Select an activity and the duration to find out how many kJs you
-              will burn. The result is based on your current profile.
+              Choose an activity and the duration to find out how much energy
+              you need to complete it.
             </Text>
             <Text style={stylesBasicInfo.textPragraph}>
-              The results will tell you how much fuel you need for specific
-              physical activities. They're worth remembering when you are
-              balancing how many kJs you consume through food and drinks.
+              The result is based on your profile information and can help you
+              understand your nutrition needs depending on your activity levels.
             </Text>
           </>
         )}
         {state.energyUse !== '' && duration !== '' && (
           <>
             <Text style={stylesBasicInfo.figure}>{state.energyUseText}</Text>
-            <Text style={stylesBasicInfo.h2}>What does this figure mean?</Text>
+            <Text style={stylesBasicInfo.h2}>What does this number mean?</Text>
             <Text style={stylesBasicInfo.textPragraph}>{state.resultText}</Text>
             <Text style={stylesBasicInfo.textPragraph}>
-              This figure shows you how many kJs your body will burn based on
-              your selection of activity and the duration that you do that
-              activity for.
+              This number should approximately how much energy your body would
+              use based on the activity you selected and the length of time you
+              do that activity for.
             </Text>
             <Text style={stylesBasicInfo.textPragraph}>
-              Always exercise within the limits of your level of fitness.
-              Consult a doctor before exercising if unsure.
+              Always exercise within your fitness limits. Constult a doctor
+              before exewrcising if you are unsure.
             </Text>
           </>
         )}

@@ -57,7 +57,7 @@ const HomeScreen = props => {
         <Button
           width="100%"
           height={Responsive.h(50)}
-          text="Burn kJ Calculator"
+          text="Activity Calculator"
           styleGradient={{marginBottom: Responsive.v(10)}}
           rightIcon={
             <Image source={Images.arrow_right} style={styles.bigArrowIcon} />
