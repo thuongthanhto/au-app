@@ -1,6 +1,6 @@
 - 8700 app
 - AUTHOR: TO THANH THUONG
-- VERSION: 1.2.8
+- VERSION: 1.3.0
 
 ## Background
 
@@ -73,7 +73,7 @@ cd android
 
 Passwords for both are p0pc0rn!! and alias is 8700Key
 change versionCode 10207
-versionName "1.2.8"
+versionName "1.3.0"
 
 keytool -genkey -v -keystore NSWFA-8700-app-release.keystore -alias NFA_8700 -keyalg RSA -keysize 2048 -validity 10000
 
