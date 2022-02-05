@@ -36,7 +36,7 @@
   },
   {
     "Id": 108,
-    "Name": "Beverages",
+    "Name": "Drinks",
     "Description": ""
   },
   {
@@ -112,11 +112,6 @@
   {
     "Id": 123,
     "Name": "Fruit",
-    "Description": ""
-  },
-  {
-    "Id": 124,
-    "Name": "Alcohol",
     "Description": ""
   }
 ]

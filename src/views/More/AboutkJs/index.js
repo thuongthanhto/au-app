@@ -26,8 +26,8 @@ const AboutkJs = () => {
             the right amount of energy for our needs.
           </Text>
           <Text style={stylesBasicInfo.textPragraph}>
-            If we eat more kJs than our bodies burn off on a regular basis, then
-            we gain weight.
+            If we eat more kJs than our bodies need, this could lead to weight
+            gain.
           </Text>
           <Text style={stylesBasicInfo.textPragraph}>
             Like adults, there is no exact kilojoule number for kids – every

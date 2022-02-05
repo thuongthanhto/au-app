@@ -73,7 +73,7 @@ const IdealFigureScreen = ({navigation}) => {
       <ScrollView>
         <View style={styles.contentWrap}>
           <View style={styles.textContentWrap}>
-            <Text style={styles.h3}>Remember your figure</Text>
+            <Text style={styles.h3}>Your kilojoule needs</Text>
             <View>
               <Text style={styles.figure}>{figure}</Text>
               <Touch
@@ -86,33 +86,17 @@ const IdealFigureScreen = ({navigation}) => {
             {tolerance !== 0 && (
               <Text style={styles.figureRange}>{figureRange}</Text>
             )}
-            <Text style={styles.h2}>What does this figure mean?</Text>
+            <Text style={styles.h2}>What does this number mean?</Text>
             <Text style={styles.textPragraph}>
-              This calculator is designed to give a guide to the approximate
-              amount of kJs you need to consume each day to hit your goal,
-              whether you want to maintain your current weight, or get closer to
-              your weight goal over a healthy period.
+              This calculator provides you with an approximate guide to the
+              number of kilojoules (kJ) - a measure of energy - to consume each
+              day to help maintain a healthy weight.
             </Text>
 
             <Text style={styles.textPragraph}>
-              Just click on the 'Inputs' button above, complete each of the
-              variable fields then hit 'Done' and your suggested daily kJ intake
-              is updated for you.
-            </Text>
-
-            <Text style={styles.textPragraph}>
-              But remember, everyone's body works differently and this is just
-              an approximate guide based on your inputs. A useful guide over
-              time to whether you are getting the ideal number of kJs is whether
-              you are gaining or losing weight. If you find that your suggested
-              intake is not providing the results you're after, start by
-              adjusting your kJ intake by 500 kJs per day for a few weeks and
-              check the effect on your weight.
-            </Text>
-
-            <Text style={styles.textPragraph}>
-              The good news is: small changes can make a big difference. And
-              with a little effort you can make the changes you want.
+              The number changes depending on your inputs. Click on the ‘Inputs’
+              button above, complete each of the fields, and your suggested
+              daily kJ intake will be updated for you.
             </Text>
 
             <Text
@@ -122,8 +106,10 @@ const IdealFigureScreen = ({navigation}) => {
                   'https://daa.asn.au/maintaining-professional-standards/register-of-apds/',
                 )
               }>
-              If you would like more information about healthy weight or you're
-              concerned you may be under or over weight, consult your doctor or{' '}
+              It’s important to remember that everyone’s body works differently,
+              and this is just an approximate guide. If you would like more
+              information about maintaining a healthy weight, consult your
+              doctor or{' '}
               <Text style={[styles.textPragraph, {color: '#00AAEA'}]}>
                 accredited practising dietician
               </Text>
@@ -131,6 +117,12 @@ const IdealFigureScreen = ({navigation}) => {
                 {' '}
                 to get the right advice for you.
               </Text>
+            </Text>
+
+            <Text style={styles.textPragraph}>
+              The best way to move into a healthier lifestyle is to start with
+              small, simple changes which can have a big impact on your overall
+              health and wellbeing.
             </Text>
           </View>
         </View>

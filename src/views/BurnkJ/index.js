@@ -92,13 +92,13 @@ const BurnkJScreen = () => {
             <Text style={stylesBasicInfo.h2}>What does this number mean?</Text>
             <Text style={stylesBasicInfo.textPragraph}>{state.resultText}</Text>
             <Text style={stylesBasicInfo.textPragraph}>
-              This number should approximately how much energy your body would
+              This number shows approximately how much energy your body would
               use based on the activity you selected and the length of time you
               do that activity for.
             </Text>
             <Text style={stylesBasicInfo.textPragraph}>
               Always exercise within your fitness limits. Constult a doctor
-              before exewrcising if you are unsure.
+              before exercising if you are unsure.
             </Text>
           </>
         )}
