@@ -76,11 +76,6 @@ const IdealFigureScreen = ({navigation}) => {
             <Text style={styles.h3}>Your kilojoule needs</Text>
             <View>
               <Text style={styles.figure}>{figure}</Text>
-              <Touch
-                style={{position: 'absolute', left: '102%', top: 10}}
-                onPress={() => setTooltipVisible(true)}>
-                <Image source={Images.info} />
-              </Touch>
             </View>
 
             {tolerance !== 0 && (

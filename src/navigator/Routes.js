@@ -4,7 +4,7 @@ export const NavigationRoutes = {
   Welcome: 'Welcome',
   UserInfo: 'UserInfo',
   IdealFigure: 'KJ Calculator',
-  BurnkJ: 'Calculator',
+  BurnkJ: 'Activity',
   Profile: 'Profile',
   Search: 'Search',
   SearchForm: 'SearchForm',
